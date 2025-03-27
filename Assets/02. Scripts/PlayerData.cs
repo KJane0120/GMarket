@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+[System.Serializable]
+public class PlayerData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int NowStage; //현재 진행중인 스테이지
+    public int Gold; // 보유한 재화
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("StatsUpgrade")]
+    public int CriticalDamageLevel; // 치명타 데미지 레벨
+    public int AutoAttackLevel; //자동 공격 레벨
+    public int GoldGainLevel; // 재화 획득량 증가 레벨
+
+    [Header("WeaponUpgrade")] //임의대로 붙인 변수명, 추후 수정 예정
+    public int BasicWeaponLevel;
+    public int StandardWeaponLevel;
+    public int ChallengeWeaponsLevel;
+    public int LegendWeaponsLevel;
+
+    public GameObject CurrentWeapon; //현재 장착한 장비
+
+    [Header("TotalStats")]
+    public int TotalAttackPower; //최종 공격력
+    public int TotalCritChance; //최종 치명타 확률
+    public int TotalCritDamage; //최종 치명타 데미지
+    public int TotalGoldGain; //최종 골드 획득 보너스
+
+
+
+
 }

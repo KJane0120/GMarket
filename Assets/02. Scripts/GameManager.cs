@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
+    public PlayerData PlayerData { get; private set; }
+
     private void Awake()
     {
         if (instance == null)
@@ -22,4 +24,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+
 }
