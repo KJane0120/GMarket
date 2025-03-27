@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +7,13 @@ public class GameManager : MonoBehaviour
 
     public PlayerData PlayerData { get; private set; }
 
+    public CurrencyManager CurrencyManager { get; private set; }
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -23,6 +22,28 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        Application.targetFrameRate = 30;
+        QualitySettings.vSyncCount = 0;
+
+        //나중에 사용자가 직접 프레임 속도를 조절하는 기능을 추가할 경우
+        //QualitySettings.vSyncCount = 0;  // VSync 끄기
+
+        //int targetFPS = PlayerPrefs.GetInt("TargetFPS", 60); // 저장된 FPS 불러오기 (기본값 60)
+        //Application.targetFrameRate = targetFPS;
+    }
+
+    private void Start()
+    {
+        CurrencyManager = new CurrencyManager();
+        PlayerData = new PlayerData();
+        SetData();
+    }
+
+    private void SetData() // 데이터 초기화 
+    {
+        //Enemy.SetEnemyData; 
+        PlayerData.StatGold = CurrencyManager.Instance.controller.statGold;
+        PlayerData.WeaponGold = CurrencyManager.Instance.controller.weaponGold;
     }
 
 
