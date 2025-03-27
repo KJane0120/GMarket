@@ -3,63 +3,63 @@ using System.Collections;
 
 public class ClickManager : MonoBehaviour
 {
-    public bool isGamePaused = false; // °ÔÀÓ ÀÏ½Ã Á¤Áö »óÅÂ Ã¼Å©
+    public bool isGamePaused = false; // ê²Œì„ ì¼ì‹œ ì •ì§€ ìƒíƒœ ì²´í¬
 
-    public int autoAttackLevel = 1; // ÀÚµ¿ °ø°İ ·¹º§
-    public float baseAutoAttackInterval = 1.0f; // ±âº» ÀÚµ¿ °ø°İ °£°İ
+    public int autoAttackLevel = 1; // ìë™ ê³µê²© ë ˆë²¨
+    public float baseAutoAttackInterval = 1.0f; // ê¸°ë³¸ ìë™ ê³µê²© ê°„ê²©
     private Coroutine autoAttackCoroutine;
 
-    private bool isClicking = false; // Å¬¸¯ »óÅÂ ÃßÀû º¯¼ö
+    private bool isClicking = false; // í´ë¦­ ìƒíƒœ ì¶”ì  ë³€ìˆ˜
 
     void Start()
     {
-        StartAutoAttack(); // ÀÚµ¿ °ø°İ ½ÃÀÛ
+        StartAutoAttack(); // ìë™ ê³µê²© ì‹œì‘
     }
 
     void Update()
     {
-        if (isGamePaused) return; // °ÔÀÓÀÌ ÀÏ½Ã Á¤Áö »óÅÂ¶ó¸é Å¬¸¯ ¹«½Ã
+        if (isGamePaused) return; // ê²Œì„ì´ ì¼ì‹œ ì •ì§€ ìƒíƒœë¼ë©´ í´ë¦­ ë¬´ì‹œ
 
-        if (Input.GetMouseButtonDown(0) && !isClicking) // ¸¶¿ì½º ÁÂÅ¬¸¯ °¨Áö ¹× Áßº¹ ¹æÁö
+        if (Input.GetMouseButtonDown(0) && !isClicking) // ë§ˆìš°ìŠ¤ ì¢Œí´ë¦­ ê°ì§€ ë° ì¤‘ë³µ ë°©ì§€
         {
-            isClicking = true; // Å¬¸¯ »óÅÂ È°¼ºÈ­
-            Debug.Log("Å¬¸¯ ¹ß»ı!");
-            OnAttack(); // Å¬¸¯ ½Ã Áï½Ã °ø°İ ½ÇÇà
+            isClicking = true; // í´ë¦­ ìƒíƒœ í™œì„±í™”
+            Debug.Log("í´ë¦­ ë°œìƒ!");
+            OnAttack(); // í´ë¦­ ì‹œ ì¦‰ì‹œ ê³µê²© ì‹¤í–‰
         }
 
-        if (Input.GetMouseButtonUp(0)) // ¸¶¿ì½º ¹öÆ°À» ¶ÃÀ» ¶§ Å¬¸¯ »óÅÂ ÇØÁ¦
+        if (Input.GetMouseButtonUp(0)) // ë§ˆìš°ìŠ¤ ë²„íŠ¼ì„ ë—ì„ ë•Œ í´ë¦­ ìƒíƒœ í•´ì œ
         {
-            isClicking = false; // Å¬¸¯ »óÅÂ ºñÈ°¼ºÈ­
+            isClicking = false; // í´ë¦­ ìƒíƒœ ë¹„í™œì„±í™”
         }
     }
 
     public void StartAutoAttack()
     {
-        if (autoAttackCoroutine != null) StopCoroutine(autoAttackCoroutine); // ±âÁ¸ ÄÚ·çÆ¾ Á¤Áö
-        autoAttackCoroutine = StartCoroutine(AutoAttack()); // »õ·Î¿î ÄÚ·çÆ¾ ½ÃÀÛ
+        if (autoAttackCoroutine != null) StopCoroutine(autoAttackCoroutine); // ê¸°ì¡´ ì½”ë£¨í‹´ ì •ì§€
+        autoAttackCoroutine = StartCoroutine(AutoAttack()); // ìƒˆë¡œìš´ ì½”ë£¨í‹´ ì‹œì‘
     }
 
     IEnumerator AutoAttack()
     {
-        while (true) // ¹«ÇÑ ·çÇÁ ½ÇÇà
+        while (true) // ë¬´í•œ ë£¨í”„ ì‹¤í–‰
         {
-            if (!isGamePaused) OnAttack(); // °ÔÀÓÀÌ Á¤Áö »óÅÂ°¡ ¾Æ´Ï¸é ÀÚµ¿ °ø°İ ½ÇÇà
+            if (!isGamePaused) OnAttack(); // ê²Œì„ì´ ì •ì§€ ìƒíƒœê°€ ì•„ë‹ˆë©´ ìë™ ê³µê²© ì‹¤í–‰
 
-            float attackInterval = baseAutoAttackInterval / autoAttackLevel; // ÀÚµ¿ °ø°İ ·¹º§¿¡ µû¶ó °£°İ Á¶Á¤
-            yield return new WaitForSeconds(attackInterval); // ÀÏÁ¤ °£°İ ´ë±â ÈÄ ´Ù½Ã ½ÇÇà
+            float attackInterval = baseAutoAttackInterval / autoAttackLevel; // ìë™ ê³µê²© ë ˆë²¨ì— ë”°ë¼ ê°„ê²© ì¡°ì •
+            yield return new WaitForSeconds(attackInterval); // ì¼ì • ê°„ê²© ëŒ€ê¸° í›„ ë‹¤ì‹œ ì‹¤í–‰
         }
     }
 
     void OnAttack()
     {
-        Debug.Log("°ø°İ ¹ß»ı!"); // °ø°İ ¹ß»ı ½Ã ÄÜ¼Ö Ãâ·Â
-        // ¿©±â¿¡ µ¥¹ÌÁö, ¾Ö´Ï¸ŞÀÌ¼Ç µî Ãß°¡ °¡´É
+        Debug.Log("ê³µê²© ë°œìƒ!"); // ê³µê²© ë°œìƒ ì‹œ ì½˜ì†” ì¶œë ¥
+        // ì—¬ê¸°ì— ë°ë¯¸ì§€, ì• ë‹ˆë©”ì´ì…˜ ë“± ì¶”ê°€í•´ì•¼í•¨
     }
 
     public void LevelUp()
     {
-        autoAttackLevel++; // ÀÚµ¿ °ø°İ ·¹º§ Áõ°¡
-        Debug.Log($"ÀÚµ¿ °ø°İ ·¹º§ ¾÷! ÇöÀç ·¹º§: {autoAttackLevel}");
-        StartAutoAttack(); // ·¹º§ ¾÷ ½Ã »õ·Î¿î ¼Óµµ·Î ÀÚµ¿ °ø°İ Àç½ÃÀÛ
+        autoAttackLevel++; // ìë™ ê³µê²© ë ˆë²¨ ì¦ê°€
+        Debug.Log($"ìë™ ê³µê²© ë ˆë²¨ ì—…! í˜„ì¬ ë ˆë²¨: {autoAttackLevel}");
+        StartAutoAttack(); // ë ˆë²¨ ì—… ì‹œ ìƒˆë¡œìš´ ì†ë„ë¡œ ìë™ ê³µê²© ì¬ì‹œì‘
     }
 }
