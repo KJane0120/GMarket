@@ -225,8 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2061326316}
   - component: {fileID: 2061326317}
-  - component: {fileID: 2061326319}
-  - component: {fileID: 2061326318}
   m_Layer: 0
   m_Name: Click
   m_TagString: Untagged
@@ -262,35 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGamePaused: 0
---- !u!114 &2061326318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061326315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d49b7c1bcd2e07499844da127be038d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_ForceModuleActive: 0
---- !u!114 &2061326319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061326315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
+  autoAttackLevel: 1
+  baseAutoAttackInterval: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
