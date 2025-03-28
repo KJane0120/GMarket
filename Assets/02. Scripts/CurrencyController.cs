@@ -55,7 +55,7 @@ public class CurrencyController : MonoBehaviour
             statGold -= upgradeGold;
         }
         else
-            Debug.Log("골드가 부족합니다!");
+            UIManager.Instance.StatsErrorMsg(); //에러 메세지 표시
     }
 
 
@@ -66,6 +66,6 @@ public class CurrencyController : MonoBehaviour
             weaponGold -= upgradeGold;
         }
         else
-            Debug.Log("골드가 부족합니다!");
+            UIManager.Instance.WeaponErrorMsg(); //에러 메세지 표시
     }
 }
