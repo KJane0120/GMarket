@@ -13,6 +13,12 @@ public class Enemy : MonoBehaviour
     public int maxHealth; //최대 체력
     public int currentHealth; //현재 체력
 
+    public EnemyType enemyType; //제대로 들어와지는지 확인하려고 가져오는 필드
+
+    [Header ("스테이지 변수")]
+    public int index; //스테이지 내에서 지정된 고유 값
+    public Stage stageManager; //갖고 있게 될 스테이지매니저
+
     //이벤트 인스턴스 변수
 
 
@@ -70,6 +76,7 @@ public class Enemy : MonoBehaviour
         enemyImage.sprite = enemyData.icon;
         maxHealth = enemyData.health;
         currentHealth = enemyData.health;
+        enemyType= enemyData.enemyType;
 
         //이후, 변경된 값만큼 체력 비율 조정
         UpdateHealth();

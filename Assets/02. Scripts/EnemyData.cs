@@ -6,9 +6,9 @@ using UnityEngine;
 //실질적인 계산은 StageManager에서 처리할 것
 public enum EnemyType
 {
-    Normal, //스테이지의 0.5배만큼을 체력에 곱하기
-    Elite, //스테이지의 1배만큼 체력에 곱하기
-    Boss, //스테이지의 2배만큼 체력에 곱하기
+    Normal, //1+스테이지의 0.25배만큼을 체력에 곱하기
+    Elite, //1+스테이지의 0.5배만큼 체력에 곱하기
+    Boss, //1+스테이지의 1배만큼 체력에 곱하기
 }
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "New Enemy")]
