@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
 
     public void Start()
     {
-        stageManager = StageManager.Instance;
         //이벤트 인스턴스 할당하기
         //이벤트.+=Damaged //클릭 이벤트에 공격 메서드 추가하기
         //치명타 이벤트.+=CritDamaged //클릭 이벤트(치명타)에 치명타 메서드 추가하기
@@ -90,6 +89,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("죽었습니다.");
         this.gameObject.SetActive(false); //오브젝트를 끄고
+        stageManager.NextEnemy();
         //보상 지급(필요하다면);
     }
 

@@ -5,27 +5,11 @@ using UnityEngine.InputSystem.XR;
 
 public class StageManager : MonoBehaviour
 {
-    private static StageManager instance;
-    public static StageManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameObject("StageManager").AddComponent<StageManager>();
-            }
-            return instance;
-        }
-
-    }
-
+    public int currentStage; //현재 스테이지, 게임매니저에서 구현되는대로 바로 대체할 것
     public Enemy[] enemy; //적 객체가 담겨지게 될 배열
-    public Transform enemies; //enemy가 담긴 부모 클래스
+    public Transform enemies; //enemy가 담긴 부모 객체
 
-    //게임매니저 클래스;
-    //
-
-
+    private ClickManager clickManager;
 
     [Header("적 데이터")]
     public EnemyData[] enemydataTable; //적 데이터가 담겨있을 배열
@@ -33,25 +17,15 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        //싱글톤
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
         //만약 적 클래스가 담긴 부모 객체가 없다면 찾아온 뒤 할당하고
         if (enemies == null)
         {
-            GameObject go = GameObject.Find("Stage").transform.Find("Enemies").gameObject;
-            enemies = go.GetComponent<RectTransform>();
+            enemies = GameObject.FindGameObjectWithTag("Enemies").GetComponent<RectTransform>();
+        }
+        //만약 클릭매니저가 없다면 찾아온 뒤 할당하고
+        if(clickManager==null)
+        {
+            clickManager = GameObject.Find("Click").GetComponent<ClickManager>();
         }
         //만약 적 데이터 테이블이 없다면
         if (enemydataTable == null)
@@ -63,6 +37,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        //clickManager.onClick += AddDamage;
 
         //enemies에 담긴 객체만큼 배열 길이를 정한 뒤 반복문 시작
         enemy = new Enemy[enemies.childCount];
@@ -76,18 +51,12 @@ public class StageManager : MonoBehaviour
             }
         }
 
-        NextStage(); //이후 적 초기화
+        ResetEnemies(); //이후 적 초기화
     }
 
-    /// <summary>
-    /// 적들을 전부 초기화한 뒤 값을 재설정하는 메서드
-    /// </summary>
-    public void NextStage()
+    public void ResetEnemies()
     {
-        //게임매니저의 스테이지를 올리고 (GameManager.instance.stage++);
-        //적 데이터테이블 안에서 무작위 데이터를 가져온 다음 다음 스테이지의 적 데이터로 저장
-        EnemyData desiredEnemy = enemydataTable[Random.Range(0,enemydataTable.Length)];
-
+        EnemyData desiredEnemy = enemydataTable[currentStage % enemydataTable.Length];
         currentEnemyIndex = 0;
 
         for (int i = 0; i < enemy.Length; i++)
@@ -98,7 +67,7 @@ public class StageManager : MonoBehaviour
                 enemy[i].gameObject.SetActive(false);
             }
             //이후 순서에 따른 적 구분 (5번째에 엘리트, 10번째에 보스, 그 외는 전부 일반)
-            switch(enemy[i].index)
+            switch (enemy[i].index)
             {
                 case 3:
                     enemy[i].enemyData = desiredEnemy;
@@ -132,11 +101,29 @@ public class StageManager : MonoBehaviour
         }
     }
 
+
     public void NextEnemy()
     {
-        currentEnemyIndex++;
-        enemy[currentEnemyIndex].gameObject.SetActive(true);
+        //만약 현재 적이 스테이지의 마지막 적이 아닌 경우, 수치 올리고 다음 적 활성화
+        //현재 적 객체 비활성화는 Die 메서드에서 실행될 것
+        if (currentEnemyIndex >= 9)
+        {
+            //현재 스테이지를 높이고, 적 초기화
+            currentStage++;
+            ResetEnemies();
+        }
+        //만약 현재 적이 스테이지의 마지막 적인 경우, 다음 스테이지로 가는 메서드 실행
+        else
+        {
+            currentEnemyIndex++;
+            enemy[currentEnemyIndex].gameObject.SetActive(true);
+        }
+
     }
 
+    public void AddDamage()
+    {
+        enemy[currentEnemyIndex].Damaged();
+    }
 
 }
