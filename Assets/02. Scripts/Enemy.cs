@@ -6,94 +6,95 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyData enemyData; // ÂüÁ¶ÇÒ Àû µ¥ÀÌÅÍ
-    public Image healthBar; // ³·Ãß°í ¿Ã¸± Ã¼·Â¹Ù
-    public Image enemyImage; // Ç¥½ÃÇÒ Àû ½ºÇÁ¶óÀÌÆ®
+    public EnemyData enemyData; // ì°¸ì¡°í•  ì  ë°ì´í„°
+    public Image healthBar; // ë‚®ì¶”ê³  ì˜¬ë¦´ ì²´ë ¥ë°”
+    public Image enemyImage; // í‘œì‹œí•  ì  ìŠ¤í”„ë¼ì´íŠ¸
 
-    public int maxHealth; //ÃÖ´ë Ã¼·Â
-    public int currentHealth; //ÇöÀç Ã¼·Â
+    public int maxHealth; //ìµœëŒ€ ì²´ë ¥
+    public int currentHealth; //í˜„ì¬ ì²´ë ¥
 
-    public EnemyType enemyType; //Á¦´ë·Î µé¾î¿ÍÁö´ÂÁö È®ÀÎÇÏ·Á°í °¡Á®¿À´Â ÇÊµå
+    public EnemyType enemyType; //ì œëŒ€ë¡œ ë“¤ì–´ì™€ì§€ëŠ”ì§€ í™•ì¸í•˜ë ¤ê³  ê°€ì ¸ì˜¤ëŠ” í•„ë“œ
 
-    [Header ("½ºÅ×ÀÌÁö º¯¼ö")]
-    public int index; //½ºÅ×ÀÌÁö ³»¿¡¼­ ÁöÁ¤µÈ °íÀ¯ °ª
-    public StageManager stageManager; //°®°í ÀÖ°Ô µÉ ½ºÅ×ÀÌÁö¸Å´ÏÀú
+    [Header ("ìŠ¤í…Œì´ì§€ ë³€ìˆ˜")]
+    public int index; //ìŠ¤í…Œì´ì§€ ë‚´ì—ì„œ ì§€ì •ëœ ê³ ìœ  ê°’
+    public StageManager stageManager; //ê°–ê³  ìˆê²Œ ë  ìŠ¤í…Œì´ì§€ë§¤ë‹ˆì €
 
-    //ÀÌº¥Æ® ÀÎ½ºÅÏ½º º¯¼ö
+    //ì´ë²¤íŠ¸ ì¸ìŠ¤í„´ìŠ¤ ë³€ìˆ˜
 
 
     public void Start()
     {
-        //ÀÌº¥Æ® ÀÎ½ºÅÏ½º ÇÒ´çÇÏ±â
-        //ÀÌº¥Æ®.+=Damaged //Å¬¸¯ ÀÌº¥Æ®¿¡ °ø°İ ¸Ş¼­µå Ãß°¡ÇÏ±â
-        //Ä¡¸íÅ¸ ÀÌº¥Æ®.+=CritDamaged //Å¬¸¯ ÀÌº¥Æ®(Ä¡¸íÅ¸)¿¡ Ä¡¸íÅ¸ ¸Ş¼­µå Ãß°¡ÇÏ±â
+        stageManager = StageManager.Instance;
+        //ì´ë²¤íŠ¸ ì¸ìŠ¤í„´ìŠ¤ í• ë‹¹í•˜ê¸°
+        //ì´ë²¤íŠ¸.+=Damaged //í´ë¦­ ì´ë²¤íŠ¸ì— ê³µê²© ë©”ì„œë“œ ì¶”ê°€í•˜ê¸°
+        //ì¹˜ëª…íƒ€ ì´ë²¤íŠ¸.+=CritDamaged //í´ë¦­ ì´ë²¤íŠ¸(ì¹˜ëª…íƒ€)ì— ì¹˜ëª…íƒ€ ë©”ì„œë“œ ì¶”ê°€í•˜ê¸°
     }
 
     /// <summary>
-    /// °ø°İÀ» ¹Ş¾ÒÀ» ¶§ È£ÃâµÉ ¸Ş¼­µå
+    /// ê³µê²©ì„ ë°›ì•˜ì„ ë•Œ í˜¸ì¶œë  ë©”ì„œë“œ
     /// </summary>
     public void Damaged()
     {
-        //0Àº ÀÓ½Ã·Î ÇÒ´çÇÑ °ªÀÔ´Ï´Ù.
-        int value=1; // °ÔÀÓ¸Å´ÏÀú¿¡¼­ °ø°İ µ¥¹ÌÁö¸¦ °¡Á®¿Â µÚ (GameManager.Instance.CalculateDamage()...)
-        currentHealth -= value; //±× °ª¸¸Å­ Ã¼·Â °¨¼Ò
+        //0ì€ ì„ì‹œë¡œ í• ë‹¹í•œ ê°’ì…ë‹ˆë‹¤.
+        int value=1; // ê²Œì„ë§¤ë‹ˆì €ì—ì„œ ê³µê²© ë°ë¯¸ì§€ë¥¼ ê°€ì ¸ì˜¨ ë’¤ (GameManager.Instance.CalculateDamage()...)
+        currentHealth -= value; //ê·¸ ê°’ë§Œí¼ ì²´ë ¥ ê°ì†Œ
         if (currentHealth <= 0)
         {
             Die();
         }
 
-        //µµÀü ±¸Çö ±â´É; ÀÔÀº µ¥¹ÌÁö Ç¥½ÃÇÏ±â
+        //ë„ì „ êµ¬í˜„ ê¸°ëŠ¥; ì…ì€ ë°ë¯¸ì§€ í‘œì‹œí•˜ê¸°
 
-        UpdateHealth(); //ÀÌÈÄ Ã¼·Â ºñÀ² Á¶Á¤
+        UpdateHealth(); //ì´í›„ ì²´ë ¥ ë¹„ìœ¨ ì¡°ì •
     }
 
     /// <summary>
-    /// Ä¡¸íÅ¸ °ø°İÀ» ¹Ş¾ÒÀ» ¶§ È£ÃâµÉ ¸Ş¼­µå
+    /// ì¹˜ëª…íƒ€ ê³µê²©ì„ ë°›ì•˜ì„ ë•Œ í˜¸ì¶œë  ë©”ì„œë“œ
     /// </summary>
     public void CritDamaged()
     {
-        //0Àº ÀÓ½Ã·Î ÇÒ´çÇÑ °ªÀÔ´Ï´Ù.
-        int value = 0; // °ÔÀÓ¸Å´ÏÀú¿¡¼­ °ø°İ µ¥¹ÌÁö¸¦ °¡Á®¿Â µÚ (GameManager.Instance.CalculateDamage()...)
-        //value¿¡ Ä¡¸íÅ¸ ÇÇÇØ·®À» °öÇÑ µÚ
+        //0ì€ ì„ì‹œë¡œ í• ë‹¹í•œ ê°’ì…ë‹ˆë‹¤.
+        int value = 0; // ê²Œì„ë§¤ë‹ˆì €ì—ì„œ ê³µê²© ë°ë¯¸ì§€ë¥¼ ê°€ì ¸ì˜¨ ë’¤ (GameManager.Instance.CalculateDamage()...)
+        //valueì— ì¹˜ëª…íƒ€ í”¼í•´ëŸ‰ì„ ê³±í•œ ë’¤
 
-        currentHealth -= value; //±× °ª¸¸Å­ Ã¼·Â °¨¼Ò
+        currentHealth -= value; //ê·¸ ê°’ë§Œí¼ ì²´ë ¥ ê°ì†Œ
         if (currentHealth <= 0)
         {
             Die();
         }
 
-        //µµÀü ±¸Çö ±â´É; ÀÔÀº µ¥¹ÌÁö Ç¥½ÃÇÏ±â
+        //ë„ì „ êµ¬í˜„ ê¸°ëŠ¥; ì…ì€ ë°ë¯¸ì§€ í‘œì‹œí•˜ê¸°
 
-        UpdateHealth(); //ÀÌÈÄ Ã¼·Â ºñÀ² Á¶Á¤
+        UpdateHealth(); //ì´í›„ ì²´ë ¥ ë¹„ìœ¨ ì¡°ì •
     }
 
     /// <summary>
-    /// EnemyData¿¡¼­ °ªÀ» ºÒ·¯¿Í ÇÒ´çÇÏ´Â ¸Ş¼­µå
+    /// EnemyDataì—ì„œ ê°’ì„ ë¶ˆëŸ¬ì™€ í• ë‹¹í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     public void SetEnemyData()
     {
-        //°´Ã¼ÀÇ °ª ÀüºÎ ÃÊ±âÈ­
+        //ê°ì²´ì˜ ê°’ ì „ë¶€ ì´ˆê¸°í™”
         enemyImage.sprite = enemyData.icon;
         maxHealth = enemyData.health;
         currentHealth = enemyData.health;
         enemyType= enemyData.enemyType;
 
-        //ÀÌÈÄ, º¯°æµÈ °ª¸¸Å­ Ã¼·Â ºñÀ² Á¶Á¤
+        //ì´í›„, ë³€ê²½ëœ ê°’ë§Œí¼ ì²´ë ¥ ë¹„ìœ¨ ì¡°ì •
         UpdateHealth();
     }
 
     /// <summary>
-    /// Ã¼·ÂÀÌ 0ÀÏ¶§ È£ÃâÇÒ »ç¸Á ¸Ş¼­µå
+    /// ì²´ë ¥ì´ 0ì¼ë•Œ í˜¸ì¶œí•  ì‚¬ë§ ë©”ì„œë“œ
     /// </summary>
     public void Die()
     {
-        Debug.Log("Á×¾ú½À´Ï´Ù.");
-        this.gameObject.SetActive(false); //¿ÀºêÁ§Æ®¸¦ ²ô°í
-        //º¸»ó Áö±Ş(ÇÊ¿äÇÏ´Ù¸é);
+        Debug.Log("ì£½ì—ˆìŠµë‹ˆë‹¤.");
+        this.gameObject.SetActive(false); //ì˜¤ë¸Œì íŠ¸ë¥¼ ë„ê³ 
+        //ë³´ìƒ ì§€ê¸‰(í•„ìš”í•˜ë‹¤ë©´);
     }
 
     /// <summary>
-    /// ÇöÀç Ã¼·Â ºñÀ²À» ¹İÈ¯ÇÏ´Â ¸Ş¼­µå
+    /// í˜„ì¬ ì²´ë ¥ ë¹„ìœ¨ì„ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     /// <returns></returns>
     public void UpdateHealth()

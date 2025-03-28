@@ -1,28 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
 public class StageManager : MonoBehaviour
 {
     private static StageManager instance;
-    public static StageManager Instance;
+    public static StageManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject("StageManager").AddComponent<StageManager>();
+            }
+            return instance;
+        }
 
-    public Enemy[] enemy; //Àû °´Ã¼°¡ ´ã°ÜÁö°Ô µÉ ¹è¿­
-    public Transform enemies; //enemy°¡ ´ã±ä ºÎ¸ğ Å¬·¡½º
+    }
 
-    //°ÔÀÓ¸Å´ÏÀú Å¬·¡½º;
+    public Enemy[] enemy; //ì  ê°ì²´ê°€ ë‹´ê²¨ì§€ê²Œ ë  ë°°ì—´
+    public Transform enemies; //enemyê°€ ë‹´ê¸´ ë¶€ëª¨ í´ë˜ìŠ¤
+
+    //ê²Œì„ë§¤ë‹ˆì € í´ë˜ìŠ¤;
     //
 
 
 
-    [Header("Àû µ¥ÀÌÅÍ")]
-    public EnemyData[] enemydataTable; //Àû µ¥ÀÌÅÍ°¡ ´ã°ÜÀÖÀ» ¹è¿­
-    public int currentEnemyIndex; //ÇöÀç ÀûÀÌ ¸î ¹øÂ° ÀûÀÎÁö¸¦ È®ÀÎÇÒ ÇÊµå
+    [Header("ì  ë°ì´í„°")]
+    public EnemyData[] enemydataTable; //ì  ë°ì´í„°ê°€ ë‹´ê²¨ìˆì„ ë°°ì—´
+    public int currentEnemyIndex; //í˜„ì¬ ì ì´ ëª‡ ë²ˆì§¸ ì ì¸ì§€ë¥¼ í™•ì¸í•  í•„ë“œ
 
     private void Awake()
     {
+        //ì‹±ê¸€í†¤
         if (instance == null)
         {
             instance = this;
@@ -36,74 +47,84 @@ public class StageManager : MonoBehaviour
             }
         }
 
+        //ë§Œì•½ ì  í´ë˜ìŠ¤ê°€ ë‹´ê¸´ ë¶€ëª¨ ê°ì²´ê°€ ì—†ë‹¤ë©´ ì°¾ì•„ì˜¨ ë’¤ í• ë‹¹í•˜ê³ 
         if (enemies == null)
         {
-            GameObject go= GameObject.Find("Stage").transform.Find("Enemies").gameObject;
+            GameObject go = GameObject.Find("Stage").transform.Find("Enemies").gameObject;
             enemies = go.GetComponent<RectTransform>();
+        }
+        //ë§Œì•½ ì  ë°ì´í„° í…Œì´ë¸”ì´ ì—†ë‹¤ë©´
+        if (enemydataTable == null)
+        {
+            //Resources í´ë” ì•ˆ EnemyData ì•ˆì˜ ëª¨ë“  EnemyData í´ë˜ìŠ¤ë¥¼ ë¶ˆëŸ¬ì˜¨ ë’¤ í• ë‹¹í•˜ê¸°
+            enemydataTable = Resources.LoadAll<EnemyData>("EnemyData");
         }
     }
 
     void Start()
     {
 
-        //enemies¿¡ ´ã±ä °´Ã¼¸¸Å­ ¹è¿­ ±æÀÌ¸¦ Á¤ÇÑ µÚ ¹İº¹¹® ½ÃÀÛ
+        //enemiesì— ë‹´ê¸´ ê°ì²´ë§Œí¼ ë°°ì—´ ê¸¸ì´ë¥¼ ì •í•œ ë’¤ ë°˜ë³µë¬¸ ì‹œì‘
         enemy = new Enemy[enemies.childCount];
         for (int i=0;i<enemy.Length; i++)
         {
-            enemy[i] = enemies.GetChild(i).GetComponent<Enemy>(); //°´Ã¼ ¾È¿¡¼­ enemy Å¬·¡½º¸¦ Ã£¾Æ ÁöÁ¤ÇÏ°í 
-            enemy[i].index = i; //°íÀ¯ ½Äº°°ªÀ» ÁöÁ¤ÇÑ µÚ
-            enemy[i].stageManager = this; //ÇØ´ç °´Ã¼°¡ ÀÌ °´Ã¼¸¦ ÂüÁ¶ÇÒ ¼ö ÀÖ°Ô ÇÏ±â
+            enemy[i] = enemies.GetChild(i).GetComponent<Enemy>(); //ê°ì²´ ì•ˆì—ì„œ enemy í´ë˜ìŠ¤ë¥¼ ì°¾ì•„ ì§€ì •í•˜ê³  
+            enemy[i].index = i; //ê³ ìœ  ì‹ë³„ê°’ì„ ì§€ì •í•œ ë’¤
+            if (enemy[i].stageManager == null)
+            {
+                enemy[i].stageManager = this; //í•´ë‹¹ ê°ì²´ê°€ ì´ ê°ì²´ë¥¼ ì°¸ì¡°í•  ìˆ˜ ìˆê²Œ í•˜ê¸°
+            }
         }
 
-        NextStage(); //ÀÌÈÄ Àû ÃÊ±âÈ­
+        NextStage(); //ì´í›„ ì  ì´ˆê¸°í™”
     }
 
     /// <summary>
-    /// ÀûµéÀ» ÀüºÎ ÃÊ±âÈ­ÇÑ µÚ °ªÀ» Àç¼³Á¤ÇÏ´Â ¸Ş¼­µå
+    /// ì ë“¤ì„ ì „ë¶€ ì´ˆê¸°í™”í•œ ë’¤ ê°’ì„ ì¬ì„¤ì •í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
     public void NextStage()
     {
-        //°ÔÀÓ¸Å´ÏÀúÀÇ ½ºÅ×ÀÌÁö¸¦ ¿Ã¸®°í (GameManager.instance.stage++);
-        //Àû µ¥ÀÌÅÍÅ×ÀÌºí ¾È¿¡¼­ ¹«ÀÛÀ§ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â ´ÙÀ½ ´ÙÀ½ ½ºÅ×ÀÌÁöÀÇ Àû µ¥ÀÌÅÍ·Î ÀúÀå
+        //ê²Œì„ë§¤ë‹ˆì €ì˜ ìŠ¤í…Œì´ì§€ë¥¼ ì˜¬ë¦¬ê³  (GameManager.instance.stage++);
+        //ì  ë°ì´í„°í…Œì´ë¸” ì•ˆì—ì„œ ë¬´ì‘ìœ„ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¨ ë‹¤ìŒ ë‹¤ìŒ ìŠ¤í…Œì´ì§€ì˜ ì  ë°ì´í„°ë¡œ ì €ì¥
         EnemyData desiredEnemy = enemydataTable[Random.Range(0,enemydataTable.Length)];
 
         currentEnemyIndex = 0;
 
         for (int i = 0; i < enemy.Length; i++)
         {
-            //È¤½Ã¶óµµ °´Ã¼°¡ ÄÑÁ®ÀÖ´Ù¸é ²¨µÎ°í
+            //í˜¹ì‹œë¼ë„ ê°ì²´ê°€ ì¼œì ¸ìˆë‹¤ë©´ êº¼ë‘ê³ 
             if (enemy[i].gameObject.activeInHierarchy == true)
             {
                 enemy[i].gameObject.SetActive(false);
             }
-            //ÀÌÈÄ ¼ø¼­¿¡ µû¸¥ Àû ±¸ºĞ (5¹øÂ°¿¡ ¿¤¸®Æ®, 10¹øÂ°¿¡ º¸½º, ±× ¿Ü´Â ÀüºÎ ÀÏ¹İ)
+            //ì´í›„ ìˆœì„œì— ë”°ë¥¸ ì  êµ¬ë¶„ (5ë²ˆì§¸ì— ì—˜ë¦¬íŠ¸, 10ë²ˆì§¸ì— ë³´ìŠ¤, ê·¸ ì™¸ëŠ” ì „ë¶€ ì¼ë°˜)
             switch(enemy[i].index)
             {
                 case 3:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+0.5*ÇöÀç ½ºÅ×ÀÌÁö
-                    enemy[i].currentHealth *= 1;//+0.5*ÇöÀç ½ºÅ×ÀÌÁö
+                    enemy[i].maxHealth *= 1;//+0.5*í˜„ì¬ ìŠ¤í…Œì´ì§€
+                    enemy[i].currentHealth *= 1;//+0.5*í˜„ì¬ ìŠ¤í…Œì´ì§€
                     enemy[i].enemyData.enemyType = EnemyType.Elite;
                     break;
 
                 case 8:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+ÇöÀç ½ºÅ×ÀÌÁö
-                    enemy[i].currentHealth *= 1;//+ÇöÀç ½ºÅ×ÀÌÁö
+                    enemy[i].maxHealth *= 1;//+í˜„ì¬ ìŠ¤í…Œì´ì§€
+                    enemy[i].currentHealth *= 1;//+í˜„ì¬ ìŠ¤í…Œì´ì§€
                     enemy[i].enemyData.enemyType = EnemyType.Boss;
                     break;
 
                 default:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+0.25*ÇöÀç ½ºÅ×ÀÌÁö
-                    enemy[i].currentHealth *= 1;//+0.25*ÇöÀç ½ºÅ×ÀÌÁö
+                    enemy[i].maxHealth *= 1;//+0.25*í˜„ì¬ ìŠ¤í…Œì´ì§€
+                    enemy[i].currentHealth *= 1;//+0.25*í˜„ì¬ ìŠ¤í…Œì´ì§€
                     enemy[i].enemyData.enemyType = EnemyType.Normal;
                     break;
             }
-            //±×¸®°í ¸¸¾à ÀûÀÇ ¼ø¼­°¡ 0¹ø(¸Ç Ã³À½) ÀÌ¶ó¸é È°¼ºÈ­½ÃÅ°±â 
+            //ê·¸ë¦¬ê³  ë§Œì•½ ì ì˜ ìˆœì„œê°€ 0ë²ˆ(ë§¨ ì²˜ìŒ) ì´ë¼ë©´ í™œì„±í™”ì‹œí‚¤ê¸° 
             if (enemy[i].index == currentEnemyIndex)
             {
                 enemy[i].gameObject.SetActive(true);
