@@ -6,78 +6,78 @@ using System.Collections.Generic;
 
 public class ItemManager : MonoBehaviour
 {
-    public List<ItemData> itemList; //¾ÆÀÌÅÛ ¸®½ºÆ®
-    public int selectedItemIndex = 0; // ÇöÀç ¼±ÅÃÇÑ ¾ÆÀÌÅÛ ÀÎµ¦½º
-    private int currentLevel = 1;       // ÇöÀç ¹«±âÀÇ °­È­ ·¹º§
-    public int playerGold = 1000;       // º¸À¯ÇÑ °ñµå - ÀÓ½Ã
+    public List<ItemData> itemList; //ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
+    public int selectedItemIndex = 0; // í˜„ì¬ ì„ íƒí•œ ì•„ì´í…œ ì¸ë±ìŠ¤
+    private int currentLevel = 1;       // í˜„ì¬ ë¬´ê¸°ì˜ ê°•í™” ë ˆë²¨
+    public int playerGold = 1000;       // ë³´ìœ í•œ ê³¨ë“œ - ì„ì‹œ
 
-    //UI ¿¬°á
-    public Image itemIcon; //¾ÆÀÌÅÛ ¾ÆÀÌÄÜ
-    public TextMeshProUGUI itemNameText; //¾ÆÀÌÅÛ ÀÌ¸§
-    public TextMeshProUGUI itemLevelText; //ÇöÀç °­È­ ·¹º§
-    public TextMeshProUGUI damageText; //°ø°İ·Â
-    public TextMeshProUGUI criticalText; //Å©¸®Æ¼ÄÃ È®·ü
-    public TextMeshProUGUI upgradeCostText; //°­È­ ºñ¿ë
-    public Button upgradeButton; //°­È­ ¹öÆ°
+    //UI ì—°ê²°
+    public Image itemIcon; //ì•„ì´í…œ ì•„ì´ì½˜
+    public TextMeshProUGUI itemNameText; //ì•„ì´í…œ ì´ë¦„
+    public TextMeshProUGUI itemLevelText; //í˜„ì¬ ê°•í™” ë ˆë²¨
+    public TextMeshProUGUI damageText; //ê³µê²©ë ¥
+    public TextMeshProUGUI criticalText; //í¬ë¦¬í‹°ì»¬ í™•ë¥ 
+    public TextMeshProUGUI upgradeCostText; //ê°•í™” ë¹„ìš©
+    public Button upgradeButton; //ê°•í™” ë²„íŠ¼
 
     private void Start()
     {
-        UpdateUI(); // °ÔÀÓ ½ÃÀÛ ½Ã UI ¾÷µ¥ÀÌÆ®
+        UpdateUI(); // ê²Œì„ ì‹œì‘ ì‹œ UI ì—…ë°ì´íŠ¸
     }
-    public void SelectItem(int index) //¾ÆÀÌÅÛ ¼±ÅÃ = ¹«±â ¸®½ºÆ® À§Ä¡
+    public void SelectItem(int index) //ì•„ì´í…œ ì„ íƒ = ë¬´ê¸° ë¦¬ìŠ¤íŠ¸ ìœ„ì¹˜
     {
         selectedItemIndex = index;
-        currentLevel = 1; // »õ·Î¿î ¹«±â¸¦ ¼±ÅÃÇÏ¸é °­È­ ·¹º§ ÃÊ±âÈ­
-        UpdateUI(); // UI ¾÷µ¥ÀÌÆ®
+        currentLevel = 1; // ìƒˆë¡œìš´ ë¬´ê¸°ë¥¼ ì„ íƒí•˜ë©´ ê°•í™” ë ˆë²¨ ì´ˆê¸°í™”
+        UpdateUI(); // UI ì—…ë°ì´íŠ¸
     }
 
-    // ¹«±â°­È­ ±â´É
+    // ë¬´ê¸°ê°•í™” ê¸°ëŠ¥
     public void UpgradeItem()
     {
         ItemData currentItem = itemList[selectedItemIndex];
 
-        // ÃÖ´ë ·¹º§ µµ´Ş ½Ã °­È­ ºÒ°¡
+        // ìµœëŒ€ ë ˆë²¨ ë„ë‹¬ ì‹œ ê°•í™” ë¶ˆê°€
         if (currentLevel >= currentItem.upgrades.Length - 1)
         {
-            Debug.Log("ÃÖ´ë ·¹º§ ÀÔ´Ï´Ù °­È­ ºÒ°¡´É.");
+            Debug.Log("ìµœëŒ€ ë ˆë²¨ ì…ë‹ˆë‹¤ ê°•í™” ë¶ˆê°€ëŠ¥.");
             return;
         }
 
         ItemUpgrade nextUpgrade = currentItem.upgrades[currentLevel + 1];
 
-        // º¸À¯ °ñµå ºÎÁ· ½Ã °­È­ ºÒ°¡
+        // ë³´ìœ  ê³¨ë“œ ë¶€ì¡± ì‹œ ê°•í™” ë¶ˆê°€
         if (playerGold < nextUpgrade.cost)
         {
-            Debug.Log("°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+            Debug.Log("ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
             return;
         }
 
-        // °­È­ ÁøÇà (°ñµå Â÷°¨ ¹× ·¹º§ Áõ°¡)
+        // ê°•í™” ì§„í–‰ (ê³¨ë“œ ì°¨ê° ë° ë ˆë²¨ ì¦ê°€)
         playerGold -= nextUpgrade.cost;
         currentLevel++;
 
-        UpdateUI(); // UI ¾÷µ¥ÀÌÆ®
+        UpdateUI(); // UI ì—…ë°ì´íŠ¸
     }
 
 
     private void UpdateUI()
     {
-        ItemData currentItem = itemList[selectedItemIndex]; // ¼±ÅÃÇÑ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ °¡Á®¿À±â
-        ItemUpgrade currentUpgrade = currentItem.upgrades[currentLevel]; //ÇöÀç ¾ÆÀÌÅÛ ·¹º§ µ¥ÀÌÅÍ °¡Áö°í¿À±â
+        ItemData currentItem = itemList[selectedItemIndex]; // ì„ íƒí•œ ì•„ì´í…œ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
+        ItemUpgrade currentUpgrade = currentItem.upgrades[currentLevel]; //í˜„ì¬ ì•„ì´í…œ ë ˆë²¨ ë°ì´í„° ê°€ì§€ê³ ì˜¤ê¸°
 
-        // UI ¹İ¿µ
+        // UI ë°˜ì˜
         itemIcon.sprite = currentItem.itemIcon;
         itemNameText.text = currentItem.itemName;
         itemLevelText.text = $"Lv. {currentUpgrade.level}";
-        damageText.text = $"°ø°İ·Â: {currentUpgrade.damage}";
-        criticalText.text = $"Å©¸®Æ¼ÄÃ È®·ü: {currentUpgrade.criticalRate}%";
+        damageText.text = $"ê³µê²©ë ¥: {currentUpgrade.damageUp}";
+        criticalText.text = $"í¬ë¦¬í‹°ì»¬ í™•ë¥ : {currentUpgrade.criticalRate}%";
 
-        // ´ÙÀ½ °­È­ ºñ¿ë Ç¥½Ã (ÃÖ´ë ·¹º§ÀÌ¸é "ÃÖ´ë ·¹º§" Ç¥½Ã)
+        // ë‹¤ìŒ ê°•í™” ë¹„ìš© í‘œì‹œ (ìµœëŒ€ ë ˆë²¨ì´ë©´ "ìµœëŒ€ ë ˆë²¨" í‘œì‹œ)
         upgradeCostText.text = (currentLevel < currentItem.upgrades.Length - 1)
-            ? $"°­È­ ºñ¿ë: {currentItem.upgrades[currentLevel + 1].cost}G"
-            : "ÃÖ´ë ·¹º§";
+            ? $"ê°•í™” ë¹„ìš©: {currentItem.upgrades[currentLevel + 1].cost}G"
+            : "ìµœëŒ€ ë ˆë²¨";
 
-        // ÃÖ´ë ·¹º§ µµ´Ş ½Ã °­È­ ¹öÆ° ºñÈ°¼ºÈ­
+        // ìµœëŒ€ ë ˆë²¨ ë„ë‹¬ ì‹œ ê°•í™” ë²„íŠ¼ ë¹„í™œì„±í™”
         upgradeButton.interactable = currentLevel < currentItem.upgrades.Length - 1;
     }
 
