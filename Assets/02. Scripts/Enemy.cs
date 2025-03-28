@@ -13,11 +13,18 @@ public class Enemy : MonoBehaviour
     public int maxHealth; //최대 체력
     public int currentHealth; //현재 체력
 
+    public EnemyType enemyType; //제대로 들어와지는지 확인하려고 가져오는 필드
+
+    [Header ("스테이지 변수")]
+    public int index; //스테이지 내에서 지정된 고유 값
+    public StageManager stageManager; //갖고 있게 될 스테이지매니저
+
     //이벤트 인스턴스 변수
 
 
     public void Start()
     {
+        stageManager = StageManager.Instance;
         //이벤트 인스턴스 할당하기
         //이벤트.+=Damaged //클릭 이벤트에 공격 메서드 추가하기
         //치명타 이벤트.+=CritDamaged //클릭 이벤트(치명타)에 치명타 메서드 추가하기
@@ -70,6 +77,7 @@ public class Enemy : MonoBehaviour
         enemyImage.sprite = enemyData.icon;
         maxHealth = enemyData.health;
         currentHealth = enemyData.health;
+        enemyType= enemyData.enemyType;
 
         //이후, 변경된 값만큼 체력 비율 조정
         UpdateHealth();

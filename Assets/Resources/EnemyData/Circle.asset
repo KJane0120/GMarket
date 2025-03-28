@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: Enemy
+  m_Name: Circle
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   health: 2000
   enemyType: 0
   StatsGoldOnHit: 0
