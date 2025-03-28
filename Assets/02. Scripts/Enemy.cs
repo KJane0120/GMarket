@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     [Header ("스테이지 변수")]
     public int index; //스테이지 내에서 지정된 고유 값
-    public Stage stageManager; //갖고 있게 될 스테이지매니저
+    public StageManager stageManager; //갖고 있게 될 스테이지매니저
 
     //이벤트 인스턴스 변수
 

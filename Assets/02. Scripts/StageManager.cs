@@ -4,8 +4,11 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class Stage : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
+    private static StageManager instance;
+    public static StageManager Instance;
+
     public Enemy[] enemy; //적 객체가 담겨지게 될 배열
     public Transform enemies; //enemy가 담긴 부모 클래스
 
@@ -18,6 +21,27 @@ public class Stage : MonoBehaviour
     public EnemyData[] enemydataTable; //적 데이터가 담겨있을 배열
     public int currentEnemyIndex; //현재 적이 몇 번째 적인지를 확인할 필드
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        if (enemies == null)
+        {
+            GameObject go= GameObject.Find("Stage").transform.Find("Enemies").gameObject;
+            enemies = go.GetComponent<RectTransform>();
+        }
+    }
 
     void Start()
     {
@@ -35,7 +59,7 @@ public class Stage : MonoBehaviour
     }
 
     /// <summary>
-    /// 적들을 전부 초기화한 뒤 
+    /// 적들을 전부 초기화한 뒤 값을 재설정하는 메서드
     /// </summary>
     public void NextStage()
     {
@@ -87,6 +111,11 @@ public class Stage : MonoBehaviour
         }
     }
 
-    //public void Modify
+    public void NextEnemy()
+    {
+        currentEnemyIndex++;
+        enemy[currentEnemyIndex].gameObject.SetActive(true);
+    }
+
 
 }
