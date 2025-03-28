@@ -13,8 +13,7 @@ public class UIManager : MonoBehaviour
     [Header("Components")]
     public GameObject ErrorMsg;
     public TextMeshProUGUI ErrorMsgText;
-    public Button newStartBtn;
-    public Button continueBtn;
+
 
     private void Awake()
     {
@@ -37,8 +36,6 @@ public class UIManager : MonoBehaviour
         interactUI = GetComponentInChildren<InteractUI>();
         ErrorMsg = GetComponentInChildren<InteractUI>(true).gameObject;
         ErrorMsgText = interactUI.gameObject.GetComponentInChildren<TextMeshProUGUI>(true);
-        newStartBtn = buttonUI.gameObject.GetComponentInChildren<Button>();
-        continueBtn = buttonUI.gameObject.GetComponentInChildren<Button>();
     }
 
     public void StatsErrorMsg()

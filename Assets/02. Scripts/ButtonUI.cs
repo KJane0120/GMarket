@@ -1,20 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonUI : MonoBehaviour
 {
-    public Button newStartBtn;
-    public Button continueBtn;
+    [SerializeField] private Button newStartBtn;
+    [SerializeField] private Button continueBtn;
 
     private void Start()
     {
-        newStartBtn = UIManager.Instance.newStartBtn;
-        continueBtn = UIManager.Instance.continueBtn;
+        Debug.Log("이벤트 등록 완료");
+        newStartBtn.onClick.AddListener(OnClickNewStartBtn);
+        continueBtn.onClick.AddListener(OnClickContinueBtn);
     }
     public void OnClickNewStartBtn()
     {
+        //초기값으로 데이터 초기화
+        Debug.Log("시작하기");
+        SceneManager.LoadScene("GMScene");
+    }
 
+    public void OnClickContinueBtn()
+    {
+        //저장된 데이터 로드
+        Debug.Log("계속하기");
+        SceneManager.LoadScene("GMScene");
     }
 }
