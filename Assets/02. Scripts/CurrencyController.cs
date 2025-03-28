@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class CurrencyController : MonoBehaviour
 {
@@ -48,7 +48,6 @@ public class CurrencyController : MonoBehaviour
         }
     }
 
-
     public void StatGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.StatGoldUse로 해주시면 됩니다.
     {
         if (statGold >= upgradeGold)
@@ -58,6 +57,7 @@ public class CurrencyController : MonoBehaviour
         else
             Debug.Log("골드가 부족합니다!");
     }
+
 
     public void WeaponGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.WeaponGoldUse 해주시면 됩니다.
     {
