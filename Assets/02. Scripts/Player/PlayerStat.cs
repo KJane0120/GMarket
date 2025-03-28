@@ -1,42 +1,77 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// ì¼ë°˜ ìŠ¤íƒ¯
+/// </summary>
+[Tooltip("ì¼ë°˜ ìŠ¤íƒ¯")]
+public enum StatType
+{
+    damage,             // ê³µê²©ë ¥
+    critical,           // ì¹˜ëª…íƒ€
+    criticalRate,       // ì¹˜ëª…íƒ€ í™•ë¥ 
+    goldGet,            // ê³¨ë“œíšë“ëŸ‰
+    autuClick           // ìë™í´ë¦­
+}
+
+/// <summary>
+/// ì¶”ê°€ ìŠ¤íƒ¯(ê°•í™”)
+/// </summary>
+[Tooltip("ì¶”ê°€ ìŠ¤íƒ¯(ê°•í™”)")]
+public enum BonusStatType
+{
+    damageBonus,
+    criticalBonus,
+    criticalRateBonus,
+    goldGetBonus,
+    autoClickBonus
+}
+
+[Serializable]
+public class StatValue
+{
+    [Tooltip("ì¼ë°˜ ìŠ¤íƒ¯ ì„¤ì •")]
+    public StatType statType;
+    [Tooltip("ì¼ë°˜ ìŠ¤íƒ¯ ê°’")]
+    public float statValue;
+    [Tooltip("1íšŒ í´ë¦­ì‹œ ì¼ë°˜ìŠ¤íƒ¯ ì¶”ê°€ ê°’")]
+    public float addValue;
+}
+
+[Serializable]
+public class AddStatValue
+{
+    [Tooltip("ê°•í™” ìŠ¤íƒ¯ ì„¤ì •")]
+    public BonusStatType BonusType;
+    [Tooltip("ê°•í™” ìŠ¤íƒ¯ ê°’")]
+    public float bonusValue;
+    [Tooltip("1íšŒ í´ë¦­ì‹œ ê°•í™”ìŠ¤íƒ¯ ì¶”ê°€ ê°’")]
+    public float plusValue;
+}
 
 [CreateAssetMenu(fileName = "PlayerStat", menuName = "Scriptable Object Asset/PlayerStat")]
 
 public class PlayerStat : ScriptableObject
 {
-    Player player;
+    [Header("Stat")]
+    public StatValue stat;
 
-    // ¹«±â¿¡ ÀÖ´Â °ø°İ·Â ¹× Ä¡¸íÅ¸È®·üÀº »©±â
+    [Header("Add Stat")]
+    public AddStatValue addStat;
 
-    public int attackBonus = 1;             // °ø°İ·Â
-    //public int criticalBonus = 0;           // Ä¡¸íÅ¸ µ¥¹ÌÁö
-    //public int criticalChanceBonus = 0;     // Ä¡¸íÅ¸ È®·ü
-    //public int goldChanceBonus = 0;         // °ñµåÈ¹µæ·®
-    //public int autoClickBonus = 0;          // ÀÚµ¿Å¬¸¯È½¼ö
+    // ê°•í™”ë¹„ìš© ë° ì¦ê°€ìœ¨
+    [Header("Gold")]
+    [Tooltip("ê°•í™” ë¹„ìš©")]
+    public int upgradeGold;             // ì´ˆê¸°ê°•í™”ë¹„ìš©
+    [Tooltip("ê°•í™”ë¹„ìš© ì¦ê°€ í¼ì„¼íŠ¸")]
+    public float upgradePercent;        // ê°•í™”ë¹„ìš© ì¦ê°€ í¼ì„¼íŠ¸
 
-    public int upgradeGold = 5; // ÀÓ½Ã ÃÊ±â°­È­ºñ¿ë
-
-    // ¾ÆÀÌÅÛº°·Î Ãß°¡ ·ÎÁ÷ Â©°Í, AddAttack / SubtractAttack ÀÌ·±½ÄÀ¸·Î
-    // ¾ÆÀÌÅÛº°·Î ´©¸¦¶§ ÀçÈ­ ¾ó¸¸Å­ Â÷°¨µÉ°ÇÁö, ¾÷±×·¹ÀÌµå ÇÏ¸é¼­ ¾ó¸¸Å­ µÉ°ÇÁöµµ Ãß°¡
-
-    public void UpgradeAttack()
+    public void UpgradeBonus()
     {
-        if (player.gold >= upgradeGold)
-        {
-            player.gold -= upgradeGold; // °ñµå Â÷°¨
-            attackBonus += 1; // °ø°İ·Â Áõ°¡
-            upgradeGold = Mathf.RoundToInt(upgradeGold * 1.2f); // °­È­ ºñ¿ë 20% Áõ°¡
-        }
-        else
-        {
-            Debug.Log("°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù!");
-        }
+        stat.statValue += stat.addValue;                           // ì¼ë°˜ìŠ¤íƒ¯ ì¦ê°€
+        addStat.bonusValue += addStat.plusValue;                        // ë³´ë„ˆìŠ¤ ì¦ê°€
+        upgradeGold = Mathf.RoundToInt(upgradeGold * upgradePercent);   // ê°•í™”ë¹„ìš© ì¦ê°€
     }
-
-    //public void IncreaseStat(string statName, int amount)
-    //{
-    //    if (statName == "Attack") attackBonus += amount;
-    //}
 }

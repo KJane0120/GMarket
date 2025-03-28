@@ -2,36 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerStat", menuName = "Scriptable Object Asset/PlayerStat")]
-
 public class Player : MonoBehaviour
 {
-    // ½Ì±ÛÅæÃ³¸® ÇÏ±â
+    public PlayerStat playerStat;
 
-    public PlayerStat playerStat; // ScriptableObject ¿¬°á
+    // ìŠ¤íƒ¯ì€ ê¸°ë³¸ì ìœ¼ë¡œ ê²Œì„ë§¤ë‹ˆì €ì—ì„œ ìµœì¢…ìŠ¤íƒ¯ ì‚°ì¶œ, ì¬í™”ë„ ê²Œì„ë§¤ë‹ˆì €, ë‚˜ëŠ” ìˆ˜ì¹˜ì¦ê°€ëŸ‰ì— ëŒ€í•œ ë©”ì„œë“œ ë§Œë“¤ê³  ìµœì¢…ë€ì€ ê²Œì„ë§¤ë‹ˆì €ì˜ ë­ë‹¤ í•˜ê³  ì¨ì•¼í•¨
+    public int attack;              // ê³µê²©ë ¥
+    public int critical;            // ì¹˜ëª…íƒ€ ë°ë¯¸ì§€
+    public int criticalChance;      // ì¹˜ëª…íƒ€ í™•ë¥ 
+    public int goldChance;          // ê³¨ë“œíšë“ëŸ‰ - ìˆ˜ì¹˜ ê³„ì‚° í•˜ê¸°
+    public int autoClick;           // ìë™í´ë¦­ > í´ë¦­ì´ë²¤íŠ¸ ê¸°ëŠ¥ ê°€ì ¸ì˜¤ê¸°, ì´ˆë‹¹ aíšŒ ì§„í–‰í•˜ëŠ”ì‹ìœ¼ë¡œ ì½”ë“œ ì‘ì„±
 
-    // ½ºÅÈÀº ±âº»ÀûÀ¸·Î °ÔÀÓ¸Å´ÏÀú¿¡¼­ ÃÖÁ¾½ºÅÈ »êÃâ, ÀçÈ­µµ °ÔÀÓ¸Å´ÏÀú, ³ª´Â ¼öÄ¡Áõ°¡·®¿¡ ´ëÇÑ ¸Ş¼­µå ¸¸µé°í ÃÖÁ¾µ©Àº °ÔÀÓ¸Å´ÏÀúÀÇ ¹¹´Ù ÇÏ°í ½á¾ßÇÔ
-    public int attack;              // °ø°İ·Â
-    public int critical;            // Ä¡¸íÅ¸ µ¥¹ÌÁö
-    public int criticalChance;      // Ä¡¸íÅ¸ È®·ü
-    public int goldChance;          // °ñµåÈ¹µæ·®
-    public int autoClick;           // ÀÚµ¿Å¬¸¯ > Å¬¸¯ÀÌº¥Æ® ±â´É °¡Á®¿À±â
+    public int gold = 10000;        // ì„ì‹œê³¨ë“œ, ë‚˜ì¤‘ì— PlayerDataì—ì„œ 
 
-    public int gold = 10000;
+    void Start()
+    {
+        // í”Œë ˆì´ì–´ ìŠ¤íƒ¯ìª½ì´ë‘ í•©ì‚°ëœ ìˆ˜ì¹˜ ê³„ì‚°
+        //UpdateStat()
+    }
 
-    // ¹«±âÀåÂø > °ÔÀÓ¸Å´ÏÀú
-    // ¹«±âº¯°æ
-
-    //void Start()
-    //{
-          // ÇÃ·¹ÀÌ¾î½ºÅÈÂÊ °¡Á®¿À±â
-    //    UpgradeStat();
-    //}
-
-    //public void UpgradeStat()
-    //{
-    //    int totalAttack = attack + playerStat.attackBonus;
-
-    //    Debug.Log($"ÇöÀç °ø°İ·Â: {totalAttack}");
-    //}
+    public void UpdateStat()
+    {
+        //int totalAttack = attack + playerStat.attackBonus;
+        // switch caseë¡œ íƒ€ì…ì— ë”°ë¥¸ ìŠ¤íƒ¯ê°’ ê°€ì ¸ì˜¤ê¸°ë¡œ ì¼ë°˜ìŠ¤íƒ¯+ë³´ë„ˆìŠ¤ìŠ¤íƒ¯ ê°’ ê°€ì ¸ì˜¤ê¸°
+    }
 }

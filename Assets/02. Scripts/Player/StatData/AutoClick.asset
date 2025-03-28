@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8918e1976abcf24db2c2155e8919ce6, type: 3}
-  m_Name: Attack
+  m_Name: AutoClick
   m_EditorClassIdentifier: 
-  attackBonus: 1
-  criticalBonus: 0
-  criticalChanceBonus: 0
-  goldChanceBonus: 0
-  autoClickBonus: 0
-  upgradeGold: 5
+  stat:
+    statType: 0
+    statValue: 0
+    addValue: 0
+  addStat:
+    BonusType: 0
+    bonusValue: 0
+    plusValue: 0
+  upgradeGold: 0
+  upgradePercent: 0
