@@ -406,6 +406,7 @@ MonoBehaviour:
   enemyImage: {fileID: 272863218}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &272863218
@@ -714,6 +715,7 @@ MonoBehaviour:
   enemyImage: {fileID: 659571818}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &659571818
@@ -961,6 +963,7 @@ MonoBehaviour:
   enemyImage: {fileID: 794752112}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &794752112
@@ -1284,6 +1287,7 @@ MonoBehaviour:
   enemyImage: {fileID: 946821835}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &946821835
@@ -1380,6 +1384,7 @@ MonoBehaviour:
   enemyImage: {fileID: 1031880452}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &1031880452
@@ -1614,7 +1619,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: []
   enemies: {fileID: 595277862}
-  enemydataTable: []
+  enemydataTable:
+  - {fileID: 11400000, guid: 0f3863c6599a8314a8fc1401abab5348, type: 2}
+  - {fileID: 11400000, guid: 61c1ec2e662c4074ba4ca72c74a50c4b, type: 2}
+  - {fileID: 11400000, guid: 989a38c8ce86de0469091680eace26f9, type: 2}
   currentEnemyIndex: 0
 --- !u!1 &1150288855
 GameObject:
@@ -1747,6 +1755,7 @@ MonoBehaviour:
   enemyImage: {fileID: 1154090646}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &1154090646
@@ -1918,6 +1927,7 @@ MonoBehaviour:
   enemyImage: {fileID: 1210161199}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &1210161199
@@ -2309,6 +2319,7 @@ MonoBehaviour:
   enemyImage: {fileID: 1404813136}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &1404813136
@@ -2556,6 +2567,7 @@ MonoBehaviour:
   enemyImage: {fileID: 1775432185}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &1775432185
@@ -2802,6 +2814,7 @@ MonoBehaviour:
   enemyImage: {fileID: 1894116575}
   maxHealth: 0
   currentHealth: 0
+  enemyType: 0
   index: 0
   stageManager: {fileID: 0}
 --- !u!114 &1894116575

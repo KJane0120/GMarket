@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
   m_Name: Square
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: fafdb80eee6f7a34a8202ef681628c96, type: 3}
   health: 2000
   enemyType: 0
   StatsGoldOnHit: 0
