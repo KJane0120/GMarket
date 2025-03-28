@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New ItemData", menuName = "Items/StatItem")] //ItemData¸¦ ¿©·¯°³ Ãß°¡ °¡´É
+[CreateAssetMenu(fileName = "New ItemData", menuName = "Items/StatItem")] //ItemDataë¥¼ ì—¬ëŸ¬ê°œ ì¶”ê°€ ê°€ëŠ¥
 public class ItemData : ScriptableObject
 {
-    public string itemName; //¾ÆÀÌÅÛ ÀÌ¸§
-    public Sprite itemIcon; //¹«±â ¾ÆÀÌÄÜUI
-    public ItemUpgrade[] upgrades; // ¹«±â °­È­ ´Ü°èº° µ¥ÀÌÅÍ (¹è¿­)
+    public string itemName; //ì•„ì´í…œ ì´ë¦„
+    public Sprite itemIcon; //ë¬´ê¸° ì•„ì´ì½˜UI
+    public ItemUpgrade[] upgrades; // ë¬´ê¸° ê°•í™” ë‹¨ê³„ë³„ ë°ì´í„° (ë°°ì—´)
 
 }
 
-[System.Serializable]  // °³º° °­È­ µ¥ÀÌÅÍ
+[System.Serializable]  // ê°œë³„ ê°•í™” ë°ì´í„°
 public class ItemUpgrade
 {
-    public int level;         // °­È­ ·¹º§
-    public int cost;          // °­È­ ºñ¿ë (ÇÊ¿äÇÑ °ñµå)
-    public int damage;        // °ø°İ·Â Áõ°¡
-    public int criticalRate;  // Å©¸®Æ¼ÄÃ È®·ü Áõ°¡
+    public int level;         // ê°•í™” ë ˆë²¨
+    public int cost;          // ê°•í™” ë¹„ìš© (í•„ìš”í•œ ê³¨ë“œ)
+    public int damageUp;        // ê³µê²©ë ¥ ì¦ê°€
+    public int criticalRate;  // í¬ë¦¬í‹°ì»¬ í™•ë¥  ì¦ê°€
 }
