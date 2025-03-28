@@ -1,13 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
-
     public PlayerData PlayerData { get; private set; }
 
-    public CurrencyManager CurrencyManager { get; private set; }
     private void Awake()
     {
         if (instance == null)
@@ -34,16 +32,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        CurrencyManager = new CurrencyManager();
-        PlayerData = new PlayerData();
         SetData();
     }
 
     private void SetData() // 데이터 초기화 
     {
-        //Enemy.SetEnemyData; 
         PlayerData.StatGold = CurrencyManager.Instance.controller.statGold;
         PlayerData.WeaponGold = CurrencyManager.Instance.controller.weaponGold;
+        //PlayerData.CurrentWeapon = //기본 무기
     }
 
 

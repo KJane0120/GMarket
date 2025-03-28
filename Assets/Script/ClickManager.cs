@@ -3,12 +3,12 @@ using System.Collections;
 
 public class ClickManager : MonoBehaviour
 {
-    public bool isGamePaused = false; // 게임 일시 정지 상태 체크
+    public Enemy targetEnemy; //Enemy 오브젝트
 
+    public bool isGamePaused = false; // 게임 일시 정지 상태 체크
     public int autoAttackLevel = 1; // 자동 공격 레벨
     public float baseAutoAttackInterval = 1.0f; // 기본 자동 공격 간격
     private Coroutine autoAttackCoroutine;
-
     private bool isClicking = false; // 클릭 상태 추적 변수
 
     void Start()
@@ -52,8 +52,11 @@ public class ClickManager : MonoBehaviour
 
     void OnAttack()
     {
-        Debug.Log("공격 발생!"); // 공격 발생 시 콘솔 출력
-        // 여기에 데미지, 애니메이션 등 추가해야함
+        if (targetEnemy != null)
+        {
+            targetEnemy.Damaged(); // 클릭 시 몬스터 공격
+            Debug.Log(" 데미지 입힘! ");
+        }
     }
 
     public void LevelUp()
