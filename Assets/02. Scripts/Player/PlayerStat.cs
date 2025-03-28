@@ -70,7 +70,7 @@ public class PlayerStat : ScriptableObject
 
     public void UpgradeBonus()
     {
-        stat.statValue += stat.addValue;                           // 일반스탯 증가
+        stat.statValue += stat.addValue;                                // 일반스탯 증가
         addStat.bonusValue += addStat.plusValue;                        // 보너스 증가
         upgradeGold = Mathf.RoundToInt(upgradeGold * upgradePercent);   // 강화비용 증가
     }

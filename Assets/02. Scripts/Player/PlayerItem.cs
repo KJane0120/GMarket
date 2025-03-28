@@ -14,6 +14,7 @@ public class PlayerItem : MonoBehaviour
     public TMP_Text curStatText;
     public TMP_Text upStatText;
     public TMP_Text upGoldText;
+    public TMP_Text criticalText;
 
     void Start()
     {
@@ -30,8 +31,9 @@ public class PlayerItem : MonoBehaviour
         // player.gold 이부분 나중에 playerData에 있는걸로 가져오기
         if (player.gold >= gold)
         {
-            player.gold -= gold; // 골드 차감
-            playerStat.UpgradeBonus(); // 보너스 스탯증가
+            player.gold -= gold;            // 골드 차감
+            playerStat.UpgradeBonus();      // 보너스 스탯증가
+            player.UpdateTotal();           // 토탈 스탯
             UpdateUI();
         }
         else
@@ -46,9 +48,10 @@ public class PlayerItem : MonoBehaviour
     /// </summary>
     void UpdateUI()
     {
-        goldText.text = $"{player.gold}"; // 보유골드- 나중에 다른곳으로 빼기
-        curStatText.text = $"{playerStat.stat.statValue}"; // 현 스탯
-        upStatText.text = $"{playerStat.addStat.bonusValue}"; // 보너스 스탯
-        upGoldText.text = $"{playerStat.upgradeGold}"; // 업그레이드 골드
+        goldText.text = $"{player.gold}";                       // 보유골드- 나중에 다른곳으로 빼기
+        curStatText.text = $"{playerStat.stat.statValue}";      // 현 스탯
+        upStatText.text = $"{playerStat.addStat.bonusValue}";   // 보너스 스탯
+        upGoldText.text = $"{playerStat.upgradeGold}";          // 업그레이드 골드
+        criticalText.text = $"{player.totalCritical}";          // 합산 치명타 스탯
     }
 }
