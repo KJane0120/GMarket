@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,10 +8,13 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get { return instance; } }
 
     public InteractUI interactUI;
+    public ButtonUI buttonUI;
 
-    public GameObject errorMsg;
-
+    [Header("Components")]
+    public GameObject ErrorMsg;
     public TextMeshProUGUI ErrorMsgText;
+    public Button newStartBtn;
+    public Button continueBtn;
 
     private void Awake()
     {
@@ -31,9 +35,10 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         interactUI = GetComponentInChildren<InteractUI>();
-        errorMsg = GetComponentInChildren<InteractUI>(true).gameObject;
+        ErrorMsg = GetComponentInChildren<InteractUI>(true).gameObject;
         ErrorMsgText = interactUI.gameObject.GetComponentInChildren<TextMeshProUGUI>(true);
-
+        newStartBtn = buttonUI.gameObject.GetComponentInChildren<Button>();
+        continueBtn = buttonUI.gameObject.GetComponentInChildren<Button>();
     }
 
     public void StatsErrorMsg()
