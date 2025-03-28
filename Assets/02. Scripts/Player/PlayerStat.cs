@@ -12,8 +12,8 @@ public enum StatType
     damage,             // 공격력
     critical,           // 치명타
     criticalRate,       // 치명타 확률
-    goldGet,            // 골드획득량
-    autuClick           // 자동클릭
+    goldGain,           // 골드획득량
+    autoAttack          // 자동클릭
 }
 
 /// <summary>
@@ -25,8 +25,8 @@ public enum BonusStatType
     damageBonus,
     criticalBonus,
     criticalRateBonus,
-    goldGetBonus,
-    autoClickBonus
+    goldGainBonus,
+    autoAttackBonus
 }
 
 [Serializable]
