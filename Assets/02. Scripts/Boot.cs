@@ -15,6 +15,7 @@ public class Boot : MonoBehaviour
     private IEnumerator LoadMainSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        UIManager.Instance.StartSceneLoadInit();
         SceneManager.LoadScene("StartSampleScene");
     }
 }

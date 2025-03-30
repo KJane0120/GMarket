@@ -13,6 +13,11 @@ public class UIManager : MonoBehaviour
     [Header("Components")]
     public GameObject ErrorMsg;
     public TextMeshProUGUI ErrorMsgText;
+    public GameObject PausePopup;
+    [SerializeField] private GameObject statGold;
+    [SerializeField] private GameObject weaponGold;
+    [SerializeField] private GameObject pauseBtn;
+    [SerializeField] private GameObject startUI;
 
 
     private void Awake()
@@ -33,9 +38,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        interactUI = GetComponentInChildren<InteractUI>();
+        interactUI = GetComponentInChildren<InteractUI>(true);
         ErrorMsg = GetComponentInChildren<InteractUI>(true).gameObject;
-        ErrorMsgText = interactUI.gameObject.GetComponentInChildren<TextMeshProUGUI>(true);
+        ErrorMsgText = ErrorMsg.gameObject.GetComponentInChildren<TextMeshProUGUI>(true);
+        PausePopup = GetComponentInChildren<SoundUI>(true).gameObject;
     }
 
     public void StatsErrorMsg()
@@ -48,5 +54,21 @@ public class UIManager : MonoBehaviour
     {
         ErrorMsgText.text = "포인트가 부족합니다.";
         StartCoroutine(interactUI.FadeOutErrorMsg());
+    }
+
+    public void StartSceneLoadInit()
+    {
+        statGold.SetActive(false);
+        weaponGold.SetActive(false);
+        pauseBtn.SetActive(false);
+        startUI.SetActive(true);
+    }
+
+    public void MainSceneLoadInit()
+    {
+        statGold.SetActive(true);
+        weaponGold.SetActive(true);
+        pauseBtn.SetActive(true);
+        startUI.SetActive(false);
     }
 }
