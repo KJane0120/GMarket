@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854d7fe0b5ecf4e49bf1ee72d3dfca9a, type: 3}
   m_Name: Teeth2
   m_EditorClassIdentifier: 
-  itemtype: 0
-  ItemID: 0
+  itemType: 0
+  ItemID: 2
   itemName: "\uC55E \uC774\uBE68"
   itemDesc: "\uD2BC\uD2BC\uD55C \uC721\uBC31\uC774\uC758 \uC55E\uB2C8"
-  itemIcon: {fileID: 21300000, guid: c40cbdc4fe9d1744e9d6aee37d86ffe5, type: 3}
+  itemIcon: {fileID: 21300000, guid: 7ef1f01c337a4e744a9332c4cf13c717, type: 3}
   baseDamage: 5
   addDamage: 0
   baseDamageUp:
