@@ -18,7 +18,7 @@ public class ItemData : ScriptableObject
 
     [Header("# Level Data")]
     public float baseDamage; //기본 공격력
-    public float addDamage; //추가 데미지
+    //public float addDamage; //추가 데미지
     public float[] baseDamageUp; //강화 렙 증가 -> 공격력 증가
     public float[] addDamageUp; //강화 렙 증가 ->크리티컬 증가
 
