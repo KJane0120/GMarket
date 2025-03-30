@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerItem : MonoBehaviour
+public class PlayerUpgrade : MonoBehaviour
 {
     public Player player;
     public PlayerStat playerStat;
@@ -14,10 +14,16 @@ public class PlayerItem : MonoBehaviour
     public TMP_Text curStatText;
     public TMP_Text upStatText;
     public TMP_Text upGoldText;
-    public TMP_Text criticalText;
+    //public TMP_Text totalText; - 추후 토탈스탯 관리하는쪽으로 이동예정
+
+    private bool isHolding = false;
+    public float repeatRate = 0.2f;
+    private Coroutine upgradeCoroutine;
+
 
     void Start()
     {
+        player.UpdateTotal();
         UpdateUI();
     }
 
@@ -52,6 +58,37 @@ public class PlayerItem : MonoBehaviour
         curStatText.text = $"{playerStat.stat.statValue}";      // 현 스탯
         upStatText.text = $"{playerStat.addStat.bonusValue}";   // 보너스 스탯
         upGoldText.text = $"{playerStat.upgradeGold}";          // 업그레이드 골드
-        criticalText.text = $"{player.totalCritical}";          // 합산 치명타 스탯
+        //totalText.text = $"+{player.totalCritical}%";          // 합산 치명타 스탯, 다른 스탯도 동일하게 - 추후 토탈스탯 관리하는쪽으로 이동예정
+    }
+
+    // 버튼 이벤트트리거 - 누르는 순간 실행
+    public void OnButtonDown()
+    {
+        if (upgradeCoroutine == null) // 실행중일경우 중복실행 방지
+        {
+            isHolding = true;
+            upgradeCoroutine = StartCoroutine(UpgradeLoop()); // 코루틴 시작
+        }
+    }
+
+    // 버튼 이벤트트리거 - 떼는 순간 실행
+    public void OnButtonUp()
+    {
+        isHolding = false; // false로 변경
+        if (upgradeCoroutine != null) // 실행중인 코루틴이 있으면
+        {
+            StopCoroutine(upgradeCoroutine); // 코루틴 중지
+            upgradeCoroutine = null; // 변수 초기화
+        }
+    }
+
+    // 반복실행
+    private IEnumerator UpgradeLoop()
+    {
+        while (isHolding) // 버튼을 누르고있는동안 실행
+        {
+            UpgradeClick();
+            yield return new WaitForSeconds(repeatRate); // 일정시간 기다림
+        }
     }
 }
