@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    public int maxSFXSources = 10;
+    public int maxSFXSources = 4;
     private List<AudioSource> sfxSources = new List<AudioSource>();
 
     float sfxVolume;
