@@ -665,7 +665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 694456992}
   m_Layer: 5
-  m_Name: ' LevelUP'
+  m_Name: LevelUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,8 +748,9 @@ GameObject:
   - component: {fileID: 1195002642}
   - component: {fileID: 1195002641}
   - component: {fileID: 1195002640}
+  - component: {fileID: 1195002643}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Item0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,8 +768,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 167177816}
   - {fileID: 1741422085}
+  - {fileID: 167177816}
   m_Father: {fileID: 694456992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -858,6 +859,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195002638}
   m_CullTransparentMesh: 1
+--- !u!114 &1195002643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195002638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19da3c3f816435b479334030a3d49edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 4b0c111b710a4134d98d14401765453e, type: 2}
+  level: 0
 --- !u!1 &1741422084
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,7 +930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e1524aca870c5a6458b7ce19f3364706, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2f13881326ba8a47bc26a376ee967d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

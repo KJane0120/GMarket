@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 854d7fe0b5ecf4e49bf1ee72d3dfca9a, type: 3}
-  m_Name: Teeth
+  m_Name: Teeth3
   m_EditorClassIdentifier: 
   itemtype: 0
   ItemID: 0
