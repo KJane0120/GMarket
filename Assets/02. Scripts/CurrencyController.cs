@@ -1,21 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class CurrencyController : MonoBehaviour
 {
-    //    - 재화의 획득과 사용을 관리하고, 화면에 보유중인 재화를 표시합니다.
-    //- 상호작용에 필요한 재화가 부족한 경우 경고 메세지를 표시한 후, 잠시 후 사라지도록 합니다.
-
-    public int statGold; 
+    public int statGold;
     public int weaponGold;
-    public int atkPower;
 
     private int maxHealth; // Enemy.maxHealth 연결
     private int currentHealth; //Enemy.currentHealth 연결
-
-    private void Start()
-    {
-        atkPower = GameManager.Instance.PlayerData.TotalAttackPower; //플레이어 공격력 받아옴
-    }
 
 
     /// <summary>
@@ -37,7 +28,7 @@ public class CurrencyController : MonoBehaviour
     {
         if (currentHealth == maxHealth) return; //안 때린 상태라면 호출x
 
-        if (currentHealth - atkPower > 0)
+        if (currentHealth > 0)
         {
             statGold += StatsGoldOnHit;
         }
@@ -48,12 +39,24 @@ public class CurrencyController : MonoBehaviour
         }
     }
 
-
-    public void StatGoldUse(int value)
+    public void StatGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.StatGoldUse로 해주시면 됩니다.
     {
-
+        if (statGold >= upgradeGold)
+        {
+            statGold -= upgradeGold;
+        }
+        else
+            UIManager.Instance.StatsErrorMsg(); //에러 메세지 표시
     }
 
 
-
+    public void WeaponGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.WeaponGoldUse 해주시면 됩니다.
+    {
+        if (weaponGold >= upgradeGold)
+        {
+            weaponGold -= upgradeGold;
+        }
+        else
+            UIManager.Instance.WeaponErrorMsg(); //에러 메세지 표시
+    }
 }
