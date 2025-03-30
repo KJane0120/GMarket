@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8918e1976abcf24db2c2155e8919ce6, type: 3}
-  m_Name: Critical
+  m_Name: AutoAttack
   m_EditorClassIdentifier: 
   stat:
-    statType: 1
+    statType: 4
     statValue: 0
     addValue: 1
   addStat:
-    BonusType: 1
+    BonusType: 4
     bonusValue: 0
-    plusValue: 5
+    plusValue: 0.3
   upgradeGold: 10
   upgradePercent: 1.2
