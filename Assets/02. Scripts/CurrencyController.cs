@@ -5,9 +5,9 @@ public class CurrencyController : MonoBehaviour
     public int statGold;
     public int weaponGold;
 
-    private int maxHealth; // Enemy.maxHealth 연결
-    private int currentHealth; //Enemy.currentHealth 연결
-
+    /// <summary>
+    /// 재화들을 초기화합니다.
+    /// </summary>
     private void Start()
     {
         statGold = 0;
@@ -29,34 +29,27 @@ public class CurrencyController : MonoBehaviour
     /// 적 타격 시마다 스탯재화를 획득합니다. 
     /// </summary>
     /// <param name="StatsGoldOnHit"></param>
-    public void StatGoldGain(int StatsGoldOnHit)
+    public void StatGoldGain(int StatsGoldOnHit)//호출은 CurrencyManager.Instance.controller.StatGoldGain으로 해주시면 됩니다.
     {
-        if (currentHealth == maxHealth) return; //안 때린 상태라면 호출x
-
-        if (currentHealth > 0)
-        {
-            statGold += StatsGoldOnHit;
-        }
-        else
-        {
-            Debug.Log("적을 처치했습니다."); // 추후 적 처치시 재화 획득 함수 호출?
-            return;
-        }
+        statGold += StatsGoldOnHit;
     }
 
-    public void StatGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.StatGoldUse로 해주시면 됩니다.
+    /// <summary>
+    /// 스탯재화를 사용할 때 사용하는 함수입니다.
+    /// </summary>
+    /// <param name="upgradeGold"></param>
+    public void StatGoldUse(int upgradeGold)
     {
         statGold -= upgradeGold;
     }
 
-
+    /// <summary>
+    /// 무기재화를 사용할 때 사용하는 함수입니다.
+    /// </summary>
+    /// <param name="upgradeGold"></param>
     public void WeaponGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.WeaponGoldUse 해주시면 됩니다.
     {
-        if (weaponGold >= upgradeGold)
-        {
-            weaponGold -= upgradeGold;
-        }
-        else
-            UIManager.Instance.WeaponErrorMsg(); //에러 메세지 표시
+        weaponGold -= upgradeGold;
+        //UIManager.Instance.WeaponErrorMsg(); //에러 메세지 표시하는 함수 호출방법
     }
 }
