@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,6 +93,31 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("죽었습니다.");
         this.gameObject.SetActive(false); //오브젝트를 끄고
+
+        GameObject Doll= (GameObject)Resources.Load("RagdollEnemy");
+
+        //데미지오브젝트를 StageManager 안에 복제한 뒤 해당 객체의 텍스트 내용을 damage 매개변수로 변경
+        GameObject ragDoll = Instantiate(Doll, this.transform.position, Quaternion.identity, stageManager.transform);
+        Enemy ragDollEnemy = ragDoll.GetComponent<Enemy>();
+        ragDollEnemy.enemyData =this.enemyData;
+        ragDollEnemy.enemyImage.sprite = ragDollEnemy.enemyData.icon;
+
+        ragDoll.SetActive(true);
+        Rigidbody2D rb = ragDoll.AddComponent<Rigidbody2D>();
+
+        rb.gravityScale = 100f;
+
+        //그리고 텍스트가 날아갈 무작위 방향 설정
+        float randomX = Random.Range(-1f, 1f); // X축 방향 랜덤
+        float randomY = Random.Range(0f, 1f); // Y축 방향 랜덤
+        Vector2 pushDirection = new Vector2(randomX, randomY).normalized;
+
+        //리지드바디 찾아서 힘만큼 AddForce
+        rb.AddForce(pushDirection * 500, ForceMode2D.Impulse);
+
+        //2.5초 뒤 삭제
+        Destroy(ragDoll, 2.5f);
+
         stageManager.NextEnemy();
         //보상 지급(필요하다면);
         //int modifier=(int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage);
