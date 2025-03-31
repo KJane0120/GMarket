@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
         totalCritical = GameManager.Instance.PlayerData.TotalCritDamage;            // 최종 치명타 데미지
         totalGoldGain = GameManager.Instance.PlayerData.TotalGoldGain;              // 최종 골드획득량
-        //totalAutoAttack = GameManager.Instance.PlayerData.totalAutoAttack;          // 최종 자동클릭횟수
+        totalAutoAttack = GameManager.Instance.PlayerData.TotalAutoAttack;         // 최종 자동클릭횟수
     }
 
     /// <summary>
