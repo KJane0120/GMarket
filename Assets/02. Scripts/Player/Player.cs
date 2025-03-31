@@ -29,11 +29,12 @@ public class Player : MonoBehaviour
     /// </summary>
     public void UpdateTotal()
     {
+        // 토탈스탯 부분은 PlayerData부분으로 보내는거 생각해보기
         totalDamage = TotalStat(StatType.damage);
         totalCritical = TotalStat(StatType.critical);
         totalCriticalRate = TotalStat(StatType.criticalRate);
         totalGoldGain = TotalStat(StatType.goldGain);
-        totalAutoAttack = TotalStat(StatType.autoAttack);
+        totalAutoAttack = TotalStat(StatType.autoAttack); // 자동클릭 부분은 토탈스탯으로 넣을지 말지 고민해보기
     }
 
     /// <summary>
