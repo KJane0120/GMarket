@@ -7,54 +7,44 @@ using UnityEngine.UI; //이미지 활성화
 
 public class Item : MonoBehaviour
 {
-    public ItemData data;
-    public int level;
-    //public Weapon weapon;
+    public ItemData data {  get{ return GameManager.Instance.PlayerData.data; } }
+    public List<UISlot> Slots = new List<UISlot>();
+    public UISlot Slot;
+    public List<ItemData> inventory;
+    [SerializeField] private Transform Content;
 
-    Image icon;
-    TextMeshProUGUI textLevel;
-
-    void Awake()
+    private void Start()
     {
-        icon = GetComponentsInChildren<Image>()[1]; //data Image 불러오기
-        icon.sprite = data.itemIcon;
-
-        TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>(); //
-        textLevel = texts[0];
+        InstantiateSlot();
     }
 
-    void LateUpdate()
+    public void OnClickWeaponUpgradeBtn()
     {
-        textLevel.text = "Lv." + (level + 1); //초기 level 설정
-    }
-    
-    public void OnClick() //Lv.UP 클릭조건
-    {
-        switch (data.itemType)
+        if (GameManager.Instance.PlayerData.WeaponGold > data.upgradeCost)
         {
-            case ItemData.ItemType.Melee:
-                break;
-            case ItemData.ItemType.Tooth:
-                break;
-            case ItemData.ItemType.finger:
-                break;
-            case ItemData.ItemType.helmet:
-                break;
-            case ItemData.ItemType.shoes:
-                break;
-            case ItemData.ItemType.Necklace:
-                break;
+            GameManager.Instance.PlayerData.BasicWeaponLevel++;
+            data.upgradeCost = GameManager.Instance.PlayerData.BasicWeaponLevel * data.upgradeCost;
+            data.baseDamage = data.damegeMultiplier * data.baseDamage;
+            data.criticalChance = data.criticalMultiplier + data.criticalChance;
         }
-
-        level++; //클릭 할때마다 1UP
-
-        if (level == data.baseDamageUp.Length) //최대 Lv. 초과 방지 코드
+        else
         {
-            GetComponent<Button>().interactable = false;   //Inspector -> Boutton Off
-
-        } 
-
+            UIManager.Instance.WeaponErrorMsg();
+        }
     }
 
 
+    public void InstantiateSlot()
+    {
+        if (Slot == null) return;
+
+
+        int a = 5;
+        for (int i = 0; i < a; i++)
+        {
+            UISlot newSlot = Instantiate(Slot, Content);
+            Slots.Add(newSlot);
+        }
+        
+    }
 }

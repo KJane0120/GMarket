@@ -28,4 +28,5 @@ public class PlayerData
     public float TotalGoldGain;     //최종 골드 획득 보너스
     public float TotalAutoAttack;   // 최종 자동 공격 횟수 
 
+    public ItemData data;
 }
