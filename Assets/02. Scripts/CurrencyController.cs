@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CurrencyController : MonoBehaviour
@@ -8,6 +9,11 @@ public class CurrencyController : MonoBehaviour
     private int maxHealth; // Enemy.maxHealth 연결
     private int currentHealth; //Enemy.currentHealth 연결
 
+    private void Start()
+    {
+        statGold = 0;
+        weaponGold = 0;
+    }
 
     /// <summary>
     /// 적 처치 시 재화를 획득합니다. 
