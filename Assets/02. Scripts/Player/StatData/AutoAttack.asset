@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: AutoAttack
   m_EditorClassIdentifier: 
   stat:
-    statType: 4
-    statValue: 0
-    addValue: 1
+    statType: 2
+    statValue: 4
   addStat:
-    BonusType: 4
-    bonusValue: 0
+    BonusType: 2
+    bonusValue: 1.2
     plusValue: 0.3
-  upgradeGold: 10
+  upgradeGold: 20
   upgradePercent: 1.2

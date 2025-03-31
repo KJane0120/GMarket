@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Critical
   m_EditorClassIdentifier: 
   stat:
-    statType: 1
-    statValue: 0
-    addValue: 1
+    statType: 0
+    statValue: 15
   addStat:
-    BonusType: 1
-    bonusValue: 0
+    BonusType: 0
+    bonusValue: 75
     plusValue: 5
-  upgradeGold: 10
+  upgradeGold: 149
   upgradePercent: 1.2

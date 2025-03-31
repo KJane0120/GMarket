@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: GoldGain
   m_EditorClassIdentifier: 
   stat:
-    statType: 3
+    statType: 1
     statValue: 0
-    addValue: 1
   addStat:
-    BonusType: 3
+    BonusType: 1
     bonusValue: 0
     plusValue: 10
   upgradeGold: 10
