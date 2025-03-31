@@ -22,9 +22,8 @@ public class ClickManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !isClicking) // 마우스 좌클릭 감지 및 중복 방지
         {
-            isClicking = true; // 클릭 상태 활성화
+            onClick.Invoke(); // 클릭 시 즉시 공격 실행
             Debug.Log("클릭 발생!");
-            OnAttack(); // 클릭 시 즉시 공격 실행
         }
 
         if (Input.GetMouseButtonUp(0)) // 마우스 버튼을 뗐을 때 클릭 상태 해제
@@ -50,14 +49,17 @@ public class ClickManager : MonoBehaviour
         }
     }
 
-    void OnAttack()
+    public void OnAttack()
     {
         if (targetEnemy != null)
         {
-            targetEnemy.Damaged(); // 클릭 시 몬스터 공격
-            Debug.Log(" 데미지 입힘! ");
+            targetEnemy.Damaged(); // 공격 실행
+            onClick.Invoke(); 
+            Debug.Log("공격 발생!");
         }
     }
+
+
 
     public void LevelUp()
     {
