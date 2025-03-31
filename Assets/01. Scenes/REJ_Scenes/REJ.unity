@@ -1227,15 +1227,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 404825228}
   playerStat: {fileID: 11400000, guid: d7600663e57588f4085a26df1da73660, type: 2}
-  addStat:
-    BonusType: 0
-    bonusValue: 0
-    plusValue: 0
-  goldText: {fileID: 433735172}
   curStatText: {fileID: 774676215}
   upStatText: {fileID: 1099185343}
   upGoldText: {fileID: 1546395956}
+  Gold: 0
   repeatRate: 0.2
+  delayTime: 1
 --- !u!114 &404825226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1287,9 +1284,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStat: {fileID: 11400000, guid: d7600663e57588f4085a26df1da73660, type: 2}
-  totalDamage: 0
+  levelCritical: 0
+  levelGoldGain: 0
+  levelAutoAttacl: 0
   totalCritical: 0
-  totalCriticalRate: 0
   totalGoldGain: 0
   totalAutoAttack: 0
   gold: 10000
@@ -2517,15 +2515,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 862536997}
   playerStat: {fileID: 11400000, guid: e68cd8e2dd403374887db73212838379, type: 2}
-  addStat:
-    BonusType: 0
-    bonusValue: 0
-    plusValue: 0
-  goldText: {fileID: 433735172}
   curStatText: {fileID: 1552927639}
   upStatText: {fileID: 2044163943}
   upGoldText: {fileID: 2081027573}
+  Gold: 0
   repeatRate: 0.2
+  delayTime: 1
 --- !u!114 &862536997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2539,9 +2534,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStat: {fileID: 11400000, guid: e68cd8e2dd403374887db73212838379, type: 2}
-  totalDamage: 0
+  levelCritical: 0
+  levelGoldGain: 0
+  levelAutoAttacl: 0
   totalCritical: 0
-  totalCriticalRate: 0
   totalGoldGain: 0
   totalAutoAttack: 0
   gold: 10000
@@ -2701,15 +2697,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 937426197}
   playerStat: {fileID: 11400000, guid: 451465ce115839749aedeb7e6d8359f3, type: 2}
-  addStat:
-    BonusType: 0
-    bonusValue: 0
-    plusValue: 0
-  goldText: {fileID: 433735172}
   curStatText: {fileID: 1249883068}
   upStatText: {fileID: 141500746}
   upGoldText: {fileID: 644916814}
+  Gold: 0
   repeatRate: 0.2
+  delayTime: 1
 --- !u!114 &937426197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2723,12 +2716,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStat: {fileID: 11400000, guid: 451465ce115839749aedeb7e6d8359f3, type: 2}
-  totalDamage: 0
+  levelCritical: 0
+  levelGoldGain: 0
+  levelAutoAttacl: 0
   totalCritical: 0
-  totalCriticalRate: 0
   totalGoldGain: 0
   totalAutoAttack: 0
-  gold: 10000
+  gold: 0
 --- !u!114 &937426198
 MonoBehaviour:
   m_ObjectHideFlags: 0

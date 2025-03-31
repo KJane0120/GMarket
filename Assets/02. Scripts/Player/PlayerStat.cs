@@ -9,9 +9,7 @@ using UnityEngine;
 [Tooltip("일반 스탯")]
 public enum StatType
 {
-    damage,             // 공격력
     critical,           // 치명타
-    criticalRate,       // 치명타 확률
     goldGain,           // 골드획득량
     autoAttack          // 자동클릭
 }
@@ -22,30 +20,26 @@ public enum StatType
 [Tooltip("추가 스탯(강화)")]
 public enum BonusStatType
 {
-    damageBonus,
     criticalBonus,
-    criticalRateBonus,
     goldGainBonus,
     autoAttackBonus
 }
 
 [Serializable]
-public class StatValue
+public class StatLevel
 {
-    [Tooltip("일반 스탯 설정")]
+    [Tooltip("레벨")]
     public StatType statType;
-    [Tooltip("일반 스탯 값")]
+    [Tooltip("레벨 값")]
     public float statValue;
-    [Tooltip("1회 클릭시 일반스탯 추가 값")]
-    public float addValue;
 }
 
 [Serializable]
 public class AddStatValue
 {
-    [Tooltip("강화 스탯 설정")]
+    [Tooltip("스탯 설정")]
     public BonusStatType BonusType;
-    [Tooltip("강화 스탯 값")]
+    [Tooltip("스탯 값")]
     public float bonusValue;
     [Tooltip("1회 클릭시 강화스탯 추가 값")]
     public float plusValue;
@@ -56,7 +50,7 @@ public class AddStatValue
 public class PlayerStat : ScriptableObject
 {
     [Header("Stat")]
-    public StatValue stat;
+    public StatLevel stat;
 
     [Header("Add Stat")]
     public AddStatValue addStat;
@@ -70,7 +64,7 @@ public class PlayerStat : ScriptableObject
 
     public void UpgradeBonus()
     {
-        stat.statValue += stat.addValue;                                // 일반스탯 증가
+        stat.statValue += 1;                                    // 레벨 증가
         addStat.bonusValue += addStat.plusValue;                        // 보너스 증가
         upgradeGold = Mathf.RoundToInt(upgradeGold * upgradePercent);   // 강화비용 증가
     }
