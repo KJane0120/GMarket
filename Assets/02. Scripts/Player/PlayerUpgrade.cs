@@ -16,14 +16,15 @@ public class PlayerUpgrade : MonoBehaviour
     public TMP_Text upGoldText;
     //public TMP_Text totalText; - 추후 토탈스탯 관리하는쪽으로 이동예정
 
+    public int Gold;
     private bool isHolding = false;
     public float repeatRate = 0.2f;
     private Coroutine upgradeCoroutine;
 
-
     void Start()
     {
-        player.UpdateTotal();
+        //player.UpdateTotal();
+        Gold = GameManager.Instance.PlayerData.StatGold;
         UpdateUI();
     }
 
@@ -35,17 +36,17 @@ public class PlayerUpgrade : MonoBehaviour
         int gold = playerStat.upgradeGold; // 강화 비용 가져오기
 
         // player.gold 이부분 나중에 playerData에 있는걸로 가져오기
-        if (player.gold >= gold)
+        if (Gold >= gold)
         {
-            player.gold -= gold;            // 골드 차감
+            CurrencyManager.Instance.controller.StatGoldUse(gold);
             playerStat.UpgradeBonus();      // 보너스 스탯증가
-            player.UpdateTotal();           // 토탈 스탯
+            //player.UpdateTotal();           // 토탈 스탯 - 추후 내용 변경되면 수정
             UpdateUI();
         }
         else
         {
-            // 추후 ui부분 넣기
-            Debug.Log("골드오링");
+            UIManager.Instance.StatsErrorMsg();
+            Debug.Log("골드오링"); // 추후에 꼭 빼기
         }
     }
 

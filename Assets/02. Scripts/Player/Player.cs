@@ -17,10 +17,11 @@ public class Player : MonoBehaviour
     public int totalGoldGain;           // 골드획득량 - 수치 계산 하기
     public int totalAutoAttack;         // 자동클릭 > 클릭이벤트 기능 가져오기, 초당 a회 진행하는식으로 코드 작성
 
-    public int gold = 10000;            // 임시골드, 나중에 PlayerData에서 
+    public int gold;                    // 골드, 게임매니저-PlayerData에서 가져옴 (CurrencyController의 골드가 실 골드)
 
     public void Start()
     {
+        gold = GameManager.Instance.PlayerData.StatGold;
         UpdateTotal();
     }
 
