@@ -22,14 +22,15 @@ public class Item : MonoBehaviour
     {
         if (GameManager.Instance.PlayerData.WeaponGold > data.upgradeCost)
         {
-            GameManager.Instance.PlayerData.BasicWeaponLevel++;
-            data.upgradeCost = GameManager.Instance.PlayerData.BasicWeaponLevel * data.upgradeCost;
-            data.baseDamage = data.damegeMultiplier * data.baseDamage;
-            data.criticalChance = data.criticalMultiplier + data.criticalChance;
+            GameManager.Instance.PlayerData.BasicWeaponLevel++; //클릭 시 LevelUp
+            data.upgradeCost = GameManager.Instance.PlayerData.BasicWeaponLevel * data.upgradeCost; //LevelUp 무기 비용 증가
+            data.baseDamage = data.damegeMultiplier * data.baseDamage; //LevelUp 기본 데미지 증가
+            data.criticalChance = data.criticalMultiplier + data.criticalChance; //LevelUp 치명타 확률 증가
+            CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레드 비용 차감
         }
         else
         {
-            UIManager.Instance.WeaponErrorMsg();
+            UIManager.Instance.WeaponErrorMsg(); //에러코드
         }
     }
 
