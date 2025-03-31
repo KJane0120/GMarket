@@ -28,4 +28,5 @@ public class PlayerData
     public int TotalCritDamage; //최종 치명타 데미지
     public int TotalGoldGain; //최종 골드 획득 보너스
 
+    public ItemData data;
 }
