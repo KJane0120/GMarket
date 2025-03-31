@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using TMPro;
+using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
 {
@@ -6,6 +7,10 @@ public class CurrencyManager : MonoBehaviour
     public static CurrencyManager Instance { get { return instance; } }
 
     public CurrencyController controller;
+
+    public TextMeshProUGUI goldText;
+    private int statGold;
+
     private void Awake()
     {
         if (instance == null)
@@ -20,5 +25,19 @@ public class CurrencyManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+    private void Start()
+    {
+        statGold = GameManager.Instance.PlayerData.StatGold;
+    }
+
+    private void LateUpdate()
+    {
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        goldText.text = string.Format("{0}", statGold);
     }
 }
