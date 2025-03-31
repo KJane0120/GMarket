@@ -10,19 +10,32 @@ public class Player : MonoBehaviour
     public StatType statType { get; set; }
     public BonusStatType bonusType { get; set; }
 
-    // 스탯은 기본적으로 게임매니저에서 최종스탯 산출, 재화도 게임매니저, 나는 수치증가량에 대한 메서드 만들고 최종뎀은 게임매니저의 뭐다 하고 써야함
-    public int totalDamage;             // 공격력
+    public int levelCritical;           // 치명타 레벨
+    public int levelGoldGain;           // 골드획득 레벨
+    public int levelAutoAttacl;         // 자동클릭 레벨
+
     public int totalCritical;           // 치명타 데미지
-    public int totalCriticalRate;       // 치명타 확률
-    public int totalGoldGain;           // 골드획득량 - 수치 계산 하기
+    public int totalGoldGain;           // 골드획득량
+    // 자동클릭 부분은 토탈스탯으로 넣을지 말지 고민해보기
     public int totalAutoAttack;         // 자동클릭 > 클릭이벤트 기능 가져오기, 초당 a회 진행하는식으로 코드 작성
 
-    public int gold;                    // 골드, 게임매니저-PlayerData에서 가져옴 (CurrencyController의 골드가 실 골드)
+    public int gold;                    // 골드, PlayerData
 
     public void Start()
     {
         gold = GameManager.Instance.PlayerData.StatGold;
+        Init();
         UpdateTotal();
+    }
+
+    private void Init()
+    {
+        levelCritical = GameManager.Instance.PlayerData.TotalCritDamage;       // 치명타 레벨
+        levelGoldGain = GameManager.Instance.PlayerData.TotalCritDamage;       // 골드획득 레벨
+        levelAutoAttacl = GameManager.Instance.PlayerData.TotalCritDamage;
+
+        totalCritical = GameManager.Instance.PlayerData.TotalCritDamage;
+        totalGoldGain = GameManager.Instance.PlayerData.TotalGoldGain;
     }
 
     /// <summary>
@@ -30,66 +43,60 @@ public class Player : MonoBehaviour
     /// </summary>
     public void UpdateTotal()
     {
-        // 토탈스탯 부분은 PlayerData부분으로 보내는거 생각해보기
-        totalDamage = TotalStat(StatType.damage);
-        totalCritical = TotalStat(StatType.critical);
-        totalCriticalRate = TotalStat(StatType.criticalRate);
-        totalGoldGain = TotalStat(StatType.goldGain);
-        totalAutoAttack = TotalStat(StatType.autoAttack); // 자동클릭 부분은 토탈스탯으로 넣을지 말지 고민해보기
+        levelCritical = LevelStat(StatType.critical);       // 치명타 레벨
+        levelGoldGain = LevelStat(StatType.goldGain);        // 골드획득 레벨
+        levelAutoAttacl = LevelStat(StatType.autoAttack);
+
+        totalCritical = BonusStat(BonusStatType.criticalBonus);
+        totalGoldGain = BonusStat(BonusStatType.goldGainBonus);
+        //totalAutoAttack = BonusStat(BonusStatType.autoAttackBonus); 
     }
 
+    public int LevelStat (StatType statType)
+    {
+        float levelValue = 0f;
+
+        switch (statType)
+        {
+            case StatType.critical:
+                levelValue = playerStat.stat.statValue;
+                return GameManager.Instance.PlayerData.CriticalDamageLevel;
+            case StatType.goldGain:
+                levelValue = playerStat.stat.statValue;
+                return GameManager.Instance.PlayerData.GoldGainLevel;
+            case StatType.autoAttack:
+                levelValue = playerStat.stat.statValue;
+                return GameManager.Instance.PlayerData.AutoAttackLevel;
+            default:
+                return 0;
+        }
+    }
+
+
     /// <summary>
-    /// 토탈 스탯
+    /// 토탈 스탯, 최종은 PlayerData로
     /// </summary>
     /// <param name="statType"></param>
     /// <returns></returns>
-    public int TotalStat(StatType statType)
+    // 추후 int > float로 바꿔주기
+    public int BonusStat(BonusStatType bonusType)
     {
-        float baseValue = 0f;
         float bonusValue = 0f;
 
-        if (statType == playerStat.stat.statType)
-        {
-            baseValue = playerStat.stat.statValue;
-        }
-
         // 보너스스탯
-        switch (statType)
+        switch (bonusType)
         {
-            case StatType.damage:
-                if (playerStat.addStat.BonusType == BonusStatType.damageBonus)
-                {
-                    bonusValue = playerStat.addStat.bonusValue;
-                }
-                break;
-
-            case StatType.critical:
-                if (playerStat.addStat.BonusType == BonusStatType.criticalBonus)
-                {
-                    bonusValue = playerStat.addStat.bonusValue;
-                }
-                break;
-
-            case StatType.criticalRate:
-                if (playerStat.addStat.BonusType == BonusStatType.criticalRateBonus)
-                {
-                    bonusValue = playerStat.addStat.bonusValue;
-                }
-                break;
-
-            case StatType.goldGain:
-                if (playerStat.addStat.BonusType == BonusStatType.goldGainBonus)
-                {
-                    bonusValue = playerStat.addStat.bonusValue;
-                }
-                break;
-            case StatType.autoAttack:
-                if (playerStat.addStat.BonusType == BonusStatType.autoAttackBonus)
-                {
-                    bonusValue = playerStat.addStat.bonusValue;
-                }
-                break;
+            case BonusStatType.criticalBonus:
+                bonusValue = playerStat.addStat.bonusValue;
+                return GameManager.Instance.PlayerData.TotalCritChance;
+            case BonusStatType.goldGainBonus:
+                bonusValue = playerStat.addStat.bonusValue;
+                return GameManager.Instance.PlayerData.TotalGoldGain;
+            //case BonusStatType.autoAttackBonus:
+            //    bonusValue = playerStat.addStat.bonusValue;
+            //    return GameManager.Instance.PlayerData.TotalCritChance;
+            default:
+                return 0;
         }
-        return Mathf.RoundToInt(baseValue + bonusValue);
     }
 }

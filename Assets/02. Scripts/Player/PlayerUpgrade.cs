@@ -8,9 +8,8 @@ public class PlayerUpgrade : MonoBehaviour
 {
     public Player player;
     public PlayerStat playerStat;
-    public AddStatValue addStat;
 
-    public TMP_Text goldText;
+    //public TMP_Text goldText;
     public TMP_Text curStatText;
     public TMP_Text upStatText;
     public TMP_Text upGoldText;
@@ -19,6 +18,7 @@ public class PlayerUpgrade : MonoBehaviour
     public int Gold;
     private bool isHolding = false;
     public float repeatRate = 0.2f;
+    public float delayTime = 1f;
     private Coroutine upgradeCoroutine;
 
     void Start()
@@ -46,7 +46,8 @@ public class PlayerUpgrade : MonoBehaviour
         else
         {
             UIManager.Instance.StatsErrorMsg();
-            Debug.Log("골드오링"); // 추후에 꼭 빼기
+            // 추후 ui부분 넣기
+            Debug.Log("골드오링");
         }
     }
 
@@ -55,7 +56,7 @@ public class PlayerUpgrade : MonoBehaviour
     /// </summary>
     void UpdateUI()
     {
-        goldText.text = $"{player.gold}";                       // 보유골드- 나중에 다른곳으로 빼기
+        //goldText.text = $"{player.gold}";                       // 보유골드- 나중에 다른곳으로 빼기
         curStatText.text = $"{playerStat.stat.statValue}";      // 현 스탯
         upStatText.text = $"{playerStat.addStat.bonusValue}";   // 보너스 스탯
         upGoldText.text = $"{playerStat.upgradeGold}";          // 업그레이드 골드
@@ -86,6 +87,8 @@ public class PlayerUpgrade : MonoBehaviour
     // 반복실행
     private IEnumerator UpgradeLoop()
     {
+        //yield return new WaitForSeconds(delayTime);
+
         while (isHolding) // 버튼을 누르고있는동안 실행
         {
             UpgradeClick();
