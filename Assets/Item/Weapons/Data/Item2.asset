@@ -18,17 +18,8 @@ MonoBehaviour:
   itemDesc: "\uD2BC\uD2BC\uD55C \uC721\uBC31\uC774\uC758 \uC55E\uB2C8"
   itemIcon: {fileID: 21300000, guid: 7ef1f01c337a4e744a9332c4cf13c717, type: 3}
   baseDamage: 5
-  addDamage: 0
-  baseDamageUp:
-  - 1
-  - 1.5
-  - 2
-  - 2.5
-  - 3
-  - 3.5
-  - 4
-  - 4.5
-  - 5
-  - 5.5
-  addDamageUp: []
-  Toothpick: {fileID: 0}
+  damegeMultiplier: 0
+  criticalChance: 0
+  criticalMultiplier: 0
+  upgradeCost: 0
+  purchaseGold: 40
