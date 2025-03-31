@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
@@ -27,10 +27,5 @@ public class PlayerData
     public int TotalCritChance; //최종 치명타 확률
     public int TotalCritDamage; //최종 치명타 데미지
     public int TotalGoldGain; //최종 골드 획득 보너스
-
-
-
-
-
 
 }
