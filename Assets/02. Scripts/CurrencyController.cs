@@ -41,12 +41,7 @@ public class CurrencyController : MonoBehaviour
 
     public void StatGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.StatGoldUse로 해주시면 됩니다.
     {
-        if (statGold >= upgradeGold)
-        {
-            statGold -= upgradeGold;
-        }
-        else
-            UIManager.Instance.StatsErrorMsg(); //에러 메세지 표시
+        statGold -= upgradeGold;
     }
 
 
