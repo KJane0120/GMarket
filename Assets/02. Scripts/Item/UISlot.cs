@@ -1,39 +1,47 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UISlot : MonoBehaviour
 {
-   public ItemData data;
-   [SerializeField] private TextMeshProUGUI levelText;
-   [SerializeField] private TextMeshProUGUI itemNameText;
-   [SerializeField] private TextMeshProUGUI damageText;
-   [SerializeField] private TextMeshProUGUI criticalText;
-   [SerializeField] private TextMeshProUGUI buttonText;
-   [SerializeField] private TextMeshProUGUI upgradeCostText;
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private TextMeshProUGUI criticalText;
+    [SerializeField] private Button upgradeBtn;
+    [SerializeField] private TextMeshProUGUI upgradeCostText;
+
+    public delegate void WeaponUpgradeBtn();
 
 
     public void Start()
     {
-        data = GameManager.Instance.PlayerData.data;
-
+        upgradeBtn.onClick.AddListener(GameManager.Instance.item.OnClickWeaponUpgradeBtn);
     }
 
-
+    /// <summary>
+    /// 슬롯에 아이템 데이터를 추가합니다. 
+    /// </summary>
+    /// <param name="item"></param>
     public void SetItem(ItemData item)
     {
-        data = item;
+        ResourceManager.Instance.data = item;
 
-       if (data != null)
+        if (ResourceManager.Instance.data != null)
         {
-            levelText.text = string.Format( "{0;D2}", $"LV.{ GameManager.Instance.PlayerData.BasicWeaponLevel}");
-            itemNameText.text = data.itemName;
-            //damageText.text = 
-
-
+            levelText.text = $"LV.{GameManager.Instance.PlayerData.BasicWeaponLevel:D2}";
+            itemNameText.text = ResourceManager.Instance.data.itemName;
+            damageText.text = $"공격력: {ResourceManager.Instance.data.baseDamage:F2}";
+            criticalText.text = $"공격력: {ResourceManager.Instance.data.criticalChance:F2}"; 
+            upgradeCostText.text = $"공격력: {ResourceManager.Instance.data.upgradeCost:F2}";
         }
     }
 
+    public void RefreshUI()
+    {
+        for (int i = 0; i < GameManager.Instance.item.Slots.Count; i++)
+        {
+            GameManager.Instance.item.Slots[i].SetItem(GameManager.Instance.item.inventory[i]);
+        }
+    }
 }

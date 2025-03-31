@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerStat playerStat;
     public StatType statType { get; set; }
     public BonusStatType bonusType { get; set; }
+    public PlayerData playerData;
 
     public int levelCritical;           // 치명타 레벨
     public int levelGoldGain;           // 골드획득 레벨
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Init()
     {
+        playerData = GameManager.Instance.PlayerData;
         levelCritical = GameManager.Instance.PlayerData.CriticalDamageLevel;        // 치명타 레벨
         levelGoldGain = GameManager.Instance.PlayerData.GoldGainLevel;              // 골드획득 레벨
         levelAutoAttack = GameManager.Instance.PlayerData.AutoAttackLevel;          // 자동공격 레벨
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         totalCritical = GameManager.Instance.PlayerData.TotalCritDamage;            // 최종 치명타 데미지
         totalGoldGain = GameManager.Instance.PlayerData.TotalGoldGain;              // 최종 골드획득량
         totalAutoAttack = GameManager.Instance.PlayerData.TotalAutoAttack;         // 최종 자동클릭횟수
+
     }
 
     /// <summary>

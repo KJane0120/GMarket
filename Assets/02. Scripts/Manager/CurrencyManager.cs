@@ -8,8 +8,8 @@ public class CurrencyManager : MonoBehaviour
 
     public CurrencyController controller;
 
-    public TextMeshProUGUI goldText;
-    private int statGold;
+    public TextMeshProUGUI statGoldText;
+    public TextMeshProUGUI weaponGoldText;
 
     private void Awake()
     {
@@ -26,10 +26,7 @@ public class CurrencyManager : MonoBehaviour
             }
         }
     }
-    private void Start()
-    {
-        statGold = GameManager.Instance.PlayerData.StatGold;
-    }
+
 
     private void LateUpdate()
     {
@@ -38,6 +35,7 @@ public class CurrencyManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        goldText.text = string.Format("{0}", statGold);
+        statGoldText.text = string.Format("{0}", GameManager.Instance.PlayerData.StatGold);
+        weaponGoldText.text = string.Format("{0}", GameManager.Instance.PlayerData.WeaponGold);
     }
 }

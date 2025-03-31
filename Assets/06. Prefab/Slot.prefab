@@ -542,12 +542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2fd5e2cf08abc47bc45509cf9c3d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
   levelText: {fileID: 7769922667290671550}
   itemNameText: {fileID: 3181994281184512445}
   damageText: {fileID: 5067199170640700477}
   criticalText: {fileID: 3534297251416936010}
-  buttonText: {fileID: 7310030141520934329}
+  upgradeBtn: {fileID: 6906786309365651680}
   upgradeCostText: {fileID: 3458335058491125496}
 --- !u!1 &3622819574697355704
 GameObject:

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerData
 {
     public int NowStage;             //현재 진행중인 스테이지
-    public GameObject CurrentWeapon; //현재 장착한 장비
+    public ItemData CurrentWeapon; //현재 장착한 장비
 
     [Header("Gold")]
     public int StatGold;             // 보유한 스탯재화(시연영상 속 노란 네모)
@@ -28,5 +28,4 @@ public class PlayerData
     public float TotalGoldGain;     //최종 골드 획득 보너스
     public float TotalAutoAttack;   // 최종 자동 공격 횟수 
 
-    public ItemData data;
 }

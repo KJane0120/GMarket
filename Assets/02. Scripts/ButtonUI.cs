@@ -8,10 +8,13 @@ public class ButtonUI : MonoBehaviour
     [SerializeField] private Button pauseButton; //일시정지 버튼
     [SerializeField] private Button continueButton; //메인씬에서 계속하기 버튼
     [SerializeField] private Button exitButton; //메인씬에서 나가기 버튼
+    [SerializeField] private Button inventoryBtn; // 무기관리 버튼
+    [SerializeField] private GameObject inventoryPanel;
 
     private void Start()
     {
         Debug.Log("이벤트 등록 완료");
+
         Init();
     }
 
@@ -71,5 +74,10 @@ public class ButtonUI : MonoBehaviour
         Time.timeScale = 1.0f;
         UIManager.Instance.PausePopup.SetActive(false);
         StartCoroutine(UIManager.Instance.FadeOut("StartSampleScene", UIManager.Instance.StartSceneLoadInit));
+    }
+
+    public void OnClickInventoryBtn() //인벤토리 
+    {
+        inventoryPanel.SetActive(true);
     }
 }

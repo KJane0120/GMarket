@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
     public PlayerData PlayerData { get; private set; }
+    public Item item { get; private set; }
 
     private void Awake()
     {
@@ -40,8 +42,6 @@ public class GameManager : MonoBehaviour
         PlayerData.NowStage = 1;
         PlayerData.StatGold = CurrencyManager.Instance.controller.statGold;
         PlayerData.WeaponGold = CurrencyManager.Instance.controller.weaponGold;
-        //PlayerData.CurrentWeapon = //기본 무기
+        PlayerData.CurrentWeapon = ResourceManager.Instance.item.inventory[0];
     }
-
-
 }

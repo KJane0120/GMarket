@@ -47,9 +47,8 @@ public class CurrencyController : MonoBehaviour
     /// 무기재화를 사용할 때 사용하는 함수입니다.
     /// </summary>
     /// <param name="upgradeGold"></param>
-    public void WeaponGoldUse(int upgradeGold) //호출은 CurrencyManager.Instance.controller.WeaponGoldUse 해주시면 됩니다.
+    public void WeaponGoldUse(int upgradeGold)
     {
         weaponGold -= upgradeGold;
-        //UIManager.Instance.WeaponErrorMsg(); //에러 메세지 표시하는 함수 호출방법
     }
 }
