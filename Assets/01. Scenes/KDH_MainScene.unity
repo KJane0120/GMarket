@@ -1865,7 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4fe5067c32fc241a8ad3fecf17ab7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 10
+  pushForce: 500
   currentStage: 0
   enemy: []
   enemies: {fileID: 595277862}
