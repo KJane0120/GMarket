@@ -32,10 +32,10 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 공격을 받았을 때 호출될 메서드
     /// </summary>
-    public void Damaged()
+    public int Damaged()
     {
         //0은 임시로 할당한 값입니다.
-        int value=1; // 게임매니저에서 공격 데미지를 가져온 뒤 (GameManager.Instance.CalculateDamage()...)
+        int value=750; // 게임매니저에서 공격 데미지를 가져온 뒤 (GameManager.Instance.CalculateDamage()...)
         currentHealth -= value; //그 값만큼 체력 감소
         if (currentHealth <= 0)
         {
@@ -44,7 +44,10 @@ public class Enemy : MonoBehaviour
 
         //도전 구현 기능; 입은 데미지 표시하기
 
+        //CurrencyManager.Instance.controller.StatGoldGain(enemyData.StatsGoldOnHit * (int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage));
+
         UpdateHealth(); //이후 체력 비율 조정
+        return value;
     }
 
     /// <summary>
@@ -91,6 +94,8 @@ public class Enemy : MonoBehaviour
         this.gameObject.SetActive(false); //오브젝트를 끄고
         stageManager.NextEnemy();
         //보상 지급(필요하다면);
+        //int modifier=(int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage);
+        //CurrencyManager.Instance.controller.CurrencyGainKill(enemyData.StatsGoldOnKill * modifier, enemyData.WeaponGoldOnKill*modifier);
     }
 
     /// <summary>
