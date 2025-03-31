@@ -32,9 +32,8 @@ public class ClickManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !isClicking)
         {
-            isClicking = true;
-            Debug.Log("클릭 발생!");
             onClick.Invoke(); // 클릭 시 즉시 공격 실행
+            Debug.Log("클릭 발생!");
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -61,14 +60,17 @@ public class ClickManager : MonoBehaviour
         }
     }
 
-    void OnAttack()
+    public void OnAttack()
     {
         if (targetEnemy != null)
         {
             targetEnemy.Damaged(); // 공격 실행
+            onClick.Invoke(); 
             Debug.Log("공격 발생!");
         }
     }
+
+
 
     public void LevelUp()
     {
