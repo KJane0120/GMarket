@@ -23,10 +23,10 @@ public class PlayerData
 
 
     [Header("TotalStats")]
-    public int TotalAttackPower; //최종 공격력
-    public int TotalCritChance; //최종 치명타 확률
-    public int TotalCritDamage; //최종 치명타 데미지
-    public int TotalGoldGain; //최종 골드 획득 보너스
+    public float TotalAttackPower; //최종 공격력
+    public float TotalCritChance; //최종 치명타 확률
+    public float TotalCritDamage; //최종 치명타 데미지
+    public float TotalGoldGain; //최종 골드 획득 보너스
 
     public ItemData data;
 }
