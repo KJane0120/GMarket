@@ -1,57 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
 public class StageManager : MonoBehaviour
 {
-    private static StageManager instance;
-    public static StageManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameObject("StageManager").AddComponent<StageManager>();
-            }
-            return instance;
-        }
-
-    }
-
+    public float pushForce = 500f;
+    public int currentStage;
     public Enemy[] enemy; //적 객체가 담겨지게 될 배열
-    public Transform enemies; //enemy가 담긴 부모 클래스
+    public Transform enemies; //enemy가 담긴 부모 객체
 
-    //게임매니저 클래스;
-    //
-
-
+    private ClickManager clickManager;
 
     [Header("적 데이터")]
     public EnemyData[] enemydataTable; //적 데이터가 담겨있을 배열
     public int currentEnemyIndex; //현재 적이 몇 번째 적인지를 확인할 필드
 
+    [Header("UI")]
+    public GameObject stageUI; //스테이지 데이터를 표시할 UI
+    public GameObject damagePrefab; //인스턴시에이트 한 뒤 데미지를 표시할 텍스트 프리팹
+    public TextMeshProUGUI stageText; //스테이지 UI에 표시할 텍스트
+    public TextMeshProUGUI enemyText; //적 UI에 표시할 텍스트
+
     private void Awake()
     {
-        //싱글톤
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
         //만약 적 클래스가 담긴 부모 객체가 없다면 찾아온 뒤 할당하고
         if (enemies == null)
         {
-            GameObject go = GameObject.Find("Stage").transform.Find("Enemies").gameObject;
-            enemies = go.GetComponent<RectTransform>();
+            enemies = GameObject.FindGameObjectWithTag("Enemies").GetComponent<RectTransform>();
+        }
+        //만약 클릭매니저가 없다면 찾아온 뒤 할당하고
+        if(clickManager==null)
+        {
+            clickManager = GameObject.Find("Click").GetComponent<ClickManager>();
         }
         //만약 적 데이터 테이블이 없다면
         if (enemydataTable == null)
@@ -63,6 +45,28 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        //스테이지UI가 비어있다면
+        if (stageUI==null)
+        {
+            //찾아서 할당
+            stageUI = GameObject.Find("StageUI");
+        }
+        //스테이지UI가 비어있지 않은데 stageText와 enemyText가 비어있다면
+        if (stageUI != null && (stageText==null&&enemyText==null))
+        {
+            Debug.Log(stageUI.name);
+            // stageUI 안에서 "StageText"와 "EnemyText"라는 이름의 자식 객체를 찾아 할당
+            Transform stageTextTransform = stageUI.transform.Find("StageBox/StageText");
+            Transform enemyTextTransform = stageUI.transform.Find("EnemyBox/EnemyText");
+
+            if (stageTextTransform != null)
+                stageText = stageTextTransform.GetComponent<TextMeshProUGUI>();
+
+            if (enemyTextTransform != null)
+                enemyText = enemyTextTransform.GetComponent<TextMeshProUGUI>();
+        }
+
+        //clickManager.onClick += AddDamage;
 
         //enemies에 담긴 객체만큼 배열 길이를 정한 뒤 반복문 시작
         enemy = new Enemy[enemies.childCount];
@@ -75,19 +79,24 @@ public class StageManager : MonoBehaviour
                 enemy[i].stageManager = this; //해당 객체가 이 객체를 참조할 수 있게 하기
             }
         }
-
-        NextStage(); //이후 적 초기화
+        if (enemies.gameObject.activeInHierarchy == false)
+        {
+            ToggleEnemyGrid();
+        }
+        ResetEnemies(); //이후 적 초기화
     }
 
     /// <summary>
-    /// 적들을 전부 초기화한 뒤 값을 재설정하는 메서드
+    /// 적 객체를 담아둔 그리드를 비활성화/활성화시키는 토글 메서드
     /// </summary>
-    public void NextStage()
+    public void ToggleEnemyGrid()
     {
-        //게임매니저의 스테이지를 올리고 (GameManager.instance.stage++);
-        //적 데이터테이블 안에서 무작위 데이터를 가져온 다음 다음 스테이지의 적 데이터로 저장
-        EnemyData desiredEnemy = enemydataTable[Random.Range(0,enemydataTable.Length)];
+        enemies.gameObject.SetActive(!enemies.gameObject.activeInHierarchy);
+    }
 
+    public void ResetEnemies()
+    {
+        EnemyData desiredEnemy = enemydataTable[currentStage % enemydataTable.Length];
         currentEnemyIndex = 0;
 
         for (int i = 0; i < enemy.Length; i++)
@@ -98,7 +107,7 @@ public class StageManager : MonoBehaviour
                 enemy[i].gameObject.SetActive(false);
             }
             //이후 순서에 따른 적 구분 (5번째에 엘리트, 10번째에 보스, 그 외는 전부 일반)
-            switch(enemy[i].index)
+            switch (enemy[i].index)
             {
                 case 3:
                     enemy[i].enemyData = desiredEnemy;
@@ -132,11 +141,69 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 다음 적으로 객체를 변경시키는 메서드
+    /// </summary>
     public void NextEnemy()
     {
-        currentEnemyIndex++;
-        enemy[currentEnemyIndex].gameObject.SetActive(true);
+        //만약 현재 적이 스테이지의 마지막 적인 경우, 다음 스테이지로 가는 메서드 실행
+        if (currentEnemyIndex >= 9)
+        {
+            //다음 스테이지로 이동, 적 초기화, UI 갱신
+            //GameManager.Instance.PlayerData.NowStage++;
+            currentStage++;
+            ResetEnemies();
+            UpdateUI();
+            //그리고 보상 지급
+        }
+        //만약 현재 적이 스테이지의 마지막 적이 아닌 경우, 수치 올리고 다음 적 활성화
+        //현재 적 객체 비활성화는 Die 메서드에서 실행될 것
+        else
+        {
+            currentEnemyIndex++;
+            enemy[currentEnemyIndex].gameObject.SetActive(true);
+
+            UpdateUI();
+        }
+
     }
 
+    public void AddDamage()
+    {
+        DamageOutput(enemy[currentEnemyIndex].Damaged());
+    }
+
+    public void DamageOutput(int damage)
+    {
+        //데미지오브젝트를 StageManager 안에 복제한 뒤 해당 객체의 텍스트 내용을 damage 매개변수로 변경
+        GameObject damageObject = Instantiate(damagePrefab, enemy[currentEnemyIndex].transform.position, Quaternion.identity, this.transform);
+        damageObject.GetComponent<TextMeshProUGUI>().text = $"{damage}";
+
+        //그리고 텍스트가 날아갈 무작위 방향 설정
+        float randomX = Random.Range(-1f, 1f); // X축 방향 랜덤
+        float randomY = Random.Range(0f, 1f); // Y축 방향 랜덤
+        Vector2 pushDirection = new Vector2(randomX, randomY).normalized;
+
+        //리지드바디 찾아서 힘만큼 AddForce
+        Rigidbody2D rb = damageObject.GetComponent<Rigidbody2D>();
+        rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+
+        //2.5초 뒤 삭제
+        Destroy(damageObject, 2.5f);
+    }
+
+
+    private void UpdateUI()
+    {
+        if (stageText == null && enemyText == null)
+        {
+            Debug.Log("스테이지텍스트와 에너미텍스트가 할당되지 않았습니다.");
+        }
+        else
+        {
+            stageText.text = string.Format("현재 스테이지: <color=#EEA970>{0}</color>", currentStage);
+            enemyText.text = string.Format("남은 적: <color=#EEA970>{0}</color> / 10", currentEnemyIndex);
+        }
+    }
 
 }
