@@ -7,7 +7,6 @@ using UnityEngine.InputSystem.XR;
 public class StageManager : MonoBehaviour
 {
     public float pushForce = 500f;
-    public int currentStage;
     public Enemy[] enemy; //적 객체가 담겨지게 될 배열
     public Transform enemies; //enemy가 담긴 부모 객체
 
@@ -97,7 +96,7 @@ public class StageManager : MonoBehaviour
 
     public void ResetEnemies()
     {
-        EnemyData desiredEnemy = enemydataTable[currentStage % enemydataTable.Length];
+        EnemyData desiredEnemy = enemydataTable[GameManager.Instance.PlayerData.NowStage % enemydataTable.Length];
         currentEnemyIndex = 0;
 
         for (int i = 0; i < enemy.Length; i++)
@@ -151,8 +150,7 @@ public class StageManager : MonoBehaviour
         if (currentEnemyIndex >= 9)
         {
             //다음 스테이지로 이동, 적 초기화, UI 갱신
-            //GameManager.Instance.PlayerData.NowStage++;
-            currentStage++;
+            GameManager.Instance.PlayerData.NowStage++;
             ResetEnemies();
             UpdateUI();
             //그리고 보상 지급
@@ -205,7 +203,7 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-            stageText.text = string.Format("현재 스테이지: <color=#EEA970>{0}</color>", currentStage);
+            stageText.text = string.Format("현재 스테이지: <color=#EEA970>{0}</color>", GameManager.Instance.PlayerData.NowStage);
             enemyText.text = string.Format("남은 적: <color=#EEA970>{0}</color> / 10", currentEnemyIndex);
         }
     }

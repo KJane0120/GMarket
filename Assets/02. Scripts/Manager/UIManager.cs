@@ -149,8 +149,4 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(ScneneName);
         StartCoroutine(FadeIn(init));
     }
-    public void OnClickInventoryBtn() //인벤토리 창 열기
-    {
-        inventoryPanel.SetActive(true);
-    }
 }
