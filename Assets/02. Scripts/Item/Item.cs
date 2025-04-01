@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -56,9 +57,8 @@ public class Item : MonoBehaviour // 삭제 예정
         currentWeaponImage.sprite = item.itemIcon;
         currentWeaponName.text = item.itemName;
         currentWeaponLevel.text = string.Format($"Lv.{item.level:D2}");
-        currentWeaponDamageText.text = string.Format($"공격력: {item.baseDamage:F2}");
-        currentWeaponCritText.text = string.Format($"치명타 확률: {item.criticalChance:F2}%");
-
+        currentWeaponDamageText.text = string.Format($"공격력: <color=#EEA970>{item.baseDamage:F2}</color>");
+        currentWeaponCritText.text = string.Format($"치명타 확률: <color=#EEA970>{item.criticalChance:F2}%</color>");
     }
 
     //슬롯의 아이템 데이터가 선택한 아이템의 데이터
