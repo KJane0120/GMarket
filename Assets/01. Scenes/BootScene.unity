@@ -856,12 +856,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1608992910}
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -871,8 +879,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: UIButtonOnOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -881,6 +897,10 @@ PrefabInstance:
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1324,7 +1344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7468e1bd68149498920407f33ce094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSFXSources: 4
+  maxSFXSources: 5
 --- !u!4 &1043855229
 Transform:
   m_ObjectHideFlags: 0
@@ -1406,6 +1426,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1608992910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1164821725611918752, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+  m_PrefabInstance: {fileID: 1007709763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1810051185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,8 +1576,9 @@ MonoBehaviour:
   bgmMain3: {fileID: 0}
   sfxHit: {fileID: 8300000, guid: 40a59768cc4d9c948848a0c06880392d, type: 3}
   sfxCritHit: {fileID: 8300000, guid: 76e8ebf674b9d6240920954158f46802, type: 3}
-  sfxWeaponUpgrade: {fileID: 0}
-  sfxStatUpgrade: {fileID: 0}
+  sfxWeaponUpgrade: {fileID: 8300000, guid: 3ad7094d92c14cb42845029c762fabfd, type: 3}
+  sfxStatUpgrade: {fileID: 8300000, guid: 5b8e49adb2d0a2c4f884957286e98682, type: 3}
+  sfxError: {fileID: 8300000, guid: d19694a11c290f144ade269d690520be, type: 3}
 --- !u!1 &2008992116
 GameObject:
   m_ObjectHideFlags: 0

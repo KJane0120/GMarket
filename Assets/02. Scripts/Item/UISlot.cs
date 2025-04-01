@@ -51,8 +51,13 @@ public class UISlot : MonoBehaviour
             ResourceManager.Instance.item.Slots[i].UpdateSlot(ResourceManager.Instance.item.inventory[i]);
         }
     }
-    public void OnClickWeaponUpgradeBtn(UISlot slot) //강화버튼 클릭시 호출되는 함수 수정 예정
+    public void OnClickWeaponUpgradeBtn(UISlot slot) //강화버튼 클릭시 호출되는 함수
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxWeaponUpgrade, 1.0f);
+        }
+
         ItemData data = slot.data;
         if (data == null)
         {

@@ -12,9 +12,11 @@ public class SoundLibrary : MonoBehaviour
 
 
     [Header("SFX Clips")]
-    public AudioClip sfxHit;     //타격시 
-    public AudioClip sfxCritHit; //치명타 타격시
-    public AudioClip sfxUpgrade; //무기, 스탯 업그레이드시
+    public AudioClip sfxHit;            //타격시 
+    public AudioClip sfxCritHit;        //치명타 타격시
+    public AudioClip sfxWeaponUpgrade;  //무기 업그레이드시
+    public AudioClip sfxStatUpgrade;    //스탯 업그레이드시
+    public AudioClip sfxError;          //재화 부족으로 에러메세지 뜰 때
 
     private void Awake()
     {
