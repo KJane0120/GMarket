@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public int Damaged()
     {
-        float value= GameManager.Instance.PlayerData.TotalAttackPower;
+        float value= GameManager.Instance.PlayerData.CurrentWeapon.baseDamage;
         
         
         if (currentHealth <= value) //만약 체력이 공격력보다 적다면
