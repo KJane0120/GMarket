@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 854d7fe0b5ecf4e49bf1ee72d3dfca9a, type: 3}
-  m_Name: Item2
+  m_Name: HotBarStick_3
   m_EditorClassIdentifier: 
   itemType: 0
-  ItemID: 2
-  itemName: "\uC55E \uC774\uBE68"
-  itemDesc: "\uD2BC\uD2BC\uD55C \uC721\uBC31\uC774\uC758 \uC55E\uB2C8"
-  itemIcon: {fileID: 21300000, guid: 7ef1f01c337a4e744a9332c4cf13c717, type: 3}
-  baseDamage: 5
-  damegeMultiplier: 0
-  criticalChance: 0
-  criticalMultiplier: 0
-  upgradeCost: 0
-  purchaseGold: 40
+  ItemID: 3
+  itemName: "\uD56B\uBC14 \uB300\uAC80"
+  itemDesc: "\uCE58\uBA85\uC801\uC778 \uD56B\uBC14 \uB300\uAC80\uC774\uB2E4 "
+  itemIcon: {fileID: 21300000, guid: 0f2c5e9d4aa62f548b78b6e7cfd70234, type: 3}
+  baseDamage: 13
+  damegeMultiplier: 1.5
+  criticalChance: 15
+  criticalMultiplier: 0.9
+  upgradeCost: 20
+  purchaseGold: 410
