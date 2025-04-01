@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     public GameObject inventoryPanel;
     [SerializeField] private GameObject ItemUI;
     [SerializeField] private GameObject currentWeaponWindow;
+    [SerializeField] private TextMeshProUGUI statGoldTxt;
+    [SerializeField] private TextMeshProUGUI weaponGoldTxt;
 
     private float fadeDuration = 1.0f;
 
@@ -51,6 +53,17 @@ public class UIManager : MonoBehaviour
         ErrorMsg = GetComponentInChildren<InteractUI>(true).gameObject;
         ErrorMsgText = ErrorMsg.gameObject.GetComponentInChildren<TextMeshProUGUI>(true);
         PausePopup = GetComponentInChildren<SoundUI>(true).gameObject;
+    }
+
+    private void Update()
+    {
+        RefreshUI();
+    }
+
+    private void RefreshUI()
+    {
+        statGoldTxt.text = string.Format("{0}", GameManager.Instance.PlayerData.StatGold);
+        weaponGoldTxt.text = string.Format("{0}", GameManager.Instance.PlayerData.WeaponGold);
     }
 
     /// <summary>
