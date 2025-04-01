@@ -41,18 +41,17 @@ public class StageManager : MonoBehaviour
             //Resources 폴더 안 EnemyData 안의 모든 EnemyData 클래스를 불러온 뒤 할당하기
             enemydataTable = Resources.LoadAll<EnemyData>("EnemyData");
         }
-    }
+        clickManager.onClick += AddDamage;
 
-    void Start()
-    {
+
         //스테이지UI가 비어있다면
-        if (stageUI==null)
+        if (stageUI == null)
         {
             //찾아서 할당
             stageUI = GameObject.Find("StageUI");
         }
         //스테이지UI가 비어있지 않은데 stageText와 enemyText가 비어있다면
-        if (stageUI != null && (stageText==null&&enemyText==null))
+        if (stageUI != null && (stageText == null && enemyText == null))
         {
             Debug.Log(stageUI.name);
             // stageUI 안에서 "StageText"와 "EnemyText"라는 이름의 자식 객체를 찾아 할당
@@ -66,11 +65,10 @@ public class StageManager : MonoBehaviour
                 enemyText = enemyTextTransform.GetComponent<TextMeshProUGUI>();
         }
 
-        //clickManager.onClick += AddDamage;
 
         //enemies에 담긴 객체만큼 배열 길이를 정한 뒤 반복문 시작
         enemy = new Enemy[enemies.childCount];
-        for (int i=0;i<enemy.Length; i++)
+        for (int i = 0; i < enemy.Length; i++)
         {
             enemy[i] = enemies.GetChild(i).GetComponent<Enemy>(); //객체 안에서 enemy 클래스를 찾아 지정하고 
             enemy[i].index = i; //고유 식별값을 지정한 뒤
@@ -84,6 +82,9 @@ public class StageManager : MonoBehaviour
             ToggleEnemyGrid();
         }
         ResetEnemies(); //이후 적 초기화
+    }
+    void Start()
+    {
     }
 
     /// <summary>
@@ -170,7 +171,10 @@ public class StageManager : MonoBehaviour
 
     public void AddDamage()
     {
-        DamageOutput(enemy[currentEnemyIndex].Damaged());
+        if (enemy[currentEnemyIndex] != null)
+        {
+            DamageOutput(enemy[currentEnemyIndex].Damaged());
+        }
     }
 
     public void DamageOutput(int damage)
