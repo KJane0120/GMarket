@@ -90,8 +90,10 @@ public class UISlot : MonoBehaviour
             Debug.Log("버튼 실행 안돼요");
             return;
         }
+
         data = slot.data;
-        if (slot.data.isOwned)
+
+        if (data.isOwned)
         {
             icon.color = Color.white; // 보유 시 아이콘 정상 표시
             BuyBtn.gameObject.SetActive(false);

@@ -38,6 +38,7 @@ public class Item : MonoBehaviour
         for (int i = 0; i < inventory.Count; i++)
         {
             UISlot newSlot = Instantiate(Slot, Content);
+            newSlot.UIButtonOnOff(newSlot);
             Button slotBtn = newSlot.EquipBtn;
             slotBtn.onClick.AddListener(() => OnEquip(newSlot));
             Slots.Add(newSlot);
@@ -70,7 +71,6 @@ public class Item : MonoBehaviour
 
         if (IsEquip(slot))
         {
-            slot.UIButtonOnOff(slot);
             UnEquip(slot);
         }
         else
@@ -121,9 +121,9 @@ public class Item : MonoBehaviour
         switch (slot.data.itemType)
         {
             case ItemType.Melee:
-
+                slot.data.isEquipped = false;
+                slot.UIButtonOnOff(slot);
                 break;
-
         }
         EquipList.Remove(slot.data);
     }

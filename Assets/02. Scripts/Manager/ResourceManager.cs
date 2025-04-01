@@ -42,6 +42,15 @@ public class ResourceManager : MonoBehaviour
             GameManager.Instance.PlayerData.CurrentWeapon.level = 0;
 
             item.EquipShow(item.inventory[0]);
+            
+            for(int i = 0; items.Length > i; i++)
+            {
+                if(items[i] != items[0])
+                {
+                    items[i].isEquipped = false;
+                    items[i].isOwned = false;
+                }
+            }
         }
     }
 }

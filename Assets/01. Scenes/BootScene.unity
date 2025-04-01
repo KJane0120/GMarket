@@ -854,6 +854,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5357166423979456470, guid: 37767187705186a439730b67a8296f8e, type: 3}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UIButtonOnOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UISlot, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527348849870566052, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UISlot, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5568663416282433778, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1519,7 +1551,8 @@ MonoBehaviour:
   bgmMain3: {fileID: 0}
   sfxHit: {fileID: 8300000, guid: 40a59768cc4d9c948848a0c06880392d, type: 3}
   sfxCritHit: {fileID: 8300000, guid: 76e8ebf674b9d6240920954158f46802, type: 3}
-  sfxUpgrade: {fileID: 0}
+  sfxWeaponUpgrade: {fileID: 0}
+  sfxStatUpgrade: {fileID: 0}
 --- !u!1 &2008992116
 GameObject:
   m_ObjectHideFlags: 0
