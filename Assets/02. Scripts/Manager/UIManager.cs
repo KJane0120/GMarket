@@ -92,7 +92,6 @@ public class UIManager : MonoBehaviour
         weaponGold.SetActive(true);
         pauseBtn.SetActive(true);
         startUI.SetActive(false);
-        inventoryPanel.SetActive(true);
         currentWeaponWindow.SetActive(true);
     }
 

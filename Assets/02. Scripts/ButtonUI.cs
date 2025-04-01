@@ -35,7 +35,7 @@ public class ButtonUI : MonoBehaviour
     {
         //초기값으로 데이터 초기화
         Debug.Log("시작하기");
-        StartCoroutine(UIManager.Instance.FadeOut("GMScene", UIManager.Instance.MainSceneLoadInit));
+        StartCoroutine(UIManager.Instance.FadeOut("MainScene", UIManager.Instance.MainSceneLoadInit));
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public class ButtonUI : MonoBehaviour
     {
         //저장된 데이터 로드
         Debug.Log("계속하기");
-        StartCoroutine(UIManager.Instance.FadeOut("GMScene",UIManager.Instance.MainSceneLoadInit));
+        StartCoroutine(UIManager.Instance.FadeOut("MainScene",UIManager.Instance.MainSceneLoadInit));
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public class ButtonUI : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         UIManager.Instance.PausePopup.SetActive(false);
-        StartCoroutine(UIManager.Instance.FadeOut("StartSampleScene", UIManager.Instance.StartSceneLoadInit));
+        StartCoroutine(UIManager.Instance.FadeOut("StartScene", UIManager.Instance.StartSceneLoadInit));
     }
 
     
