@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CurrencyController : MonoBehaviour
 {
-    public int statGold;
+    public int statGold = 1000000;
     public int weaponGold;
 
     /// <summary>
