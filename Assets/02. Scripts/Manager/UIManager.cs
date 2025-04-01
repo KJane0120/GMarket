@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseBtn;
     [SerializeField] private GameObject startUI;
     [SerializeField] private Image fadePanel;
+    [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject currentWeaponWindow;
+
     private float fadeDuration = 1.0f;
 
 
@@ -76,6 +79,9 @@ public class UIManager : MonoBehaviour
         weaponGold.SetActive(false);
         pauseBtn.SetActive(false);
         startUI.SetActive(true);
+        inventoryPanel.SetActive(false);
+        currentWeaponWindow.SetActive(false);
+
     }
     /// <summary>
     /// 메인씬이 로드될 때 UI를 초기화합니다. 
@@ -86,6 +92,8 @@ public class UIManager : MonoBehaviour
         weaponGold.SetActive(true);
         pauseBtn.SetActive(true);
         startUI.SetActive(false);
+        inventoryPanel.SetActive(true);
+        currentWeaponWindow.SetActive(true);
     }
 
     private IEnumerator FadeIn()
@@ -141,5 +149,9 @@ public class UIManager : MonoBehaviour
         }
         SceneManager.LoadScene(ScneneName);
         StartCoroutine(FadeIn(init));
+    }
+    public void OnClickInventoryBtn() //인벤토리 창 열기
+    {
+        inventoryPanel.SetActive(true);
     }
 }

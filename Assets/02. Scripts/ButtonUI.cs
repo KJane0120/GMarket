@@ -9,7 +9,6 @@ public class ButtonUI : MonoBehaviour
     [SerializeField] private Button continueButton; //메인씬에서 계속하기 버튼
     [SerializeField] private Button exitButton; //메인씬에서 나가기 버튼
     [SerializeField] private Button inventoryBtn; // 무기관리 버튼
-    [SerializeField] private GameObject inventoryPanel;
 
     private void Start()
     {
@@ -76,8 +75,5 @@ public class ButtonUI : MonoBehaviour
         StartCoroutine(UIManager.Instance.FadeOut("StartSampleScene", UIManager.Instance.StartSceneLoadInit));
     }
 
-    public void OnClickInventoryBtn() //인벤토리 
-    {
-        inventoryPanel.SetActive(true);
-    }
+    
 }

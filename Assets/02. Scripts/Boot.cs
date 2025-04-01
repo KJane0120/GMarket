@@ -15,6 +15,6 @@ public class Boot : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         UIManager.Instance.StartSceneLoadInit();
-        SceneManager.LoadScene("StartSampleScene");
+        SceneManager.LoadScene("StartScene");
     }
 }

@@ -167,6 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539754bf60efa5f459ce08e1287d1406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &150498424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1175519108808086567, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+  m_PrefabInstance: {fileID: 5406616203137967877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &460121992
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +353,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1309263214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5480910640090332954, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+  m_PrefabInstance: {fileID: 5406616203137967877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458196882
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +402,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be97494b174c8ae4bbf0f5489e18d490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1810051185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810051187}
+  - component: {fileID: 1810051186}
+  m_Layer: 0
+  m_Name: ResourceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1810051186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810051185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf4581921f96124e875bdb77c78712c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: d58e8bf145db16a4982551a09c09a5ce, type: 2}
+  - {fileID: 11400000, guid: 89d056be940727d4fb6d7d269d751e63, type: 2}
+  - {fileID: 11400000, guid: 35167b4f2b631e24e8326445715a747f, type: 2}
+  item: {fileID: 5406616203137967878}
+--- !u!4 &1810051187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810051185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1889380098
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +633,14 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8584687825823773863, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 150498424}
+    - target: {fileID: 8584687825823773863, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+      propertyPath: currentWeaponWindow
+      value: 
+      objectReference: {fileID: 1309263214}
     - target: {fileID: 8763344934592493360, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -658,6 +726,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+--- !u!114 &5406616203137967878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6154373301119377119, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
+  m_PrefabInstance: {fileID: 5406616203137967877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150498424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19da3c3f816435b479334030a3d49edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -671,3 +750,4 @@ SceneRoots:
   - {fileID: 1932028001}
   - {fileID: 5406616203137967877}
   - {fileID: 2008992119}
+  - {fileID: 1810051187}
