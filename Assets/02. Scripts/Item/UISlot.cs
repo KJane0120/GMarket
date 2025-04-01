@@ -10,16 +10,15 @@ public class UISlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private TextMeshProUGUI criticalText;
-    [SerializeField] private Button upgradeBtn;
+    public Button upgradeBtn;
     [SerializeField] private TextMeshProUGUI upgradeCostText;
-    [SerializeField] private Button EquipBtn;
+    public Button EquipBtn;
     [SerializeField] private Image icon;
-    //[SerializeField] private Button BuyBtn;
+    public Button BuyBtn;
 
     public void Start()
     {
         upgradeBtn.onClick.AddListener(OnClickWeaponUpgradeBtn);
-        Debug.Log("무기 강화버튼 추가");
     }
 
     /// <summary>
@@ -72,18 +71,23 @@ public class UISlot : MonoBehaviour
     /// </summary>
     public void UIButtonOnOff(UISlot slot)
     {
+        if (slot.data == null || !ResourceManager.Instance.item.inventory.Contains(slot.data))
+        {
+            Debug.Log("버튼 실행 안돼요");
+            return;
+        }
         data = slot.data;
-        if (data.isOwned)
+        if (slot.data.isOwned)
         {
             icon.color = Color.white; // 보유 시 아이콘 정상 표시
-            //BuyBtn.gameObject.SetActive(false);
+            BuyBtn.gameObject.SetActive(false);
             upgradeBtn.gameObject.SetActive(true);
             EquipBtn.gameObject.SetActive(!data.isEquipped);
         }
         else
         {
             icon.color = new Color(1, 1, 1, 0.5f);
-            //BuyBtn.gameObject.SetActive(true);
+            BuyBtn.gameObject.SetActive(true);
             upgradeBtn.gameObject.SetActive(false);
             EquipBtn.gameObject.SetActive(false);
             itemNameText.text = "???";

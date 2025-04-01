@@ -9,12 +9,9 @@ public class ButtonUI : MonoBehaviour
     [SerializeField] private Button continueButton; //메인씬에서 계속하기 버튼
     [SerializeField] private Button exitButton; //메인씬에서 나가기 버튼
     [SerializeField] private Button inventoryBtn; // 무기관리 버튼
-    private Item item;
 
     private void Start()
     {
-        Debug.Log("이벤트 등록 완료");
-
         Init();
     }
 
@@ -25,8 +22,6 @@ public class ButtonUI : MonoBehaviour
         pauseButton.onClick.AddListener(OnClickPauseBtn);
         continueButton.onClick.AddListener(OnClickMainContinueBtn);
         exitButton.onClick.AddListener(OnClickExitBtn);
-        //inventoryBtn.onClick.AddListener(OnClickInventoryBtn);
-        //item = GetComponent<Item>();
     }
 
     /// <summary>
@@ -37,7 +32,6 @@ public class ButtonUI : MonoBehaviour
     public void OnClickNewStartBtn()
     {
         //초기값으로 데이터 초기화
-        Debug.Log("시작하기");
         StartCoroutine(UIManager.Instance.FadeOut("MainScene", UIManager.Instance.MainSceneLoadInit));
     }
 
@@ -48,7 +42,6 @@ public class ButtonUI : MonoBehaviour
     public void OnClickContinueBtn()
     {
         //저장된 데이터 로드
-        Debug.Log("계속하기");
         StartCoroutine(UIManager.Instance.FadeOut("MainScene",UIManager.Instance.MainSceneLoadInit));
     }
 

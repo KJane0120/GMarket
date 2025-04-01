@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     public InteractUI interactUI;
     public ButtonUI buttonUI;
+    public UISlot slot;
 
     [Header("Components")]
     public GameObject ErrorMsg;

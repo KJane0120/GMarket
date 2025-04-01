@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI; //이미지 활성화
 
 
-public class Item : MonoBehaviour // 삭제 예정
+public class Item : MonoBehaviour
 {
     public ItemData data;
     public UISlot Slot;
@@ -70,6 +70,7 @@ public class Item : MonoBehaviour // 삭제 예정
 
         if (IsEquip(slot))
         {
+            slot.UIButtonOnOff(slot);
             UnEquip(slot);
         }
         else

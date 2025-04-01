@@ -8,7 +8,7 @@ public class Boot : MonoBehaviour
 {
     void Start()
     {
-        StartCoroutine(LoadStartSceneAfterDelay(0.1f));
+        StartCoroutine(LoadStartSceneAfterDelay(0.02f));
     }
 
     private IEnumerator LoadStartSceneAfterDelay(float delay)
