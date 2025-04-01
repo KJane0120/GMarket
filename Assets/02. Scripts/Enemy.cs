@@ -35,8 +35,8 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public int Damaged()
     {
-        //0은 임시로 할당한 값입니다.
-        int value=750; // 게임매니저에서 공격 데미지를 가져온 뒤 (GameManager.Instance.CalculateDamage()...)
+        float value= GameManager.Instance.PlayerData.TotalAttackPower;
+        
         
         if (currentHealth <= value) //만약 체력이 공격력보다 적다면
         {
@@ -48,15 +48,15 @@ public class Enemy : MonoBehaviour
         else //만약 체력이 공격력보다 많다면
         {
             //그 값만큼 체력 감소
-            currentHealth -= value;
+            currentHealth -= (int)value;
         }
 
         //도전 구현 기능; 입은 데미지 표시하기
 
-        //CurrencyManager.Instance.controller.StatGoldGain(enemyData.StatsGoldOnHit * (int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage));
+        CurrencyManager.Instance.controller.StatGoldGain(enemyData.StatsGoldOnHit * (int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage));
 
         UpdateHealth(); //이후 체력 비율 조정
-        return value;
+        return (int)value;
     }
 
     /// <summary>
@@ -137,8 +137,8 @@ public class Enemy : MonoBehaviour
 
         stageManager.NextEnemy();
         //보상 지급(필요하다면);
-        //int modifier=(int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage);
-        //CurrencyManager.Instance.controller.CurrencyGainKill(enemyData.StatsGoldOnKill * modifier, enemyData.WeaponGoldOnKill*modifier);
+        int modifier = (int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage);
+        CurrencyManager.Instance.controller.CurrencyGainKill(enemyData.StatsGoldOnKill * modifier, enemyData.WeaponGoldOnKill * modifier);
     }
 
     /// <summary>
