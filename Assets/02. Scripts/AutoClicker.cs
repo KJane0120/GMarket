@@ -10,10 +10,16 @@ public class AutoClicker : MonoBehaviour
     private void Start()
     {
         clickManager = FindObjectOfType<ClickManager>();
-        AALevel = 0f;
-        //AALevel=GameManager.Instance.PlayerData.AutoAttackLevel;
 
         UpAutoAttack();
+    }
+
+    private void Update()
+    {
+        if (AALevel > 0)
+        {
+            StartAutoClick();
+        }
     }
 
     public void StartAutoClick()
@@ -28,12 +34,12 @@ public class AutoClicker : MonoBehaviour
     {
         while (true)
         {
-            float attackRate = AALevel; // 초당 자동 공격 횟수
+            float attackRate = AALevel * 0.3f; // 1레벨당 0.3번 공격
             if (attackRate > 0)
             {
-                float interval = 1f / attackRate; // 공격 간격 설정 (예: 5회/초 -> 0.2초 간격)
+                float interval = 1f / attackRate; // 공격 간격 설정
 
-                Debug.Log("입력 확인");
+                Debug.Log("자동 공격");
                 clickManager.onClick.Invoke();
 
                 yield return new WaitForSeconds(interval);
@@ -47,11 +53,11 @@ public class AutoClicker : MonoBehaviour
 
     public void UpAutoAttack()
     {
-        AALevel++;
+        //AALevel++;
+        GameManager.Instance.PlayerData.AutoAttackLevel++;
         if (AALevel > 0)
         {
-                StartAutoClick();
+            StartAutoClick();
         }
     }
-
 }
