@@ -14,7 +14,7 @@ public class Item : MonoBehaviour // 삭제 예정
     public bool IsEquipped;
 
     [SerializeField] private Transform Content;
-    [SerializeField] private Image currentWeaponImage;
+    [SerializeField] private Sprite currentWeaponImage;
     [SerializeField] private TextMeshProUGUI currentWeaponName;
     [SerializeField] private TextMeshProUGUI currentWeaponLevel;
     [SerializeField] private TextMeshProUGUI currentWeaponDamageText;

@@ -13,7 +13,7 @@ public class ItemData : ScriptableObject
     public int ItemID; //아이템 번호
     public string itemName; //아이템 이름
     public string itemDesc; //아이템 설명
-    public Image itemIcon; //아이템 아이콘
+    public Sprite itemIcon; //아이템 아이콘
     public int level;
 
     [Header("# Level Data")]

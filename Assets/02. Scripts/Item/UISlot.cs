@@ -13,6 +13,7 @@ public class UISlot : MonoBehaviour
     [SerializeField] private Button upgradeBtn;
     [SerializeField] private TextMeshProUGUI upgradeCostText;
     [SerializeField] private Button EquipBtn;
+    [SerializeField] private Image icon;
     //[SerializeField] private Button BuyBtn;
 
     public void Start()
@@ -31,6 +32,7 @@ public class UISlot : MonoBehaviour
 
         if (data != null)
         {
+            icon.sprite = item.itemIcon;
             levelText.text = $"LV.{item.level:D2}";
             itemNameText.text = data.itemName;
             damageText.text = $"공격력: {data.baseDamage:F2}";
@@ -73,14 +75,14 @@ public class UISlot : MonoBehaviour
         data = slot.data;
         if (data.isOwned)
         {
-            data.itemIcon.color = Color.white; // 보유 시 아이콘 정상 표시
+            icon.color = Color.white; // 보유 시 아이콘 정상 표시
             //BuyBtn.gameObject.SetActive(false);
             upgradeBtn.gameObject.SetActive(true);
             EquipBtn.gameObject.SetActive(!data.isEquipped);
         }
         else
         {
-            data.itemIcon.color = new Color(1, 1, 1, 0.5f);
+            icon.color = new Color(1, 1, 1, 0.5f);
             //BuyBtn.gameObject.SetActive(true);
             upgradeBtn.gameObject.SetActive(false);
             EquipBtn.gameObject.SetActive(false);
