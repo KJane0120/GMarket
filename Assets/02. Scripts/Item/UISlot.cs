@@ -16,7 +16,8 @@ public class UISlot : MonoBehaviour
 
     public void Start()
     {
-        upgradeBtn.onClick.AddListener(GameManager.Instance.item.OnClickWeaponUpgradeBtn);
+        upgradeBtn.onClick.AddListener(ResourceManager.Instance.item.OnClickWeaponUpgradeBtn);
+        Debug.Log("무기 강화버튼 추가");
     }
 
     /// <summary>
@@ -39,9 +40,9 @@ public class UISlot : MonoBehaviour
 
     public void RefreshUI()
     {
-        for (int i = 0; i < GameManager.Instance.item.Slots.Count; i++)
+        for (int i = 0; i < ResourceManager.Instance.item.Slots.Count; i++)
         {
-            GameManager.Instance.item.Slots[i].SetItem(GameManager.Instance.item.inventory[i]);
+            ResourceManager.Instance.item.Slots[i].SetItem(ResourceManager.Instance.item.inventory[i]);
         }
     }
 }
