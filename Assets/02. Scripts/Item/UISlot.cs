@@ -18,6 +18,7 @@ public class UISlot : MonoBehaviour
 
     public void Start()
     {
+
         upgradeBtn.onClick.AddListener(() => OnClickWeaponUpgradeBtn(this));
     }
 

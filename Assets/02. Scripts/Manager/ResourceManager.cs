@@ -43,6 +43,5 @@ public class ResourceManager : MonoBehaviour
 
             item.EquipShow(item.inventory[0]);
         }
-        UIManager.Instance.slot.EquipBtn.onClick.AddListener(()=>item.OnEquip(UIManager.Instance.slot));
     }
 }
