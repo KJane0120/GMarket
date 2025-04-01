@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 2850498846821955793}
   - component: {fileID: 4202395398958260532}
   m_Layer: 5
-  m_Name: DamageText
+  m_Name: EquipItemDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,7 +1177,14 @@ MonoBehaviour:
   Slot: {fileID: 5357166423979456470, guid: 37767187705186a439730b67a8296f8e, type: 3}
   Slots: []
   inventory: []
+  EquipList: []
+  isEquipped: 0
   Content: {fileID: 64420164212734943}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &1337825955230059466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1889,7 @@ GameObject:
   - component: {fileID: 6561026249726096404}
   - component: {fileID: 7476340819753702705}
   m_Layer: 5
-  m_Name: ItemNamText
+  m_Name: EquipItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1935,7 +1942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uC464\uC2DC\uAC1C Lv.0"
+  m_text: "\uC774\uC464\uC2DC\uAC1C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
   m_sharedMaterial: {fileID: 5709894732585422087, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
@@ -1998,7 +2005,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 17.575462, y: 0, z: 84.07717, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3790,6 +3797,140 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4442928542657879118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094148125752669796}
+  - component: {fileID: 8701010549727568580}
+  - component: {fileID: 6474091461576568875}
+  m_Layer: 5
+  m_Name: EquipItemLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2094148125752669796
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442928542657879118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6653793226859516387}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &8701010549727568580
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442928542657879118}
+  m_CullTransparentMesh: 1
+--- !u!114 &6474091461576568875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442928542657879118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Lv.00
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
+  m_sharedMaterial: {fileID: 5709894732585422087, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 25
+  m_fontSizeBase: 25
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 114.47795, y: 0, z: 13.77533, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4465571379528687620
 GameObject:
   m_ObjectHideFlags: 0
@@ -4963,7 +5104,14 @@ MonoBehaviour:
   Slot: {fileID: 0}
   Slots: []
   inventory: []
+  EquipList: []
+  isEquipped: 0
   Content: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &5114386577935800100
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,6 +5328,8 @@ MonoBehaviour:
   pauseBtn: {fileID: 1963964382266666459}
   startUI: {fileID: 5421287888830596825}
   fadePanel: {fileID: 5573791188415926556}
+  inventoryPanel: {fileID: 1175519108808086567}
+  currentWeaponWindow: {fileID: 5480910640090332954}
 --- !u!114 &4176085778617010980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5198,7 +5348,6 @@ MonoBehaviour:
   continueButton: {fileID: 3329149816911498926}
   exitButton: {fileID: 1032760948427119972}
   inventoryBtn: {fileID: 3089399368809172106}
-  inventoryPanel: {fileID: 1175519108808086567}
 --- !u!1 &5325206331069551579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5516,6 +5665,7 @@ GameObject:
   - component: {fileID: 6653793226859516387}
   - component: {fileID: 8311908453195637549}
   - component: {fileID: 4779691627505267222}
+  - component: {fileID: 6458721695256344629}
   m_Layer: 5
   m_Name: CurrentWeaponWindow
   m_TagString: Untagged
@@ -5538,6 +5688,7 @@ RectTransform:
   - {fileID: 3463076962845264563}
   - {fileID: 1742373078063506123}
   - {fileID: 3567626599461573238}
+  - {fileID: 2094148125752669796}
   - {fileID: 6862099197674586518}
   - {fileID: 3063395401880822918}
   - {fileID: 2432643066967219945}
@@ -5586,6 +5737,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6458721695256344629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5480910640090332954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19da3c3f816435b479334030a3d49edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  Slot: {fileID: 0}
+  Slots: []
+  inventory: []
+  EquipList: []
+  isEquipped: 0
+  Content: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &5835444152897678849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6130,7 +6305,14 @@ MonoBehaviour:
   Slot: {fileID: 0}
   Slots: []
   inventory: []
+  EquipList: []
+  isEquipped: 0
   Content: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &6427672532819926734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7775,7 +7957,14 @@ MonoBehaviour:
   Slot: {fileID: 0}
   Slots: []
   inventory: []
+  EquipList: []
+  isEquipped: 0
   Content: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &8000726630205784791
 GameObject:
   m_ObjectHideFlags: 0
@@ -7973,7 +8162,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 989791328828126256}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1175519108808086567}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &8151678052895217525
 GameObject:
   m_ObjectHideFlags: 0
@@ -8456,7 +8657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8752,7 +8953,7 @@ GameObject:
   - component: {fileID: 7131600599087474437}
   - component: {fileID: 3273525447718691537}
   m_Layer: 5
-  m_Name: Toothpick0
+  m_Name: EquipIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8970,7 +9171,14 @@ MonoBehaviour:
   Slot: {fileID: 0}
   Slots: []
   inventory: []
+  EquipList: []
+  isEquipped: 0
   Content: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &8779799691272936034
 GameObject:
   m_ObjectHideFlags: 0
@@ -9408,7 +9616,14 @@ MonoBehaviour:
   Slot: {fileID: 0}
   Slots: []
   inventory: []
+  EquipList: []
+  isEquipped: 0
   Content: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  currentWeaponName: {fileID: 0}
+  currentWeaponLevel: {fileID: 0}
+  currentWeaponDamageText: {fileID: 0}
+  currentWeaponCritText: {fileID: 0}
 --- !u!1 &9221401096220933486
 GameObject:
   m_ObjectHideFlags: 0
@@ -9421,7 +9636,7 @@ GameObject:
   - component: {fileID: 1662001419003809021}
   - component: {fileID: 1384541492609656850}
   m_Layer: 5
-  m_Name: CriticalText
+  m_Name: EquipItemCrit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

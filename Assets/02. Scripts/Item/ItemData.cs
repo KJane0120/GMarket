@@ -18,6 +18,7 @@ public class ItemData : ScriptableObject
     public int level;
 
     [Header("# Level Data")]
+    //public float Totaldamage { get { baseDamage} }
     public float baseDamage; //기본 공격력
     public float damegeMultiplier; //공격력 Up비율
     public float criticalChance; //치명타 확률
