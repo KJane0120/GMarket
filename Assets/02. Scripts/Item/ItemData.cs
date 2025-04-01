@@ -27,7 +27,7 @@ public class ItemData : ScriptableObject
     public int purchaseGold; //구매 비용
 
     [Header("Equip")]
-    public bool isEquipped;
+    public bool isEquipped = false;
 
 }
 

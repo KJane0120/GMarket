@@ -20,13 +20,6 @@ public class Item : MonoBehaviour // 삭제 예정
     [SerializeField] private TextMeshProUGUI currentWeaponDamageText;
     [SerializeField] private TextMeshProUGUI currentWeaponCritText;
 
-    private void Start()
-    {
-        InstantiateSlot();
-        EquipList.Add(inventory[0]);
-        inventory[0].isEquipped = true;
-    }
-
     public void AddItem(ItemData item)
     {
         inventory.Add(item);
@@ -53,13 +46,11 @@ public class Item : MonoBehaviour // 삭제 예정
         }
     }
 
-
     public void InstantiateSlot()
     {
         if (Slot == null) return;
-
-
-        for (int i = 0; i < inventory.Count; i++)
+        int a = 3; //inventory.Count;
+        for (int i = 0; i < a; i++)
         {
             UISlot newSlot = Instantiate(Slot, Content);
             Slots.Add(newSlot);

@@ -31,5 +31,11 @@ public class ResourceManager : MonoBehaviour
             item.AddItem(Instantiate(items[i]));
         }
         item.SortList();
+
+        if (item != null)
+        {
+            GameManager.Instance.PlayerData.CurrentWeapon = item.inventory[0];
+            GameManager.Instance.PlayerData.CurrentWeapon.level = 0;
+        }
     }
 }

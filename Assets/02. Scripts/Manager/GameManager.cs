@@ -48,11 +48,5 @@ public class GameManager : MonoBehaviour
         PlayerData.CriticalDamageLevel = 0;
         PlayerData.AutoAttackLevel = 0;
         PlayerData.GoldGainLevel = 0;
-
-        if (ResourceManager.Instance.item != null)
-        {
-            PlayerData.CurrentWeapon = ResourceManager.Instance.item.inventory[0];
-            PlayerData.CurrentWeapon.level = 0;
-        }
     }
 }
