@@ -55,9 +55,9 @@ public class Item : MonoBehaviour // 삭제 예정
 
         currentWeaponImage.sprite = item.itemIcon;
         currentWeaponName.text = item.itemName;
-        currentWeaponLevel.text = string.Format($"{item.level:D2}");
-        currentWeaponDamageText.text = string.Format($"{item.baseDamage:F2}");
-        currentWeaponCritText.text = string.Format($"{item.criticalChance:F2}");
+        currentWeaponLevel.text = string.Format($"Lv.{item.level:D2}");
+        currentWeaponDamageText.text = string.Format($"공격력: {item.baseDamage:F2}");
+        currentWeaponCritText.text = string.Format($"치명타 확률: {item.criticalChance:F2}%");
 
     }
 
@@ -94,7 +94,7 @@ public class Item : MonoBehaviour // 삭제 예정
                 EquipList.Add(slot.data);
             }
 
-            EquipShow(slot.data);
+            EquipShow(data);
         }
     }
 

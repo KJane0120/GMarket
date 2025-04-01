@@ -40,6 +40,8 @@ public class ResourceManager : MonoBehaviour
 
             GameManager.Instance.PlayerData.CurrentWeapon = item.inventory[0];
             GameManager.Instance.PlayerData.CurrentWeapon.level = 0;
+
+            item.EquipShow(item.inventory[0]);
         }
     }
 }
