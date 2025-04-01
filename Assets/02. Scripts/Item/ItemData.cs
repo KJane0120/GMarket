@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemType { Melee, Tooth, finger, helmet, shoes, Necklace } //근접, 이빨, 손톱, 헬멧, 신발, 목걸이
@@ -28,6 +26,8 @@ public class ItemData : ScriptableObject
     public int upgradeCost; //무기 Up 비용
     public int purchaseGold; //구매 비용
 
+    [Header("Equip")]
+    public bool isEquipped;
 
 }
 

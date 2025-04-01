@@ -27,5 +27,4 @@ public class PlayerData
     public float TotalCritDamage;   //최종 치명타 데미지
     public float TotalGoldGain;     //최종 골드 획득 보너스
     public float TotalAutoAttack;   // 최종 자동 공격 횟수 
-
 }

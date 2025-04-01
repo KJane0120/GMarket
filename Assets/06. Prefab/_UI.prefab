@@ -1094,7 +1094,6 @@ GameObject:
   - component: {fileID: 7167732941335262765}
   - component: {fileID: 6315759269610795752}
   - component: {fileID: 5507226405316135042}
-  - component: {fileID: 6154373301119377119}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -1161,30 +1160,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6154373301119377119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175519108808086567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19da3c3f816435b479334030a3d49edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  Slot: {fileID: 5357166423979456470, guid: 37767187705186a439730b67a8296f8e, type: 3}
-  Slots: []
-  inventory: []
-  EquipList: []
-  isEquipped: 0
-  Content: {fileID: 64420164212734943}
-  currentWeaponImage: {fileID: 0}
-  currentWeaponName: {fileID: 0}
-  currentWeaponLevel: {fileID: 0}
-  currentWeaponDamageText: {fileID: 0}
-  currentWeaponCritText: {fileID: 0}
 --- !u!1 &1337825955230059466
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5080,7 @@ MonoBehaviour:
   Slots: []
   inventory: []
   EquipList: []
-  isEquipped: 0
+  IsEquipped: 0
   Content: {fileID: 0}
   currentWeaponImage: {fileID: 0}
   currentWeaponName: {fileID: 0}
@@ -5208,6 +5183,8 @@ GameObject:
   - component: {fileID: 6471015971390268170}
   - component: {fileID: 8584687825823773863}
   - component: {fileID: 4176085778617010980}
+  - component: {fileID: 5872234587977164505}
+  - component: {fileID: 8145120148324208366}
   m_Layer: 5
   m_Name: _UI
   m_TagString: Untagged
@@ -5348,6 +5325,42 @@ MonoBehaviour:
   continueButton: {fileID: 3329149816911498926}
   exitButton: {fileID: 1032760948427119972}
   inventoryBtn: {fileID: 3089399368809172106}
+--- !u!114 &5872234587977164505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122893757592211216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b916d993c5b544ebfcf19880758d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8145120148324208366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122893757592211216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19da3c3f816435b479334030a3d49edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  Slot: {fileID: 5357166423979456470, guid: 37767187705186a439730b67a8296f8e, type: 3}
+  Slots: []
+  inventory: []
+  EquipList: []
+  IsEquipped: 0
+  Content: {fileID: 64420164212734943}
+  currentWeaponImage: {fileID: 3273525447718691537}
+  currentWeaponName: {fileID: 7476340819753702705}
+  currentWeaponLevel: {fileID: 6474091461576568875}
+  currentWeaponDamageText: {fileID: 4202395398958260532}
+  currentWeaponCritText: {fileID: 1384541492609656850}
 --- !u!1 &5325206331069551579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5665,7 +5678,6 @@ GameObject:
   - component: {fileID: 6653793226859516387}
   - component: {fileID: 8311908453195637549}
   - component: {fileID: 4779691627505267222}
-  - component: {fileID: 6458721695256344629}
   m_Layer: 5
   m_Name: CurrentWeaponWindow
   m_TagString: Untagged
@@ -5737,30 +5749,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6458721695256344629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5480910640090332954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19da3c3f816435b479334030a3d49edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  Slot: {fileID: 0}
-  Slots: []
-  inventory: []
-  EquipList: []
-  isEquipped: 0
-  Content: {fileID: 0}
-  currentWeaponImage: {fileID: 0}
-  currentWeaponName: {fileID: 0}
-  currentWeaponLevel: {fileID: 0}
-  currentWeaponDamageText: {fileID: 0}
-  currentWeaponCritText: {fileID: 0}
 --- !u!1 &5835444152897678849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6306,7 +6294,7 @@ MonoBehaviour:
   Slots: []
   inventory: []
   EquipList: []
-  isEquipped: 0
+  IsEquipped: 0
   Content: {fileID: 0}
   currentWeaponImage: {fileID: 0}
   currentWeaponName: {fileID: 0}
@@ -7958,7 +7946,7 @@ MonoBehaviour:
   Slots: []
   inventory: []
   EquipList: []
-  isEquipped: 0
+  IsEquipped: 0
   Content: {fileID: 0}
   currentWeaponImage: {fileID: 0}
   currentWeaponName: {fileID: 0}
@@ -9172,7 +9160,7 @@ MonoBehaviour:
   Slots: []
   inventory: []
   EquipList: []
-  isEquipped: 0
+  IsEquipped: 0
   Content: {fileID: 0}
   currentWeaponImage: {fileID: 0}
   currentWeaponName: {fileID: 0}
@@ -9617,7 +9605,7 @@ MonoBehaviour:
   Slots: []
   inventory: []
   EquipList: []
-  isEquipped: 0
+  IsEquipped: 0
   Content: {fileID: 0}
   currentWeaponImage: {fileID: 0}
   currentWeaponName: {fileID: 0}

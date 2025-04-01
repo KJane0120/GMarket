@@ -11,6 +11,7 @@ public class UISlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI criticalText;
     [SerializeField] private Button upgradeBtn;
     [SerializeField] private TextMeshProUGUI upgradeCostText;
+    [SerializeField] private Button EquipBtn;
 
     public delegate void WeaponUpgradeBtn();
 

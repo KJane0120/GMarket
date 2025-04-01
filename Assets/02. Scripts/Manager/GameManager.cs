@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         PlayerData = new PlayerData();
+
         if (instance == null)
         {
             instance = this;
@@ -40,14 +41,14 @@ public class GameManager : MonoBehaviour
     private void SetData() // 데이터 초기화 
     {
         PlayerData.NowStage = 1;
-        if (CurrencyManager.Instance.controller != null)
-        {
-            PlayerData.StatGold = CurrencyManager.Instance.controller.statGold;
-            PlayerData.WeaponGold = CurrencyManager.Instance.controller.weaponGold;
-        }
+
+        PlayerData.StatGold = 0;
+        PlayerData.WeaponGold = 0;
+
         PlayerData.CriticalDamageLevel = 0;
         PlayerData.AutoAttackLevel = 0;
         PlayerData.GoldGainLevel = 0;
+
         if (ResourceManager.Instance.item != null)
         {
             PlayerData.CurrentWeapon = ResourceManager.Instance.item.inventory[0];
