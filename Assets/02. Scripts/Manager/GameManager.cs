@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     private void SetData() // 데이터 초기화 
     {
         PlayerData.NowStage = 1;
-        PlayerData.BasicWeaponLevel = 1;
 
         PlayerData.StatGold = CurrencyManager.Instance.controller.statGold;
         PlayerData.WeaponGold = CurrencyManager.Instance.controller.weaponGold;
@@ -49,5 +48,6 @@ public class GameManager : MonoBehaviour
         PlayerData.GoldGainLevel = 0;
 
         PlayerData.CurrentWeapon = ResourceManager.Instance.item.inventory[0];
+        PlayerData.CurrentWeapon.level = 0;
     }
 }

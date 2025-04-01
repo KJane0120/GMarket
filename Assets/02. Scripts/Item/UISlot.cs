@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UISlot : MonoBehaviour
 {
+    public ItemData data;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI damageText;
@@ -26,15 +27,15 @@ public class UISlot : MonoBehaviour
     /// <param name="item"></param>
     public void SetItem(ItemData item)
     {
-        ResourceManager.Instance.data = item;
+        data = item;
 
-        if (ResourceManager.Instance.data != null)
+        if (data != null)
         {
-            levelText.text = $"LV.{GameManager.Instance.PlayerData.BasicWeaponLevel:D2}";
-            itemNameText.text = ResourceManager.Instance.data.itemName;
-            damageText.text = $"공격력: {ResourceManager.Instance.data.baseDamage:F2}";
-            criticalText.text = $"공격력: {ResourceManager.Instance.data.criticalChance:F2}"; 
-            upgradeCostText.text = $"공격력: {ResourceManager.Instance.data.upgradeCost:F2}";
+            levelText.text = $"LV.{GameManager.Instance.PlayerData.CurrentWeapon:D2}";
+            itemNameText.text = data.itemName;
+            damageText.text = $"공격력: {data.baseDamage:F2}";
+            criticalText.text = $"공격력: {data.criticalChance:F2}"; 
+            upgradeCostText.text = $"공격력: {data.upgradeCost:F2}";
         }
     }
 

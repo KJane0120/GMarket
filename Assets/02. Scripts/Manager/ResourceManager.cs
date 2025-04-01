@@ -18,7 +18,6 @@ public class ResourceManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public ItemData data;
     public ItemData[] items;
     public Item item;
 
