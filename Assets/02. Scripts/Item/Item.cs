@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI; //이미지 활성화
 
@@ -14,7 +15,7 @@ public class Item : MonoBehaviour // 삭제 예정
     public bool IsEquipped;
 
     [SerializeField] private Transform Content;
-    [SerializeField] private Sprite currentWeaponImage;
+    [SerializeField] private Image currentWeaponImage;
     [SerializeField] private TextMeshProUGUI currentWeaponName;
     [SerializeField] private TextMeshProUGUI currentWeaponLevel;
     [SerializeField] private TextMeshProUGUI currentWeaponDamageText;
@@ -52,7 +53,9 @@ public class Item : MonoBehaviour // 삭제 예정
 
         GameManager.Instance.PlayerData.CurrentWeapon = item;
 
-        currentWeaponImage = item.itemIcon;
+
+
+        currentWeaponImage.sprite = item.itemIcon;
         currentWeaponName.text = item.itemName;
         currentWeaponLevel.text = string.Format($"{item.level:D2}");
         currentWeaponDamageText.text = string.Format($"{item.baseDamage:F2}");
