@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat:
     statType: 2
-    statValue: 4
+    statValue: 0
   addStat:
     BonusType: 2
     bonusValue: 1.2

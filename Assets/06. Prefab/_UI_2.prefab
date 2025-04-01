@@ -1305,6 +1305,7 @@ MonoBehaviour:
   startUI: {fileID: 8609162635250976135}
   fadePanel: {fileID: 2107284675628825788}
   inventoryPanel: {fileID: 8045706607468912482}
+  ItemUI: {fileID: 0}
   currentWeaponWindow: {fileID: 3582088951407002884}
 --- !u!114 &6235799247057208836
 MonoBehaviour:
@@ -8884,7 +8885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3039715921530853049
 RectTransform:
   m_ObjectHideFlags: 0

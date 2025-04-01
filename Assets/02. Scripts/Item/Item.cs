@@ -49,11 +49,9 @@ public class Item : MonoBehaviour // 삭제 예정
     /// <param name="item"></param>
     public void EquipShow(ItemData item)
     {
-        data = item;
+        //data = item;
 
         GameManager.Instance.PlayerData.CurrentWeapon = item;
-
-
 
         currentWeaponImage.sprite = item.itemIcon;
         currentWeaponName.text = item.itemName;
