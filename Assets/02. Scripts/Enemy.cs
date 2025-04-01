@@ -35,8 +35,8 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public int Damaged()
     {
-        //0은 임시로 할당한 값입니다.
-        int value=750; // 게임매니저에서 공격 데미지를 가져온 뒤 (GameManager.Instance.CalculateDamage()...)
+        float value= GameManager.Instance.PlayerData.TotalAttackPower;
+        
         
         if (currentHealth <= value) //만약 체력이 공격력보다 적다면
         {
@@ -48,15 +48,34 @@ public class Enemy : MonoBehaviour
         else //만약 체력이 공격력보다 많다면
         {
             //그 값만큼 체력 감소
-            currentHealth -= value;
+            currentHealth -= (int)value;
         }
 
         //도전 구현 기능; 입은 데미지 표시하기
-
-        //CurrencyManager.Instance.controller.StatGoldGain(enemyData.StatsGoldOnHit * (int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage));
+        //일단 적 타입에 따른 계수를 설정하고
+        float enemytype = 1;
+        switch (enemyType)
+        {
+            case EnemyType.Boss:
+                enemytype = 2f;
+                break;
+            case EnemyType.Elite:
+                enemytype = 1.5f;
+                break;
+            case EnemyType.Normal:
+                enemytype = 1;
+                break;
+            default:
+                Debug.Log("할당된 enemyType가 없습니다.");
+                break;
+        }
+        //계수 최종 계산 및 그만큼 값 추가
+        //계수: (1+현재 스테이지의 1/4) * 적 종류
+        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage) * enemytype;
+        CurrencyManager.Instance.controller.StatGoldGain((int)(enemyData.StatsGoldOnHit * modifier));
 
         UpdateHealth(); //이후 체력 비율 조정
-        return value;
+        return (int)value;
     }
 
     /// <summary>
@@ -137,8 +156,29 @@ public class Enemy : MonoBehaviour
 
         stageManager.NextEnemy();
         //보상 지급(필요하다면);
-        //int modifier=(int)(1 + 0.25 * GameManager.Instance.PlayerData.NowStage);
-        //CurrencyManager.Instance.controller.CurrencyGainKill(enemyData.StatsGoldOnKill * modifier, enemyData.WeaponGoldOnKill*modifier);
+
+        //일단 적 타입에 따른 계수를 설정하고
+        float enemytype = 1;
+        switch(enemyType)
+        {
+            case EnemyType.Boss:
+                enemytype = 2f;
+                break;
+            case EnemyType.Elite:
+                enemytype = 1.5f;
+                break;
+            case EnemyType.Normal:
+                enemytype = 1;
+                break;
+            default:
+                Debug.Log("할당된 enemyType가 없습니다.");
+                break;
+        }
+
+        //계수 최종 계산 및 그만큼 값 추가
+        //계수: (1+현재 스테이지의 1/4) * 적 종류
+        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage)*enemytype;
+        CurrencyManager.Instance.controller.CurrencyGainKill((int)(enemyData.StatsGoldOnKill * modifier), (int)(enemyData.WeaponGoldOnKill * modifier));
     }
 
     /// <summary>

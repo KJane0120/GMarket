@@ -13,7 +13,6 @@ public class PlayerUpgrade : MonoBehaviour
     public TMP_Text curStatText;
     public TMP_Text upStatText;
     public TMP_Text upGoldText;
-    //public TMP_Text totalText; - 추후 토탈스탯 관리하는쪽으로 이동예정
 
     public int Gold;
     private bool isHolding = false;
@@ -42,9 +41,9 @@ public class PlayerUpgrade : MonoBehaviour
         }
         else
         {
-            //UIManager.Instance.StatsErrorMsg();
-            Debug.Log("골드오링");
+            UIManager.Instance.StatsErrorMsg();
         }
+        upGoldText.color = (Gold >= gold) ? Color.black : Color.red;
     }
 
     /// <summary>
@@ -52,10 +51,22 @@ public class PlayerUpgrade : MonoBehaviour
     /// </summary>
     void UpdateUI()
     {
-        curStatText.text = $"{playerStat.stat.statValue}";      // 현 스탯
-        upStatText.text = $"{playerStat.addStat.bonusValue}";   // 보너스 스탯
+        curStatText.text = $"{playerStat.stat.statValue}";      // 레벨
         upGoldText.text = $"{playerStat.upgradeGold}";          // 업그레이드 골드
-        //totalText.text = $"+{player.totalCritical}%";         // 토탈스탯 - 추후 이동예정
+
+        // 타입에 따라 메세지 다르게 출력
+        switch (playerStat.addStat.BonusType)
+        {
+            case BonusStatType.criticalBonus:
+                upStatText.text = $"치명타 데미지 + {playerStat.addStat.bonusValue} %";
+                break;
+            case BonusStatType.autoAttackBonus:
+                upStatText.text = $"{playerStat.addStat.bonusValue} 회/초";
+                break;
+            case BonusStatType.goldGainBonus:
+                upStatText.text = $"치즈 획득량 + {playerStat.addStat.bonusValue} %";
+                break;
+        }
     }
 
     // 버튼 이벤트트리거 - 누르는 순간 실행

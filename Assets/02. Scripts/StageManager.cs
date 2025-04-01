@@ -80,10 +80,10 @@ public class StageManager : MonoBehaviour
         {
             ToggleEnemyGrid();
         }
-        ResetEnemies(); //이후 적 초기화
     }
     void Start()
     {
+        ResetEnemies(); //이후 적 초기화
     }
 
     /// <summary>
