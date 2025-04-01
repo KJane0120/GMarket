@@ -11,7 +11,7 @@ public class AutoClicker : MonoBehaviour
     {
         clickManager = FindObjectOfType<ClickManager>();
         AALevel = 0f;
-        AALevel = GameManager.Instance.PlayerData.AutoAttackLevel;
+        //AALevel=GameManager.Instance.PlayerData.AutoAttackLevel;
 
         UpAutoAttack();
     }
