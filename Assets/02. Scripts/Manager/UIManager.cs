@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject startUI;
     [SerializeField] private Image fadePanel;
     public GameObject inventoryPanel;
+    [SerializeField] private GameObject ItemUI;
     [SerializeField] private GameObject currentWeaponWindow;
 
     private float fadeDuration = 1.0f;
@@ -81,6 +82,8 @@ public class UIManager : MonoBehaviour
         startUI.SetActive(true);
         inventoryPanel.SetActive(false);
         currentWeaponWindow.SetActive(false);
+        ItemUI.SetActive(false);
+        PausePopup.SetActive(false);
 
     }
     /// <summary>
@@ -93,6 +96,7 @@ public class UIManager : MonoBehaviour
         pauseBtn.SetActive(true);
         startUI.SetActive(false);
         currentWeaponWindow.SetActive(true);
+        ItemUI.SetActive(true);
     }
 
     private IEnumerator FadeIn()

@@ -542,12 +542,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2fd5e2cf08abc47bc45509cf9c3d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   levelText: {fileID: 7769922667290671550}
   itemNameText: {fileID: 3181994281184512445}
   damageText: {fileID: 5067199170640700477}
   criticalText: {fileID: 3534297251416936010}
   upgradeBtn: {fileID: 6906786309365651680}
   upgradeCostText: {fileID: 3458335058491125496}
+  EquipBtn: {fileID: 6165148722402354782}
+  icon: {fileID: 6562568294967565293}
 --- !u!1 &3622819574697355704
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +639,7 @@ GameObject:
   - component: {fileID: 3708114859215817364}
   - component: {fileID: 6165148722402354782}
   m_Layer: 5
-  m_Name: 'InstallButton '
+  m_Name: 'EquipButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
