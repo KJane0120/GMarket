@@ -30,22 +30,6 @@ public class Item : MonoBehaviour // 삭제 예정
         inventory.Sort((a, b) => a.ItemID.CompareTo(b.ItemID));
     }
 
-    public void OnClickWeaponUpgradeBtn() //강화버튼 클릭시 호출되는 함수 수정 예정
-    {
-        if (GameManager.Instance.PlayerData.WeaponGold > data.upgradeCost)
-        {
-            GameManager.Instance.PlayerData.BasicWeaponLevel++; //클릭 시 LevelUp
-            data.upgradeCost = GameManager.Instance.PlayerData.BasicWeaponLevel * data.upgradeCost; //LevelUp 무기 비용 증가
-            GameManager.Instance.PlayerData.TotalAttackPower = data.damegeMultiplier * data.baseDamage; //LevelUp 기본 데미지 증가
-            GameManager.Instance.PlayerData.TotalCritChance = data.criticalMultiplier + data.criticalChance; //LevelUp 치명타 확률 증가
-            CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
-        }
-        else
-        {
-            UIManager.Instance.WeaponErrorMsg(); //에러코드
-        }
-    }
-
     public void InstantiateSlot()
     {
         if (Slot == null) return;
@@ -66,9 +50,9 @@ public class Item : MonoBehaviour // 삭제 예정
     {
         data = item;
 
-        GameManager.Instance.PlayerData.CurrentWeapon = data;
+        GameManager.Instance.PlayerData.CurrentWeapon = item;
 
-        currentWeaponImage.sprite = item.itemIcon;
+        currentWeaponImage = item.itemIcon;
         currentWeaponName.text = item.itemName;
         currentWeaponLevel.text = string.Format($"{item.level:D2}");
         currentWeaponDamageText.text = string.Format($"{item.baseDamage:F2}");
@@ -79,6 +63,8 @@ public class Item : MonoBehaviour // 삭제 예정
     //슬롯의 아이템 데이터가 선택한 아이템의 데이터
     public void OnEquip(UISlot slot)
     {
+        if (slot.data == null || !inventory.Contains(slot.data)) return;
+
         data = slot.data;
 
         if (IsEquip(slot))
@@ -94,8 +80,19 @@ public class Item : MonoBehaviour // 삭제 예정
                     GameManager.Instance.PlayerData.TotalCritChance = slot.data.criticalChance;
                     break;
             }
-            IsEquipped = true;
-            EquipList.Add(slot.data);
+
+            foreach (var item in inventory)
+            {
+                item.isEquipped = (item == slot.data); // 선택한 아이템만 true, 나머지는 false
+            }
+
+            slot.UIButtonOnOff(slot);
+
+            if (!EquipList.Contains(slot.data))
+            {
+                EquipList.Add(slot.data);
+            }
+
             EquipShow(slot.data);
         }
     }
@@ -126,7 +123,6 @@ public class Item : MonoBehaviour // 삭제 예정
                 break;
 
         }
-        IsEquipped = false;
         EquipList.Remove(slot.data);
     }
 }

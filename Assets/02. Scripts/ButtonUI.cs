@@ -77,12 +77,4 @@ public class ButtonUI : MonoBehaviour
         UIManager.Instance.PausePopup.SetActive(false);
         StartCoroutine(UIManager.Instance.FadeOut("StartScene", UIManager.Instance.StartSceneLoadInit));
     }
-
-    //public void OnClickInventoryBtn()
-    //{
-    //    item.InstantiateSlot();
-    //    item.EquipList.Add(item.inventory[0]);
-    //    item.inventory[0].isEquipped = true;
-    //    UIManager.Instance.inventoryPanel.SetActive(true);
-    //}
 }

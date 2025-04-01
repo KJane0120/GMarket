@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,11 @@ public class UISlot : MonoBehaviour
     [SerializeField] private Button upgradeBtn;
     [SerializeField] private TextMeshProUGUI upgradeCostText;
     [SerializeField] private Button EquipBtn;
-
-    public delegate void WeaponUpgradeBtn();
-
+    //[SerializeField] private Button BuyBtn;
 
     public void Start()
     {
-        upgradeBtn.onClick.AddListener(ResourceManager.Instance.item.OnClickWeaponUpgradeBtn);
+        upgradeBtn.onClick.AddListener(OnClickWeaponUpgradeBtn);
         Debug.Log("무기 강화버튼 추가");
     }
 
@@ -40,11 +39,55 @@ public class UISlot : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 각 슬롯마다 아이템 데이터를 할당합니다. 
+    /// </summary>
     public void RefreshUI()
     {
         for (int i = 0; i < ResourceManager.Instance.item.Slots.Count; i++)
         {
             ResourceManager.Instance.item.Slots[i].SetItem(ResourceManager.Instance.item.inventory[i]);
+        }
+    }
+    public void OnClickWeaponUpgradeBtn() //강화버튼 클릭시 호출되는 함수 수정 예정
+    {
+        if (GameManager.Instance.PlayerData.WeaponGold > data.upgradeCost)
+        {
+            GameManager.Instance.PlayerData.BasicWeaponLevel++; //클릭 시 LevelUp
+            data.upgradeCost = GameManager.Instance.PlayerData.BasicWeaponLevel * data.upgradeCost; //LevelUp 무기 비용 증가
+            GameManager.Instance.PlayerData.TotalAttackPower = data.damegeMultiplier * data.baseDamage; //LevelUp 기본 데미지 증가
+            GameManager.Instance.PlayerData.TotalCritChance = data.criticalMultiplier + data.criticalChance; //LevelUp 치명타 확률 증가
+            CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
+        }
+        else
+        {
+            UIManager.Instance.WeaponErrorMsg(); //에러코드
+        }
+    }
+    /// <summary>
+    /// 보유중이라면 아이콘 정상표시, 구매버튼 비활성화, 강화/장착 버튼 활성화(장착중이 아니라면)
+    /// 보유중이지 않다면 아이콘 실루엣 표시, 구매버튼 활성화, 아이템이름/스탯 ??? 표시
+    /// </summary>
+    public void UIButtonOnOff(UISlot slot)
+    {
+        data = slot.data;
+        if (data.isOwned)
+        {
+            data.itemIcon.color = Color.white; // 보유 시 아이콘 정상 표시
+            //BuyBtn.gameObject.SetActive(false);
+            upgradeBtn.gameObject.SetActive(true);
+            EquipBtn.gameObject.SetActive(!data.isEquipped);
+        }
+        else
+        {
+            data.itemIcon.color = new Color(1, 1, 1, 0.5f);
+            //BuyBtn.gameObject.SetActive(true);
+            upgradeBtn.gameObject.SetActive(false);
+            EquipBtn.gameObject.SetActive(false);
+            itemNameText.text = "???";
+            damageText.text = "???";
+            criticalText.text = "???";
+            levelText.text = "???";
         }
     }
 }

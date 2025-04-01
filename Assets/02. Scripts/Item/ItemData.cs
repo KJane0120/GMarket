@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ItemType { Melee, Tooth, finger, helmet, shoes, Necklace } //근접, 이빨, 손톱, 헬멧, 신발, 목걸이
 
@@ -12,7 +13,7 @@ public class ItemData : ScriptableObject
     public int ItemID; //아이템 번호
     public string itemName; //아이템 이름
     public string itemDesc; //아이템 설명
-    public Sprite itemIcon; //아이템 아이콘
+    public Image itemIcon; //아이템 아이콘
     public int level;
 
     [Header("# Level Data")]
@@ -27,7 +28,10 @@ public class ItemData : ScriptableObject
     public int purchaseGold; //구매 비용
 
     [Header("Equip")]
-    public bool isEquipped = false;
+    public bool isEquipped;
+
+    [Header("Have")]
+    public bool isOwned;
 
 }
 
