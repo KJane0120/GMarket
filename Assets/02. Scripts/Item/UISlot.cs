@@ -32,11 +32,11 @@ public class UISlot : MonoBehaviour
 
         if (data != null)
         {
-            levelText.text = $"LV.{GameManager.Instance.PlayerData.CurrentWeapon:D2}";
+            levelText.text = $"LV.{item.level:D2}";
             itemNameText.text = data.itemName;
             damageText.text = $"공격력: {data.baseDamage:F2}";
-            criticalText.text = $"공격력: {data.criticalChance:F2}"; 
-            upgradeCostText.text = $"공격력: {data.upgradeCost:F2}";
+            criticalText.text = $"치명타 확률: {data.criticalChance:F2}";
+            upgradeCostText.text = string.Format("{0:D2}",data.upgradeCost);
         }
     }
 

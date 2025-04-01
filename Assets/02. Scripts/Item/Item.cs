@@ -49,8 +49,7 @@ public class Item : MonoBehaviour // 삭제 예정
     public void InstantiateSlot()
     {
         if (Slot == null) return;
-        int a = 3; //inventory.Count;
-        for (int i = 0; i < a; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
             UISlot newSlot = Instantiate(Slot, Content);
             Slots.Add(newSlot);

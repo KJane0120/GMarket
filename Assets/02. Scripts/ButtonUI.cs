@@ -25,8 +25,8 @@ public class ButtonUI : MonoBehaviour
         pauseButton.onClick.AddListener(OnClickPauseBtn);
         continueButton.onClick.AddListener(OnClickMainContinueBtn);
         exitButton.onClick.AddListener(OnClickExitBtn);
-        inventoryBtn.onClick.AddListener(OnClickInventoryBtn);
-        item = GetComponent<Item>();
+        //inventoryBtn.onClick.AddListener(OnClickInventoryBtn);
+        //item = GetComponent<Item>();
     }
 
     /// <summary>
@@ -78,11 +78,11 @@ public class ButtonUI : MonoBehaviour
         StartCoroutine(UIManager.Instance.FadeOut("StartScene", UIManager.Instance.StartSceneLoadInit));
     }
 
-    public void OnClickInventoryBtn()
-    {
-        UIManager.Instance.inventoryPanel.SetActive(true);
-        item.InstantiateSlot();
-        item.EquipList.Add(item.inventory[0]);
-        item.inventory[0].isEquipped = true;
-    }
+    //public void OnClickInventoryBtn()
+    //{
+    //    item.InstantiateSlot();
+    //    item.EquipList.Add(item.inventory[0]);
+    //    item.inventory[0].isEquipped = true;
+    //    UIManager.Instance.inventoryPanel.SetActive(true);
+    //}
 }
