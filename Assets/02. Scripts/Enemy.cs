@@ -37,10 +37,18 @@ public class Enemy : MonoBehaviour
     {
         //0은 임시로 할당한 값입니다.
         int value=750; // 게임매니저에서 공격 데미지를 가져온 뒤 (GameManager.Instance.CalculateDamage()...)
-        currentHealth -= value; //그 값만큼 체력 감소
-        if (currentHealth <= 0)
+        
+        if (currentHealth <= value) //만약 체력이 공격력보다 적다면
         {
+            //공격력(= 가한 피해량)을 현재 체력으로 설정한 뒤, 체력 0으로 설정하고 사망 메서드 호출
+            value = currentHealth;
+            currentHealth = 0;
             Die();
+        }
+        else //만약 체력이 공격력보다 많다면
+        {
+            //그 값만큼 체력 감소
+            currentHealth -= value;
         }
 
         //도전 구현 기능; 입은 데미지 표시하기
@@ -60,10 +68,17 @@ public class Enemy : MonoBehaviour
         int value = 0; // 게임매니저에서 공격 데미지를 가져온 뒤 (GameManager.Instance.CalculateDamage()...)
         //value에 치명타 피해량을 곱한 뒤
 
-        currentHealth -= value; //그 값만큼 체력 감소
-        if (currentHealth <= 0)
+        if (currentHealth <= value) //만약 체력이 공격력보다 적다면
         {
+            //공격력(= 가한 피해량)을 현재 체력으로 설정한 뒤, 체력 0으로 설정하고 사망 메서드 호출
+            value = currentHealth;
+            currentHealth = 0;
             Die();
+        }
+        else //만약 체력이 공격력보다 많다면
+        {
+            //그 값만큼 체력 감소
+            currentHealth -= value;
         }
 
         //도전 구현 기능; 입은 데미지 표시하기
