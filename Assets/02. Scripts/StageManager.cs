@@ -96,6 +96,12 @@ public class StageManager : MonoBehaviour
 
     public void ResetEnemies()
     {
+        if (GameManager.Instance?.PlayerData == null)
+        {
+            Debug.Log("PlayerData가 없습니다!");
+            return;
+        }
+
         EnemyData desiredEnemy = enemydataTable[GameManager.Instance.PlayerData.NowStage % enemydataTable.Length];
         currentEnemyIndex = 0;
 
@@ -109,28 +115,28 @@ public class StageManager : MonoBehaviour
             //이후 순서에 따른 적 구분 (5번째에 엘리트, 10번째에 보스, 그 외는 전부 일반)
             switch (enemy[i].index)
             {
-                case 3:
+                case 4:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+0.5*현재 스테이지
-                    enemy[i].currentHealth *= 1;//+0.5*현재 스테이지
-                    enemy[i].enemyData.enemyType = EnemyType.Elite;
+                    enemy[i].maxHealth = (int)(enemy[i].maxHealth * (1 + (0.5 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].currentHealth = (int)(enemy[i].currentHealth * (1 + (0.5 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].enemyType = EnemyType.Elite;
                     break;
 
-                case 8:
+                case 9:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+현재 스테이지
-                    enemy[i].currentHealth *= 1;//+현재 스테이지
-                    enemy[i].enemyData.enemyType = EnemyType.Boss;
+                    enemy[i].maxHealth = (int)(enemy[i].maxHealth * (1 + (GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].currentHealth = (int)(enemy[i].currentHealth * (1 + (GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].enemyType = EnemyType.Boss;
                     break;
 
                 default:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+0.25*현재 스테이지
-                    enemy[i].currentHealth *= 1;//+0.25*현재 스테이지
-                    enemy[i].enemyData.enemyType = EnemyType.Normal;
+                    enemy[i].maxHealth = (int)(enemy[i].maxHealth * (1 + (0.25 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].currentHealth = (int)(enemy[i].currentHealth * (1 + (0.25 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].enemyType = EnemyType.Normal;
                     break;
             }
             //그리고 만약 적의 순서가 0번(맨 처음) 이라면 활성화시키기 
