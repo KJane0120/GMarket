@@ -114,6 +114,8 @@ public class Enemy : MonoBehaviour
 
         //리지드바디 찾아서 힘만큼 AddForce
         rb.AddForce(pushDirection * 500, ForceMode2D.Impulse);
+        float randomTorque = Random.Range(-25f, 25f); // 랜덤한 회전값 (음수~양수)
+        rb.AddTorque(randomTorque, ForceMode2D.Impulse);
 
         //2.5초 뒤 삭제
         Destroy(ragDoll, 2.5f);
