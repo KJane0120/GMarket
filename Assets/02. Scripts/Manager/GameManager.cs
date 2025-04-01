@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 30;
         QualitySettings.vSyncCount = 0;
 
-        PlayerData = new PlayerData();
-
         //나중에 사용자가 직접 프레임 속도를 조절하는 기능을 추가할 경우
         //QualitySettings.vSyncCount = 0;  // VSync 끄기
 
@@ -50,5 +48,7 @@ public class GameManager : MonoBehaviour
         PlayerData.CriticalDamageLevel = 0;
         PlayerData.AutoAttackLevel = 0;
         PlayerData.GoldGainLevel = 0;
+
+        PlayerData.inventory = ResourceManager.Instance.item.inventory;
     }
 }

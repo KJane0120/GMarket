@@ -50,8 +50,6 @@ public class Item : MonoBehaviour
     /// <param name="item"></param>
     public void EquipShow(ItemData item)
     {
-        //data = item;
-
         GameManager.Instance.PlayerData.CurrentWeapon = item;
 
         currentWeaponImage.sprite = item.itemIcon;

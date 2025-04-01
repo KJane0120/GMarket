@@ -86,6 +86,11 @@ public class StageManager : MonoBehaviour
         ResetEnemies(); //이후 적 초기화
     }
 
+    private void OnEnable()
+    {
+        UpdateUI();
+    }
+
     /// <summary>
     /// 적 객체를 담아둔 그리드를 비활성화/활성화시키는 토글 메서드
     /// </summary>

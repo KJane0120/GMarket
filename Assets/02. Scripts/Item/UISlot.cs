@@ -18,14 +18,14 @@ public class UISlot : MonoBehaviour
 
     public void Start()
     {
-        upgradeBtn.onClick.AddListener(OnClickWeaponUpgradeBtn);
+        upgradeBtn.onClick.AddListener(() => OnClickWeaponUpgradeBtn(this));
     }
 
     /// <summary>
     /// 슬롯에 아이템 데이터를 추가합니다. 
     /// </summary>
     /// <param name="item"></param>
-    public void SetItem(ItemData item)
+    public void UpdateSlot(ItemData item)
     {
         data = item;
 
@@ -36,7 +36,7 @@ public class UISlot : MonoBehaviour
             itemNameText.text = data.itemName;
             damageText.text = $"공격력: {data.baseDamage:F2}";
             criticalText.text = $"치명타 확률: {data.criticalChance:F2}";
-            upgradeCostText.text = string.Format("{0:D2}",data.upgradeCost);
+            upgradeCostText.text = string.Format("{0:D2}", data.upgradeCost);
         }
     }
 
@@ -47,22 +47,35 @@ public class UISlot : MonoBehaviour
     {
         for (int i = 0; i < ResourceManager.Instance.item.Slots.Count; i++)
         {
-            ResourceManager.Instance.item.Slots[i].SetItem(ResourceManager.Instance.item.inventory[i]);
+            ResourceManager.Instance.item.Slots[i].UpdateSlot(ResourceManager.Instance.item.inventory[i]);
         }
     }
-    public void OnClickWeaponUpgradeBtn() //강화버튼 클릭시 호출되는 함수 수정 예정
+    public void OnClickWeaponUpgradeBtn(UISlot slot) //강화버튼 클릭시 호출되는 함수 수정 예정
     {
-        if (GameManager.Instance.PlayerData.WeaponGold > data.upgradeCost)
+        ItemData data = slot.data;
+        if (data == null)
         {
-            GameManager.Instance.PlayerData.BasicWeaponLevel++; //클릭 시 LevelUp
-            data.upgradeCost = GameManager.Instance.PlayerData.BasicWeaponLevel * data.upgradeCost; //LevelUp 무기 비용 증가
-            GameManager.Instance.PlayerData.TotalAttackPower = data.damegeMultiplier * data.baseDamage; //LevelUp 기본 데미지 증가
-            GameManager.Instance.PlayerData.TotalCritChance = data.criticalMultiplier + data.criticalChance; //LevelUp 치명타 확률 증가
+            Debug.LogWarning("강화할 무기 데이터가 존재하지 않습니다.");
+            return;
+        }
+
+        //무기 재화가 강화비용보다 많다면
+        if (GameManager.Instance.PlayerData.WeaponGold >= data.upgradeCost)
+        {
+            int currentUpgradeCost = data.upgradeCost;
+            data.level++;
+            data.upgradeCost = data.level * data.upgradeCost;
+            data.baseDamage = data.damegeMultiplier * data.baseDamage;
+            data.criticalChance = data.criticalMultiplier + data.criticalChance;
             CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
+
+            UpdateSlot(data);
         }
         else
         {
+            Debug.Log("골드가 부족합니다.");
             UIManager.Instance.WeaponErrorMsg(); //에러코드
+            return;
         }
     }
     /// <summary>

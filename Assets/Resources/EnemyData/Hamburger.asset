@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Hamburger
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e668f2edd898f184cb1e6901f1adec26, type: 3}
-  health: 2000
+  health: 10
   enemyType: 0
-  StatsGoldOnHit: 0
-  WeaponGoldOnKill: 0
-  StatsGoldOnKill: 0
+  StatsGoldOnHit: 5
+  WeaponGoldOnKill: 10
+  StatsGoldOnKill: 10

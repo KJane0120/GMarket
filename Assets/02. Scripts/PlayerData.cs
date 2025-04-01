@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
 {
     public int NowStage;             //현재 진행중인 스테이지
-    public ItemData CurrentWeapon; //현재 장착한 장비
+    public ItemData CurrentWeapon;   //현재 장착한 장비
 
     [Header("Gold")]
     public int StatGold;             // 보유한 스탯재화(시연영상 속 노란 네모)
@@ -15,11 +16,8 @@ public class PlayerData
     public int AutoAttackLevel;      //자동 공격 레벨
     public int GoldGainLevel;        // 재화 획득량 증가 레벨
 
-    [Header("WeaponUpgrade")]        //임의대로 붙인 변수명, 추후 수정 예정
-    public int BasicWeaponLevel; 
-    public int StandardWeaponLevel;
-    public int ChallengeWeaponsLevel;
-    public int LegendWeaponsLevel;
+    [Header("WeaponUpgrade")]
+    public List<ItemData> inventory;
 
     [Header("TotalStats")]
     public float TotalAttackPower;  //최종 공격력

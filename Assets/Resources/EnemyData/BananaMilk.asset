@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BananaMilk
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 312e0c55c71c9c643b7ebdfe6dd43b5e, type: 3}
-  health: 2000
+  health: 10
   enemyType: 0
-  StatsGoldOnHit: 0
-  WeaponGoldOnKill: 0
-  StatsGoldOnKill: 0
+  StatsGoldOnHit: 5
+  WeaponGoldOnKill: 10
+  StatsGoldOnKill: 10
