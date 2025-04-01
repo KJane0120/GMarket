@@ -8,7 +8,7 @@ public class PlayerUpgrade : MonoBehaviour
 {
     public Player player;
     public PlayerStat playerStat;
-    public ClickManager clickManager;
+    //public ClickManager clickManager;
 
     public TMP_Text curStatText;
     public TMP_Text upStatText;
@@ -42,7 +42,7 @@ public class PlayerUpgrade : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.StatsErrorMsg();
+            //UIManager.Instance.StatsErrorMsg();
             Debug.Log("골드오링");
         }
     }

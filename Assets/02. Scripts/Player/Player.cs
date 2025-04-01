@@ -34,13 +34,13 @@ public class Player : MonoBehaviour
     private void Init()
     {
         playerData = GameManager.Instance.PlayerData;
-        levelCritical = GameManager.Instance.PlayerData.CriticalDamageLevel;        // 치명타 레벨
-        levelGoldGain = GameManager.Instance.PlayerData.GoldGainLevel;              // 골드획득 레벨
-        levelAutoAttack = GameManager.Instance.PlayerData.AutoAttackLevel;          // 자동공격 레벨
+        levelCritical = playerData.CriticalDamageLevel;        // 치명타 레벨
+        levelGoldGain = playerData.GoldGainLevel;              // 골드획득 레벨
+        levelAutoAttack = playerData.AutoAttackLevel;          // 자동공격 레벨
 
-        totalCritical = GameManager.Instance.PlayerData.TotalCritDamage;            // 최종 치명타 데미지
-        totalGoldGain = GameManager.Instance.PlayerData.TotalGoldGain;              // 최종 골드획득량
-        totalAutoAttack = GameManager.Instance.PlayerData.TotalAutoAttack;         // 최종 자동클릭횟수
+        totalCritical = playerData.TotalCritDamage;            // 최종 치명타 데미지
+        totalGoldGain = playerData.TotalGoldGain;              // 최종 골드획득량
+        totalAutoAttack = playerData.TotalAutoAttack;         // 최종 자동클릭횟수
 
     }
 
@@ -71,13 +71,13 @@ public class Player : MonoBehaviour
         {
             case StatType.critical:
                 levelValue = playerStat.stat.statValue;
-                return GameManager.Instance.PlayerData.CriticalDamageLevel;
+                return playerData.CriticalDamageLevel;
             case StatType.goldGain:
                 levelValue = playerStat.stat.statValue;
-                return GameManager.Instance.PlayerData.GoldGainLevel;
+                return playerData.GoldGainLevel;
             case StatType.autoAttack:
                 levelValue = playerStat.stat.statValue;
-                return GameManager.Instance.PlayerData.AutoAttackLevel;
+                return playerData.AutoAttackLevel;
             default:
                 return 0;
         }
@@ -97,13 +97,13 @@ public class Player : MonoBehaviour
         {
             case BonusStatType.criticalBonus:
                 bonusValue = playerStat.addStat.bonusValue;
-                return GameManager.Instance.PlayerData.TotalCritChance;
+                return playerData.TotalCritChance;
             case BonusStatType.goldGainBonus:
                 bonusValue = playerStat.addStat.bonusValue;
-                return GameManager.Instance.PlayerData.TotalGoldGain;
+                return playerData.TotalGoldGain;
             case BonusStatType.autoAttackBonus:
                 bonusValue = playerStat.addStat.bonusValue;
-                return GameManager.Instance.PlayerData.TotalCritChance;
+                return playerData.TotalCritChance;
             default:
                 return 0;
         }
