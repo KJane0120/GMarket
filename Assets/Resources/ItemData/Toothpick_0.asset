@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   ItemID: 0
-  itemName: Toothpick
-  itemDesc: "\uD2BC\uD2BC\uD55C \uC721\uBC31\uC774 \uC774\uC464\uC2DC\uAC1C"
+  itemName: "\uC721\uBC31\uC774\uC758 \uC774\uC464\uC2DC\uAC1C"
+  itemDesc: "\uD2BC\uD2BC\uD55C  \uC774\uC464\uC2DC\uAC1C \uC721\uBC31\uC774 \uC560\uC6A9
+    \uBB34\uAE30\uB2E4."
   itemIcon: {fileID: 21300000, guid: 3eb3109fa14302f499a60eb7d39d465e, type: 3}
   baseDamage: 5
   damegeMultiplier: 1.2
