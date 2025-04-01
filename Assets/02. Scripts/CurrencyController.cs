@@ -2,18 +2,6 @@ using UnityEngine;
 
 public class CurrencyController : MonoBehaviour
 {
-    public int statGold = 1000000;
-    public int weaponGold;
-
-    /// <summary>
-    /// 재화들을 초기화합니다.
-    /// </summary>
-    private void Start()
-    {
-        statGold = 0;
-        weaponGold = 0;
-    }
-
     /// <summary>
     /// 적 처치 시 재화를 획득합니다. 
     /// </summary>
@@ -21,8 +9,8 @@ public class CurrencyController : MonoBehaviour
     /// <param name="weaponGoldOnKill"></param>
     public void CurrencyGainKill(int StatsGoldOnKill, int weaponGoldOnKill)
     {
-        statGold += StatsGoldOnKill;
-        weaponGold += weaponGoldOnKill;
+        GameManager.Instance.PlayerData.StatGold += StatsGoldOnKill;
+        GameManager.Instance.PlayerData.WeaponGold += weaponGoldOnKill;
     }
 
     /// <summary>
@@ -31,7 +19,7 @@ public class CurrencyController : MonoBehaviour
     /// <param name="StatsGoldOnHit"></param>
     public void StatGoldGain(int StatsGoldOnHit)//호출은 CurrencyManager.Instance.controller.StatGoldGain으로 해주시면 됩니다.
     {
-        statGold += StatsGoldOnHit;
+        GameManager.Instance.PlayerData.StatGold += StatsGoldOnHit;
     }
 
     /// <summary>
@@ -40,7 +28,7 @@ public class CurrencyController : MonoBehaviour
     /// <param name="upgradeGold"></param>
     public void StatGoldUse(int upgradeGold)
     {
-        statGold -= upgradeGold;
+        GameManager.Instance.PlayerData.StatGold -= upgradeGold;
     }
 
     /// <summary>
@@ -49,6 +37,6 @@ public class CurrencyController : MonoBehaviour
     /// <param name="upgradeGold"></param>
     public void WeaponGoldUse(int upgradeGold)
     {
-        weaponGold -= upgradeGold;
+        GameManager.Instance.PlayerData.WeaponGold -= upgradeGold;
     }
 }

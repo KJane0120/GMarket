@@ -7,7 +7,6 @@ using UnityEngine.InputSystem.XR;
 public class StageManager : MonoBehaviour
 {
     public float pushForce = 500f;
-    public int currentStage;
     public Enemy[] enemy; //적 객체가 담겨지게 될 배열
     public Transform enemies; //enemy가 담긴 부모 객체
 
@@ -41,18 +40,17 @@ public class StageManager : MonoBehaviour
             //Resources 폴더 안 EnemyData 안의 모든 EnemyData 클래스를 불러온 뒤 할당하기
             enemydataTable = Resources.LoadAll<EnemyData>("EnemyData");
         }
-    }
+        clickManager.onClick += AddDamage;
 
-    void Start()
-    {
+
         //스테이지UI가 비어있다면
-        if (stageUI==null)
+        if (stageUI == null)
         {
             //찾아서 할당
             stageUI = GameObject.Find("StageUI");
         }
         //스테이지UI가 비어있지 않은데 stageText와 enemyText가 비어있다면
-        if (stageUI != null && (stageText==null&&enemyText==null))
+        if (stageUI != null && (stageText == null && enemyText == null))
         {
             Debug.Log(stageUI.name);
             // stageUI 안에서 "StageText"와 "EnemyText"라는 이름의 자식 객체를 찾아 할당
@@ -66,11 +64,10 @@ public class StageManager : MonoBehaviour
                 enemyText = enemyTextTransform.GetComponent<TextMeshProUGUI>();
         }
 
-        //clickManager.onClick += AddDamage;
 
         //enemies에 담긴 객체만큼 배열 길이를 정한 뒤 반복문 시작
         enemy = new Enemy[enemies.childCount];
-        for (int i=0;i<enemy.Length; i++)
+        for (int i = 0; i < enemy.Length; i++)
         {
             enemy[i] = enemies.GetChild(i).GetComponent<Enemy>(); //객체 안에서 enemy 클래스를 찾아 지정하고 
             enemy[i].index = i; //고유 식별값을 지정한 뒤
@@ -85,6 +82,9 @@ public class StageManager : MonoBehaviour
         }
         ResetEnemies(); //이후 적 초기화
     }
+    void Start()
+    {
+    }
 
     /// <summary>
     /// 적 객체를 담아둔 그리드를 비활성화/활성화시키는 토글 메서드
@@ -96,7 +96,13 @@ public class StageManager : MonoBehaviour
 
     public void ResetEnemies()
     {
-        EnemyData desiredEnemy = enemydataTable[currentStage % enemydataTable.Length];
+        if (GameManager.Instance?.PlayerData == null)
+        {
+            Debug.Log("PlayerData가 없습니다!");
+            return;
+        }
+
+        EnemyData desiredEnemy = enemydataTable[GameManager.Instance.PlayerData.NowStage % enemydataTable.Length];
         currentEnemyIndex = 0;
 
         for (int i = 0; i < enemy.Length; i++)
@@ -109,28 +115,28 @@ public class StageManager : MonoBehaviour
             //이후 순서에 따른 적 구분 (5번째에 엘리트, 10번째에 보스, 그 외는 전부 일반)
             switch (enemy[i].index)
             {
-                case 3:
+                case 4:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+0.5*현재 스테이지
-                    enemy[i].currentHealth *= 1;//+0.5*현재 스테이지
-                    enemy[i].enemyData.enemyType = EnemyType.Elite;
+                    enemy[i].maxHealth = (int)(enemy[i].maxHealth * (1 + (0.5 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].currentHealth = (int)(enemy[i].currentHealth * (1 + (0.5 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].enemyType = EnemyType.Elite;
                     break;
 
-                case 8:
+                case 9:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+현재 스테이지
-                    enemy[i].currentHealth *= 1;//+현재 스테이지
-                    enemy[i].enemyData.enemyType = EnemyType.Boss;
+                    enemy[i].maxHealth = (int)(enemy[i].maxHealth * (1 + (GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].currentHealth = (int)(enemy[i].currentHealth * (1 + (GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].enemyType = EnemyType.Boss;
                     break;
 
                 default:
                     enemy[i].enemyData = desiredEnemy;
                     enemy[i].SetEnemyData();
-                    enemy[i].maxHealth *= 1;//+0.25*현재 스테이지
-                    enemy[i].currentHealth *= 1;//+0.25*현재 스테이지
-                    enemy[i].enemyData.enemyType = EnemyType.Normal;
+                    enemy[i].maxHealth = (int)(enemy[i].maxHealth * (1 + (0.25 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].currentHealth = (int)(enemy[i].currentHealth * (1 + (0.25 * GameManager.Instance.PlayerData.NowStage)));
+                    enemy[i].enemyType = EnemyType.Normal;
                     break;
             }
             //그리고 만약 적의 순서가 0번(맨 처음) 이라면 활성화시키기 
@@ -150,8 +156,7 @@ public class StageManager : MonoBehaviour
         if (currentEnemyIndex >= 9)
         {
             //다음 스테이지로 이동, 적 초기화, UI 갱신
-            //GameManager.Instance.PlayerData.NowStage++;
-            currentStage++;
+            GameManager.Instance.PlayerData.NowStage++;
             ResetEnemies();
             UpdateUI();
             //그리고 보상 지급
@@ -170,7 +175,10 @@ public class StageManager : MonoBehaviour
 
     public void AddDamage()
     {
-        DamageOutput(enemy[currentEnemyIndex].Damaged());
+        if (enemy[currentEnemyIndex] != null)
+        {
+            DamageOutput(enemy[currentEnemyIndex].Damaged());
+        }
     }
 
     public void DamageOutput(int damage)
@@ -201,7 +209,7 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-            stageText.text = string.Format("현재 스테이지: <color=#EEA970>{0}</color>", currentStage);
+            stageText.text = string.Format("현재 스테이지: <color=#EEA970>{0}</color>", GameManager.Instance.PlayerData.NowStage);
             enemyText.text = string.Format("남은 적: <color=#EEA970>{0}</color> / 10", currentEnemyIndex);
         }
     }

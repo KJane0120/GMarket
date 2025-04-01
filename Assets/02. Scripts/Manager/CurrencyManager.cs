@@ -35,7 +35,21 @@ public class CurrencyManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        statGoldText.text = string.Format("{0}", GameManager.Instance.PlayerData.StatGold);
-        weaponGoldText.text = string.Format("{0}", GameManager.Instance.PlayerData.WeaponGold);
+        if (statGoldText != null)
+        {
+            statGoldText.text = string.Format("{0}", GameManager.Instance.PlayerData.StatGold);
+        }
+        else
+        {
+            Debug.Log("스탯골드텍스트가 할당되어 있지 않습니다.");
+        }
+        if (weaponGoldText != null)
+        {
+            weaponGoldText.text = string.Format("{0}", GameManager.Instance.PlayerData.WeaponGold);
+        }
+        else
+        {
+            Debug.Log("웨폰골드텍스트가 할당되어 있지 않습니다.");
+        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemType { Melee, Tooth, finger, helmet, shoes, Necklace } //근접, 이빨, 손톱, 헬멧, 신발, 목걸이
@@ -15,8 +13,10 @@ public class ItemData : ScriptableObject
     public string itemName; //아이템 이름
     public string itemDesc; //아이템 설명
     public Sprite itemIcon; //아이템 아이콘
+    public int level;
 
     [Header("# Level Data")]
+    //public float Totaldamage { get { baseDamage} }
     public float baseDamage; //기본 공격력
     public float damegeMultiplier; //공격력 Up비율
     public float criticalChance; //치명타 확률
@@ -26,6 +26,8 @@ public class ItemData : ScriptableObject
     public int upgradeCost; //무기 Up 비용
     public int purchaseGold; //구매 비용
 
+    [Header("Equip")]
+    public bool isEquipped = false;
 
 }
 

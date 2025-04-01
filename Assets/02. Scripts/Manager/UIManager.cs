@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseBtn;
     [SerializeField] private GameObject startUI;
     [SerializeField] private Image fadePanel;
-    [SerializeField] private GameObject inventoryPanel;
+    public GameObject inventoryPanel;
     [SerializeField] private GameObject currentWeaponWindow;
 
     private float fadeDuration = 1.0f;
@@ -148,9 +148,5 @@ public class UIManager : MonoBehaviour
         }
         SceneManager.LoadScene(ScneneName);
         StartCoroutine(FadeIn(init));
-    }
-    public void OnClickInventoryBtn() //인벤토리 창 열기
-    {
-        inventoryPanel.SetActive(true);
     }
 }
