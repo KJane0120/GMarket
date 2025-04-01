@@ -634,8 +634,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
+  m_sharedMaterial: {fileID: 5709894732585422087, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1227,7 +1227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 404825228}
   playerStat: {fileID: 11400000, guid: d7600663e57588f4085a26df1da73660, type: 2}
-  clickManager: {fileID: 0}
   curStatText: {fileID: 774676215}
   upStatText: {fileID: 1099185343}
   upGoldText: {fileID: 1546395956}
@@ -1285,6 +1284,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStat: {fileID: 11400000, guid: d7600663e57588f4085a26df1da73660, type: 2}
+  playerData:
+    NowStage: 0
+    CurrentWeapon: {fileID: 0}
+    StatGold: 0
+    WeaponGold: 0
+    CriticalDamageLevel: 0
+    AutoAttackLevel: 0
+    GoldGainLevel: 0
+    BasicWeaponLevel: 0
+    StandardWeaponLevel: 0
+    ChallengeWeaponsLevel: 0
+    LegendWeaponsLevel: 0
+    TotalAttackPower: 0
+    TotalCritChance: 0
+    TotalCritDamage: 0
+    TotalGoldGain: 0
+    TotalAutoAttack: 0
   levelCritical: 0
   levelGoldGain: 0
   levelAutoAttack: 0
@@ -2516,7 +2532,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 862536997}
   playerStat: {fileID: 11400000, guid: e68cd8e2dd403374887db73212838379, type: 2}
-  clickManager: {fileID: 0}
   curStatText: {fileID: 1552927639}
   upStatText: {fileID: 2044163943}
   upGoldText: {fileID: 2081027573}
@@ -2536,6 +2551,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStat: {fileID: 11400000, guid: e68cd8e2dd403374887db73212838379, type: 2}
+  playerData:
+    NowStage: 0
+    CurrentWeapon: {fileID: 0}
+    StatGold: 0
+    WeaponGold: 0
+    CriticalDamageLevel: 0
+    AutoAttackLevel: 0
+    GoldGainLevel: 0
+    BasicWeaponLevel: 0
+    StandardWeaponLevel: 0
+    ChallengeWeaponsLevel: 0
+    LegendWeaponsLevel: 0
+    TotalAttackPower: 0
+    TotalCritChance: 0
+    TotalCritDamage: 0
+    TotalGoldGain: 0
+    TotalAutoAttack: 0
   levelCritical: 0
   levelGoldGain: 0
   levelAutoAttack: 0
@@ -2699,7 +2731,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 937426197}
   playerStat: {fileID: 11400000, guid: 451465ce115839749aedeb7e6d8359f3, type: 2}
-  clickManager: {fileID: 0}
   curStatText: {fileID: 1249883068}
   upStatText: {fileID: 141500746}
   upGoldText: {fileID: 644916814}
@@ -2719,6 +2750,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStat: {fileID: 11400000, guid: 451465ce115839749aedeb7e6d8359f3, type: 2}
+  playerData:
+    NowStage: 0
+    CurrentWeapon: {fileID: 0}
+    StatGold: 0
+    WeaponGold: 0
+    CriticalDamageLevel: 0
+    AutoAttackLevel: 0
+    GoldGainLevel: 0
+    BasicWeaponLevel: 0
+    StandardWeaponLevel: 0
+    ChallengeWeaponsLevel: 0
+    LegendWeaponsLevel: 0
+    TotalAttackPower: 0
+    TotalCritChance: 0
+    TotalCritDamage: 0
+    TotalGoldGain: 0
+    TotalAutoAttack: 0
   levelCritical: 0
   levelGoldGain: 0
   levelAutoAttack: 0
@@ -3307,6 +3355,50 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1154721675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154721677}
+  - component: {fileID: 1154721676}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1154721676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154721675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788042408e523e7459ec2be4eb085c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1154721677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154721675}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 180.5913, y: 227.73462, z: 0.16563079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249883067
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,6 +4814,52 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1904807356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1904807358}
+  - component: {fileID: 1904807357}
+  m_Layer: 0
+  m_Name: CurrencyController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1904807357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904807356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b916d993c5b544ebfcf19880758d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statGold: 0
+  weaponGold: 0
+--- !u!4 &1904807358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904807356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 180.5913, y: 227.73462, z: 0.16563079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934526455
 GameObject:
   m_ObjectHideFlags: 0
@@ -5110,8 +5248,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
+  m_sharedMaterial: {fileID: 5709894732585422087, guid: f9279fe7f93edfa4aa46d04fa1ab089b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5749,3 +5887,5 @@ SceneRoots:
   - {fileID: 547911213}
   - {fileID: 297351152}
   - {fileID: 625741805}
+  - {fileID: 1154721677}
+  - {fileID: 1904807358}
