@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public void Start()
     {
         gold = GameManager.Instance.PlayerData.StatGold;
-        
+
         ResetStat();
         UpdateTotal();
     }
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="statType"></param>
     /// <returns></returns>
-    public int LevelStat (StatType statType)
+    public int LevelStat(StatType statType)
     {
         int levelValue = 0;
 
@@ -92,6 +92,11 @@ public class Player : MonoBehaviour
             case BonusStatType.autoAttackBonus:
                 bonusValue = playerStat.addStat.bonusValue;
                 GameManager.Instance.PlayerData.TotalAutoAttack = bonusValue;
+                AutoClicker AC = FindObjectOfType<AutoClicker>();
+                if (AC != null)
+                {
+                    AC.CheckAutoAttack();
+                }
                 return GameManager.Instance.PlayerData.TotalAutoAttack;
             default:
                 return 0;
