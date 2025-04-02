@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Jobs.LowLevel.Unsafe;
-using Unity.Jobs;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,16 +5,6 @@ public class Player : MonoBehaviour
     public PlayerStat playerStat;
     public StatType statType { get; set; }
     public BonusStatType bonusType { get; set; }
-    public PlayerData playerData;
-
-    // 변수명도 삭제
-    public int levelCritical;           // 치명타 레벨
-    public int levelGoldGain;           // 골드획득 레벨
-    public int levelAutoAttack;         // 자동클릭 레벨
-
-    public float totalCritical;         // 치명타 데미지
-    public float totalGoldGain;         // 골드획득량
-    public float totalAutoAttack;       // 자동클릭
 
     public int gold;                    // 골드, PlayerData
 
