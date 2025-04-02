@@ -2891,6 +2891,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d60e73a2b3cb4cd46a9d7b8469011899, type: 2}
   - {fileID: 11400000, guid: 61c1ec2e662c4074ba4ca72c74a50c4b, type: 2}
   - {fileID: 11400000, guid: 6393725a715d59b469858d3fa899c957, type: 2}
+  - {fileID: 11400000, guid: 228849cc6ce712c429715c68fc64c45b, type: 2}
+  - {fileID: 11400000, guid: f7b16c73af94df34f854b6ae7ff4c4af, type: 2}
   currentEnemyIndex: 0
   stageUI: {fileID: 0}
   damagePrefab: {fileID: 2974772795372254013, guid: ffcae3b3207b0ba4d98b6a632f7f9882, type: 3}

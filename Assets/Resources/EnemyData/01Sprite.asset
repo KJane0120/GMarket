@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: Salad
+  m_Name: 01Sprite
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 64a2b8b7b8e8145448f471752fba4b07, type: 3}
-  health: 1900
+  icon: {fileID: 21300000, guid: 719c9ae58036bc3469356e43ba9cdfc5, type: 3}
+  health: 110
   enemyType: 0
-  StatsGoldOnHit: 3
-  WeaponGoldOnKill: 40
-  StatsGoldOnKill: 30
+  StatsGoldOnHit: 1
+  WeaponGoldOnKill: 5
+  StatsGoldOnKill: 15
