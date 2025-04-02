@@ -769,7 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetEnemy: {fileID: 0}
   isGamePaused: 0
-  UIPrefab: {fileID: 0}
+  UIPrefab: {fileID: 5122893757592211216, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
 --- !u!4 &332786659
 Transform:
   m_ObjectHideFlags: 0

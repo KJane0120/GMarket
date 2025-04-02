@@ -522,7 +522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4337e47e3ea31a04ca76650241fd8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AALevel: 0
 --- !u!4 &182553547
 Transform:
   m_ObjectHideFlags: 0
@@ -2435,6 +2434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetEnemy: {fileID: 0}
   isGamePaused: 0
+  UIPrefab: {fileID: 0}
 --- !u!4 &1393609172
 Transform:
   m_ObjectHideFlags: 0
