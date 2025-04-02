@@ -10,6 +10,7 @@ public class ClickManager : MonoBehaviour
     public UnityAction onClick;
     public UnityAction onCritClick;
     private AutoClicker autoClicker; // AutoClicker 참조
+    public int critical;
 
     public GameObject UIPrefab;
 
@@ -47,20 +48,20 @@ public class ClickManager : MonoBehaviour
                 //onClick 이벤트를 수행하지 않고 그냥 돌아가기
                 return;
             }
-
-            int critical = Random.Range(0,101);
-
-            if (critical < GameManager.Instance.PlayerData.TotalCritChance)
-            {
-                onCritClick.Invoke();
-            }
-
-            else
-            {
-            onClick.Invoke(); // 공격 실행
-            Debug.Log("공격 감지");
-            }
+            CritCheck();
         }
+    }
+
+    /// <summary>
+    /// 현재 공격이 크리티컬인지 확인하는 메서드
+    /// </summary>
+    public void CritCheck()
+    {
+        critical = Random.Range(0, 101);
+
+        onClick.Invoke(); // 공격 실행
+        Debug.Log("공격 감지");
+        SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxHit, 0.1f);
     }
     
 }
