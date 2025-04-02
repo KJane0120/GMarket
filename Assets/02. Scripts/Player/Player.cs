@@ -4,7 +4,6 @@ public class Player : MonoBehaviour
 {
     public PlayerStat playerStat;
     public PlayerData playerData;
-
     public StatType statType { get; set; }
     public BonusStatType bonusType { get; set; }
 
@@ -15,7 +14,13 @@ public class Player : MonoBehaviour
         gold = GameManager.Instance.PlayerData.StatGold;
 
         ResetStat();
-        UpdateTotal();
+        GameManager.Instance.PlayerData.CriticalDamageLevel = LevelStat(StatType.critical);
+        GameManager.Instance.PlayerData.GoldGainLevel = LevelStat(StatType.goldGain);
+        GameManager.Instance.PlayerData.AutoAttackLevel = LevelStat(StatType.autoAttack);
+
+        GameManager.Instance.PlayerData.TotalCritDamage = BonusStat(BonusStatType.criticalBonus);
+        GameManager.Instance.PlayerData.TotalGoldGain = BonusStat(BonusStatType.goldGainBonus);
+        GameManager.Instance.PlayerData.TotalAutoAttack = BonusStat(BonusStatType.autoAttackBonus);
     }
 
     /// <summary>
@@ -33,13 +38,22 @@ public class Player : MonoBehaviour
     /// </summary>
     public void UpdateTotal()
     {
-        GameManager.Instance.PlayerData.CriticalDamageLevel = LevelStat(StatType.critical);
-        GameManager.Instance.PlayerData.GoldGainLevel = LevelStat(StatType.goldGain);
-        GameManager.Instance.PlayerData.AutoAttackLevel = LevelStat(StatType.autoAttack);
+        if(this.playerStat.stat.StatType == StatType.critical)
+        {
+            GameManager.Instance.PlayerData.CriticalDamageLevel = LevelStat(StatType.critical);
+            GameManager.Instance.PlayerData.TotalCritDamage = BonusStat(BonusStatType.criticalBonus);
+        }
+        if (this.playerStat.stat.StatType == StatType.goldGain)
+        {
+            GameManager.Instance.PlayerData.GoldGainLevel = LevelStat(StatType.goldGain);
+            GameManager.Instance.PlayerData.TotalGoldGain = BonusStat(BonusStatType.goldGainBonus);
+        }
+        if (this.playerStat.stat.StatType == StatType.autoAttack)
+        {
+            GameManager.Instance.PlayerData.AutoAttackLevel = LevelStat(StatType.autoAttack);
+            GameManager.Instance.PlayerData.TotalAutoAttack = BonusStat(BonusStatType.autoAttackBonus);
+        }
 
-        GameManager.Instance.PlayerData.TotalCritDamage = BonusStat(BonusStatType.criticalBonus);
-        GameManager.Instance.PlayerData.TotalGoldGain = BonusStat(BonusStatType.goldGainBonus);
-        GameManager.Instance.PlayerData.TotalAutoAttack = BonusStat(BonusStatType.autoAttackBonus);
     }
 
     /// <summary>
@@ -93,7 +107,7 @@ public class Player : MonoBehaviour
                 bonusValue = playerStat.addStat.bonusValue;
                 GameManager.Instance.PlayerData.TotalAutoAttack = bonusValue;
                 AutoClicker AC = FindObjectOfType<AutoClicker>();
-                if (AC != null)
+                if (AC!=null&&this.playerStat.stat.StatType== StatType.autoAttack)
                 {
                     AC.CheckAutoAttack();
                 }
