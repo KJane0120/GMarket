@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
@@ -20,8 +21,17 @@ public class ResourceManager : MonoBehaviour
 
     public ItemData[] items;
     public Item item;
+    public Sprite[] stageBackgrounds = new Sprite[3];
+    public List<Sprite> backgrounds = new List<Sprite>();
 
     private void Start()
+    {
+        LoadItemData();
+        LoadBackGroundImage();
+        SetData();
+    }
+
+    private void LoadItemData()
     {
         item = FindFirstObjectByType<Item>();
 
@@ -31,7 +41,21 @@ public class ResourceManager : MonoBehaviour
             item.AddItem(Instantiate(items[i]));
         }
         item.SortList();
+    }
 
+    private void LoadBackGroundImage()
+    {
+        stageBackgrounds = Resources.LoadAll<Sprite>("BackGround")
+        .OrderBy(sprite => sprite.name)  // 이름 순서대로 정렬
+        .ToArray();
+        
+        Debug.Log(stageBackgrounds[0]);
+        Debug.Log(stageBackgrounds[1]);
+        Debug.Log(stageBackgrounds[2]);
+    }
+
+    private void SetData()
+    {
         if (item != null)
         {
             item.InstantiateSlot();
@@ -43,10 +67,10 @@ public class ResourceManager : MonoBehaviour
             GameManager.Instance.PlayerData.CurrentWeapon.level = 0;
 
             item.EquipShow(item.inventory[0]);
-            
-            for(int i = 0; items.Length > i; i++)
+
+            for (int i = 0; items.Length > i; i++)
             {
-                if(items[i] != items[0])
+                if (items[i] != items[0])
                 {
                     items[i].isEquipped = false;
                     items[i].isOwned = false;

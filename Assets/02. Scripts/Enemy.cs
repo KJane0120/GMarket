@@ -187,8 +187,7 @@ public class Enemy : MonoBehaviour
         }
         //계수 최종 계산 및 그만큼 값 추가
         //계수: (1+현재 스테이지의 1/4) * 적 종류
-        float goldBonus = GameManager.Instance.PlayerData.TotalGoldGain;
-        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage)*enemytype * (1f + goldBonus);
+        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage)*enemytype;
         CurrencyManager.Instance.controller.CurrencyGainKill((int)(enemyData.StatsGoldOnKill * modifier), (int)(enemyData.WeaponGoldOnKill * modifier));
     }
 
