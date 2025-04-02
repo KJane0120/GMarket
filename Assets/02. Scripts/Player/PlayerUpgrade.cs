@@ -35,12 +35,21 @@ public class PlayerUpgrade : MonoBehaviour
 
         if (Gold >= gold)
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxStatUpgrade, 0.4f);
+            }
             CurrencyManager.Instance.controller.StatGoldUse(gold);
             playerStat.UpgradeBonus();
             UpdateUI();
         }
         else
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxError, 0.4f);
+            }
+
             UIManager.Instance.StatsErrorMsg();
         }
         upGoldText.color = (Gold >= gold) ? Color.black : Color.red;

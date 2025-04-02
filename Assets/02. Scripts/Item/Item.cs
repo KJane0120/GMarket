@@ -38,7 +38,6 @@ public class Item : MonoBehaviour
         for (int i = 0; i < inventory.Count; i++)
         {
             UISlot newSlot = Instantiate(Slot, Content);
-            newSlot.UIButtonOnOff(newSlot);
             Button slotBtn = newSlot.EquipBtn;
             slotBtn.onClick.AddListener(() => OnEquip(newSlot));
             Slots.Add(newSlot);
