@@ -70,4 +70,16 @@ public class ButtonUI : MonoBehaviour
         UIManager.Instance.PausePopup.SetActive(false);
         StartCoroutine(UIManager.Instance.FadeOut("StartScene", UIManager.Instance.StartSceneLoadInit));
     }
+
+    /// <summary>
+    /// 메인 씬에서 게임 종료 버튼 클릭 시 호출됩니다.
+    /// 애플리케이션을 종료합니다.
+    /// </summary>
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }
