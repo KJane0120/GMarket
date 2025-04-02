@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: iceCream
+  m_Name: 07Ramen
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 61d62d4927195b7449f5122db67afafe, type: 3}
-  health: 1158
+  icon: {fileID: 21300000, guid: 674dc42daae559c4bab4e479e71f4c73, type: 3}
+  health: 800
   enemyType: 0
-  StatsGoldOnHit: 2
-  WeaponGoldOnKill: 6
-  StatsGoldOnKill: 25
+  StatsGoldOnHit: 10
+  WeaponGoldOnKill: 30
+  StatsGoldOnKill: 37

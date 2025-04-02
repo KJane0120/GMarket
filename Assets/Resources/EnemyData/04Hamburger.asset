@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8918e1976abcf24db2c2155e8919ce6, type: 3}
-  m_Name: GoldGain
+  m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
+  m_Name: 04Hamburger
   m_EditorClassIdentifier: 
-  stat:
-    StatType: 0
-    statValue: 33
-  addStat:
-    BonusType: 1
-    bonusValue: 330
-    plusValue: 10
-  upgradeGold: 3973
-  upgradePercent: 1.2
+  icon: {fileID: 21300000, guid: e668f2edd898f184cb1e6901f1adec26, type: 3}
+  health: 800
+  enemyType: 0
+  StatsGoldOnHit: 3
+  WeaponGoldOnKill: 6
+  StatsGoldOnKill: 20

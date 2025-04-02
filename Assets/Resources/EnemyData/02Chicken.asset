@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: Snacks
+  m_Name: 02Chicken
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 26262c46a19ee7b4b875bddcccfef9fb, type: 3}
-  health: 2600
+  icon: {fileID: 21300000, guid: 5177c3fa37feaca4ca3f244852d52b2f, type: 3}
+  health: 342
   enemyType: 0
-  StatsGoldOnHit: 3
-  WeaponGoldOnKill: 60
-  StatsGoldOnKill: 80
+  StatsGoldOnHit: 2
+  WeaponGoldOnKill: 2
+  StatsGoldOnKill: 18
