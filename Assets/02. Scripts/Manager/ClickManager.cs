@@ -8,6 +8,7 @@ public class ClickManager : MonoBehaviour
     public Enemy targetEnemy;  // 타겟 적
     public bool isGamePaused;
     public UnityAction onClick;
+    public UnityAction onCritClick;
     private AutoClicker autoClicker; // AutoClicker 참조
 
     public GameObject UIPrefab;
@@ -46,8 +47,19 @@ public class ClickManager : MonoBehaviour
                 //onClick 이벤트를 수행하지 않고 그냥 돌아가기
                 return;
             }
+
+            int critical = Random.Range(0,101);
+
+            if (critical < GameManager.Instance.PlayerData.TotalCritChance)
+            {
+                onCritClick.Invoke();
+            }
+
+            else
+            {
             onClick.Invoke(); // 공격 실행
             Debug.Log("공격 감지");
+            }
         }
     }
     
