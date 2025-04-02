@@ -77,33 +77,15 @@ public class PlayerUpgrade : MonoBehaviour
         switch (playerStat.addStat.BonusType)
         {
             case BonusStatType.criticalBonus:
-                upStatText.text = $"치명타 데미지 + <color=#EEA970>{playerStat.addStat.bonusValue} %</color>";
+                upStatText.text = $"치명타 데미지 + <color=#EEA970>{GameManager.Instance.PlayerData.TotalCritDamage * 100} %</color>";
                 break;
             case BonusStatType.autoAttackBonus:
-                upStatText.text = $"<color=#EEA970>{playerStat.addStat.bonusValue} 회/초</color>";
+                upStatText.text = $"<color=#EEA970>{GameManager.Instance.PlayerData.TotalAutoAttack} 회/초</color>";
                 break;
             case BonusStatType.goldGainBonus:
-                upStatText.text = $"치즈 획득량 + <color=#EEA970>{playerStat.addStat.bonusValue} %</color>";
+                upStatText.text = $"치즈 획득량 + <color=#EEA970>{GameManager.Instance.PlayerData.TotalGoldGain * 100} %</color>";
                 break;
         }
-
-
-        //curStatText.text = $"{playerStat.Stat.statValue}";      // 레벨
-        //upGoldText.text = $"{playerStat.upgradeGold}";          // 업그레이드 골드
-
-        //// 타입에 따라 메세지 다르게 출력
-        //switch (playerStat.addStat.BonusType)
-        //{
-        //    case BonusStatType.criticalBonus:
-        //        upStatText.text = $"치명타 데미지 + {playerStat.addStat.bonusValue} %";
-        //        break;
-        //    case BonusStatType.autoAttackBonus:
-        //        upStatText.text = $"{playerStat.addStat.bonusValue} 회/초";
-        //        break;
-        //    case BonusStatType.goldGainBonus:
-        //        upStatText.text = $"치즈 획득량 + {playerStat.addStat.bonusValue} %";
-        //        break;
-        //}
     }
 
     // 버튼 이벤트트리거 - 누르는 순간 실행
