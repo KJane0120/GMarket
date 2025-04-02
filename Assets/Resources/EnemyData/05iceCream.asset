@@ -16,5 +16,5 @@ MonoBehaviour:
   health: 1158
   enemyType: 0
   StatsGoldOnHit: 2
-  WeaponGoldOnKill: 6
-  StatsGoldOnKill: 25
+  WeaponGoldOnKill: 18
+  StatsGoldOnKill: 35

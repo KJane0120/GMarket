@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 64a2b8b7b8e8145448f471752fba4b07, type: 3}
   health: 1900
   enemyType: 0
-  StatsGoldOnHit: 3
+  StatsGoldOnHit: 10
   WeaponGoldOnKill: 40
-  StatsGoldOnKill: 40
+  StatsGoldOnKill: 55

@@ -2892,6 +2892,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61c1ec2e662c4074ba4ca72c74a50c4b, type: 2}
   - {fileID: 11400000, guid: 6393725a715d59b469858d3fa899c957, type: 2}
   - {fileID: 11400000, guid: 228849cc6ce712c429715c68fc64c45b, type: 2}
+  - {fileID: 11400000, guid: 4b491ae23ec25c34dbd9b9799b14d1f8, type: 2}
   - {fileID: 11400000, guid: f7b16c73af94df34f854b6ae7ff4c4af, type: 2}
   currentEnemyIndex: 0
   stageUI: {fileID: 0}

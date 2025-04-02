@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 15Boos
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 05da989dc6dc3a14aaa69d6767c12811, type: 3}
-  health: 100000
+  health: 1000000
   enemyType: 0
-  StatsGoldOnHit: 15
-  WeaponGoldOnKill: 100000
-  StatsGoldOnKill: 100000
+  StatsGoldOnHit: 30
+  WeaponGoldOnKill: 1000000
+  StatsGoldOnKill: 1000000

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 13Dust
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 52aebaa35c6466c409e6dea7d6fba8c0, type: 3}
-  health: 110
+  health: 4200
   enemyType: 0
-  StatsGoldOnHit: 1
-  WeaponGoldOnKill: 5
-  StatsGoldOnKill: 15
+  StatsGoldOnHit: 28
+  WeaponGoldOnKill: 180
+  StatsGoldOnKill: 500

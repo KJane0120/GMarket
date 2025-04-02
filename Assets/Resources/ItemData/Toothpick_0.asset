@@ -19,7 +19,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 3eb3109fa14302f499a60eb7d39d465e, type: 3}
   level: 0
   baseDamage: 5
-  damegeMultiplier: 1.2
+  damegeMultiplier: 2
   criticalChance: 10
   criticalMultiplier: 0.5
   upgradeCost: 2
