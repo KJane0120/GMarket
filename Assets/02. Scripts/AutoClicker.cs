@@ -30,6 +30,7 @@ public class AutoClicker : MonoBehaviour
                 {
 
                     Debug.Log("자동 공격");
+                    SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxHit, 0.1f);
                     clickManager.onClick.Invoke();
                 }
 
