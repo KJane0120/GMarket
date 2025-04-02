@@ -5,7 +5,9 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
+    [field: SerializeField]
     public PlayerData PlayerData { get; private set; }
+    
 
     private void Awake()
     {
