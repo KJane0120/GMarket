@@ -215,7 +215,7 @@ public class StageManager : MonoBehaviour
         else
         {
             stageText.text = string.Format("현재 스테이지: <color=#EEA970>{0}</color>", GameManager.Instance.PlayerData.NowStage);
-            enemyText.text = string.Format("남은 적: <color=#EEA970>{0}</color> / 10", currentEnemyIndex);
+            enemyText.text = string.Format("처치한 적: <color=#EEA970>{0}</color> / 10", currentEnemyIndex);
         }
     }
 
