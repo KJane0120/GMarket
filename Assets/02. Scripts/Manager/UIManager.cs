@@ -24,8 +24,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject startUI;
     [SerializeField] private Image fadePanel;
     public GameObject inventoryPanel;
-    [SerializeField] private GameObject ItemUI;
-    [SerializeField] private GameObject currentWeaponWindow;
+    public GameObject ItemUI;
+    public GameObject currentWeaponWindow;
     [SerializeField] private TextMeshProUGUI statGoldTxt;
     [SerializeField] private TextMeshProUGUI weaponGoldTxt;
 
