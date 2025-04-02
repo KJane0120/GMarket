@@ -64,7 +64,7 @@ public class UISlot : MonoBehaviour
         }
 
         //무기 재화가 강화비용보다 적다면
-        if (GameManager.Instance.PlayerData.WeaponGold < data.upgradeCost)
+        if (GameManager.Instance.PlayerData.WeaponGold-data.upgradeCost < 0)
         {
             SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxError, 0.4f);
 
@@ -74,13 +74,12 @@ public class UISlot : MonoBehaviour
         }
 
         SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxWeaponUpgrade, 0.4f);
+        CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
 
         data.level++;
         data.baseDamage *= data.damegeMultiplier;
         data.criticalChance += data.criticalMultiplier;
         data.upgradeCost *= data.level;
-
-        CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
 
         UpdateSlot(data);
     }
