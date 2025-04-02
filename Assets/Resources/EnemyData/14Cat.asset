@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: Beer
+  m_Name: 14Cat
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 24b6033cd4ab1394da794293d8c126a8, type: 3}
-  health: 10
+  icon: {fileID: 21300000, guid: 2a619a392b46ac74998fbbadf952cf21, type: 3}
+  health: 20000
   enemyType: 0
-  StatsGoldOnHit: 5
-  WeaponGoldOnKill: 10
-  StatsGoldOnKill: 10
+  StatsGoldOnHit: 50
+  WeaponGoldOnKill: 250000
+  StatsGoldOnKill: 250000

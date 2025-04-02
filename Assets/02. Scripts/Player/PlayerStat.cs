@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -29,7 +27,7 @@ public enum BonusStatType
 public class StatLevel
 {
     [Tooltip("레벨")]
-    public StatType statType;
+    public StatType StatType;
     [Tooltip("레벨 값")]
     public int statValue;
 }
@@ -64,7 +62,7 @@ public class PlayerStat : ScriptableObject
 
     public void UpgradeBonus()
     {
-        stat.statValue += 1;                                    // 레벨 증가
+        stat.statValue += 1;                                            // 레벨 증가
         addStat.bonusValue += addStat.plusValue;                        // 보너스 증가
         upgradeGold = Mathf.RoundToInt(upgradeGold * upgradePercent);   // 강화비용 증가
     }

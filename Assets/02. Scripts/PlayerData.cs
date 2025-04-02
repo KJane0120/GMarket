@@ -1,10 +1,23 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
 {
-    public int NowStage;             //현재 진행중인 스테이지
+    private int nowStage;
+    public int NowStage
+    {
+        get => nowStage;
+        set
+        {
+            if(nowStage != value)
+            {
+                nowStage = value;
+                OnStageChanged?.Invoke(nowStage);
+            }
+        }
+    }            //현재 진행중인 스테이지
     public ItemData CurrentWeapon;   //현재 장착한 장비
 
     [Header("Gold")]
@@ -25,4 +38,6 @@ public class PlayerData
     public float TotalCritDamage;   //최종 치명타 데미지
     public float TotalGoldGain;     //최종 골드 획득 보너스
     public float TotalAutoAttack;   // 최종 자동 공격 횟수 
+
+    public static event Action<int> OnStageChanged;
 }

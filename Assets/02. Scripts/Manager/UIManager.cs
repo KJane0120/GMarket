@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour
     public GameObject currentWeaponWindow;
     [SerializeField] private TextMeshProUGUI statGoldTxt;
     [SerializeField] private TextMeshProUGUI weaponGoldTxt;
-
     private float fadeDuration = 1.0f;
 
 
@@ -56,6 +55,7 @@ public class UIManager : MonoBehaviour
         PausePopup = GetComponentInChildren<SoundUI>(true).gameObject;
     }
 
+
     private void Update()
     {
         RefreshUI();
@@ -66,7 +66,6 @@ public class UIManager : MonoBehaviour
         statGoldTxt.text = string.Format("{0}", GameManager.Instance.PlayerData.StatGold);
         weaponGoldTxt.text = string.Format("{0}", GameManager.Instance.PlayerData.WeaponGold);
     }
-
     /// <summary>
     /// 스탯강화 실패 시 에러메세지를 표시합니다. 
     /// </summary>

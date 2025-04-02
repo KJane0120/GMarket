@@ -1,14 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class PlayerUpgrade : MonoBehaviour
 {
     public Player player;
     public PlayerStat playerStat;
-    //public ClickManager clickManager;
 
     public TMP_Text curStatText;
     public TMP_Text upStatText;
@@ -22,7 +19,6 @@ public class PlayerUpgrade : MonoBehaviour
 
     void Start()
     {
-        Gold = GameManager.Instance.PlayerData.StatGold;
         UpdateUI();
     }
 
@@ -31,6 +27,7 @@ public class PlayerUpgrade : MonoBehaviour
     /// </summary>
     public void UpgradeClick()
     {
+        Gold = GameManager.Instance.PlayerData.StatGold;
         int gold = playerStat.upgradeGold; // 강화 비용 가져오기
 
         if (Gold >= gold)
@@ -41,7 +38,6 @@ public class PlayerUpgrade : MonoBehaviour
             }
             CurrencyManager.Instance.controller.StatGoldUse(gold);
             playerStat.UpgradeBonus();
-            UpdateUI();
         }
         else
         {
@@ -49,10 +45,11 @@ public class PlayerUpgrade : MonoBehaviour
             {
                 SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxError, 0.4f);
             }
-
             UIManager.Instance.StatsErrorMsg();
         }
         upGoldText.color = (Gold >= gold) ? Color.black : Color.red;
+        player.UpdateTotal();
+        UpdateUI();
     }
 
     /// <summary>
@@ -64,16 +61,29 @@ public class PlayerUpgrade : MonoBehaviour
         upGoldText.text = $"<color=#EEA970>{playerStat.upgradeGold}</color>";          // 업그레이드 골드
 
         // 타입에 따라 메세지 다르게 출력
+        switch (playerStat.stat.StatType)
+        {
+            case StatType.critical:
+                upStatText.text = $"{GameManager.Instance.PlayerData.CriticalDamageLevel}";
+                break;
+            case StatType.autoAttack:
+                upStatText.text = $"{GameManager.Instance.PlayerData.AutoAttackLevel}";
+                break;
+            case StatType.goldGain:
+                upStatText.text = $"{GameManager.Instance.PlayerData.GoldGainLevel}";
+                break;
+        }
+
         switch (playerStat.addStat.BonusType)
         {
             case BonusStatType.criticalBonus:
-                upStatText.text = $"치명타 데미지 + <color=#EEA970>{playerStat.addStat.bonusValue} %</color>";
+                upStatText.text = $"치명타 데미지 + <color=#EEA970>{GameManager.Instance.PlayerData.TotalCritDamage * 100} %</color>";
                 break;
             case BonusStatType.autoAttackBonus:
-                upStatText.text = $"<color=#EEA970>{playerStat.addStat.bonusValue} 회/초</color>";
+                upStatText.text = $"<color=#EEA970>{GameManager.Instance.PlayerData.TotalAutoAttack} 회/초</color>";
                 break;
             case BonusStatType.goldGainBonus:
-                upStatText.text = $"치즈 획득량 + <color=#EEA970>{playerStat.addStat.bonusValue} %</color>";
+                upStatText.text = $"치즈 획득량 + <color=#EEA970>{GameManager.Instance.PlayerData.TotalGoldGain * 100} %</color>";
                 break;
         }
     }

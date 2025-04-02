@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: Hamburger
+  m_Name: 04Hamburger
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e668f2edd898f184cb1e6901f1adec26, type: 3}
-  health: 10
+  health: 800
   enemyType: 0
-  StatsGoldOnHit: 5
-  WeaponGoldOnKill: 10
-  StatsGoldOnKill: 10
+  StatsGoldOnHit: 3
+  WeaponGoldOnKill: 13
+  StatsGoldOnKill: 20

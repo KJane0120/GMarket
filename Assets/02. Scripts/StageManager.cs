@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class StageManager : MonoBehaviour
     public GameObject damagePrefab; //인스턴시에이트 한 뒤 데미지를 표시할 텍스트 프리팹
     public TextMeshProUGUI stageText; //스테이지 UI에 표시할 텍스트
     public TextMeshProUGUI enemyText; //적 UI에 표시할 텍스트
+    [SerializeField] private Image backgroundImage;
 
     private void Awake()
     {
@@ -31,7 +33,7 @@ public class StageManager : MonoBehaviour
             enemies = GameObject.FindGameObjectWithTag("Enemies").GetComponent<RectTransform>();
         }
         //만약 클릭매니저가 없다면 찾아온 뒤 할당하고
-        if(clickManager==null)
+        if (clickManager == null)
         {
             clickManager = GameObject.Find("Click").GetComponent<ClickManager>();
         }
@@ -85,6 +87,8 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         ResetEnemies(); //이후 적 초기화
+        PlayerData.OnStageChanged += ChangeBackGround;
+
     }
 
     private void OnEnable()
@@ -179,6 +183,35 @@ public class StageManager : MonoBehaviour
 
     }
 
+    public void ChangeBackGround(int stage)
+    {
+        if (ResourceManager.Instance == null)
+        {
+            Debug.LogError("ResourceManager.Instance가 null입니다!");
+            return;
+        }
+
+        int length = ResourceManager.Instance.stageBackgrounds.Length;
+
+        if (length < 3)  // 최소 3개 이상의 배경이 필요함
+        {
+            Debug.LogError($"배경 이미지가 부족합니다! 현재 개수: {length}");
+            return;
+        }
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == "MainScene")
+        {
+            if(stage % 2 == 0)
+                backgroundImage.sprite = ResourceManager.Instance.stageBackgrounds[0];
+            else
+                backgroundImage.sprite = ResourceManager.Instance.stageBackgrounds[1];
+        }
+
+        Debug.Log($"스테이지 {stage} - 배경 변경 완료!");
+    }
+
     public void AddDamage()
     {
         if (enemy[currentEnemyIndex] != null)
@@ -200,7 +233,7 @@ public class StageManager : MonoBehaviour
         //데미지오브젝트를 StageManager 안에 복제한 뒤 해당 객체의 텍스트 내용을 damage 매개변수로 변경
         GameObject damageObject = Instantiate(damagePrefab, enemy[currentEnemyIndex].transform.position, Quaternion.identity, this.transform);
         //크리티컬인지 확인한 뒤 텍스트 수정
-        if(isCrit)
+        if (isCrit)
         {
             damageObject.GetComponent<TextMeshProUGUI>().text = $"<color=#FF4421>{damage}</color>";
         }
