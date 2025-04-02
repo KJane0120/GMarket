@@ -23,7 +23,7 @@ public class StageManager : MonoBehaviour
     public GameObject damagePrefab; //인스턴시에이트 한 뒤 데미지를 표시할 텍스트 프리팹
     public TextMeshProUGUI stageText; //스테이지 UI에 표시할 텍스트
     public TextMeshProUGUI enemyText; //적 UI에 표시할 텍스트
-    [SerializeField] private Image backgroundImage;
+    public SpriteRenderer backgroundImage;
 
     private void Awake()
     {

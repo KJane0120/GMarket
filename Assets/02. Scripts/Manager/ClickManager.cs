@@ -16,6 +16,8 @@ public class ClickManager : MonoBehaviour
 
     private RectTransform WindowUI;
 
+    public ParticleSystem impactParticleSystem; //클릭 시 재생할 파티클시스템
+
     private void Start()
     {
         autoClicker = FindObjectOfType<AutoClicker>(); // AutoClicker 찾기
@@ -58,10 +60,17 @@ public class ClickManager : MonoBehaviour
     public void CritCheck()
     {
         critical = Random.Range(0, 101);
-
+        CreateImpactParticlesAtPosition(FindObjectOfType<StageManager>().GetComponent<StageManager>().backgroundImage.transform.position);
         onClick.Invoke(); // 공격 실행
         Debug.Log("공격 감지");
         SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxHit, 0.1f);
     }
-    
+
+
+    public void CreateImpactParticlesAtPosition(Vector3 position)
+    {
+        impactParticleSystem.transform.position = position;
+        impactParticleSystem.Play();
+    }
+
 }
