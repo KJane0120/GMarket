@@ -5244,12 +5244,12 @@ RectTransform:
   - {fileID: 650809145554047093}
   - {fileID: 4449050390412239643}
   - {fileID: 3889005972140307782}
-  - {fileID: 6647691134390605844}
   - {fileID: 3033919349435265876}
   - {fileID: 2970670381356989314}
-  - {fileID: 2025562673717226662}
+  - {fileID: 6647691134390605844}
   - {fileID: 6488951655110984438}
   - {fileID: 8674378068741979878}
+  - {fileID: 2025562673717226662}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5335,19 +5335,19 @@ MonoBehaviour:
   interactUI: {fileID: 1365442942284038380}
   buttonUI: {fileID: 4176085778617010980}
   slot: {fileID: 5357166423979456470, guid: 37767187705186a439730b67a8296f8e, type: 3}
-  ErrorMsg: {fileID: 3045981790699287599}
   ErrorMsgText: {fileID: 1601847540926940231}
+  statGoldTxt: {fileID: 715257218965132579}
+  weaponGoldTxt: {fileID: 5088109993281257779}
   PausePopup: {fileID: 8183396640515384464}
+  inventoryPanel: {fileID: 1164821725611918752}
+  ItemUI: {fileID: 133721153239142841}
+  currentWeaponWindow: {fileID: 6528847552462117815}
+  ErrorMsg: {fileID: 3045981790699287599}
   statGold: {fileID: 6616112066015270846}
   weaponGold: {fileID: 4860678223461558994}
   pauseBtn: {fileID: 4611021681871219087}
   startUI: {fileID: 5421287888830596825}
   fadePanel: {fileID: 5573791188415926556}
-  inventoryPanel: {fileID: 1164821725611918752}
-  ItemUI: {fileID: 133721153239142841}
-  currentWeaponWindow: {fileID: 6528847552462117815}
-  statGoldTxt: {fileID: 715257218965132579}
-  weaponGoldTxt: {fileID: 5088109993281257779}
 --- !u!114 &4176085778617010980
 MonoBehaviour:
   m_ObjectHideFlags: 0
