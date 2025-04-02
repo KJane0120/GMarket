@@ -31,7 +31,7 @@ public class StatLevel
     [Tooltip("레벨")]
     public StatType statType;
     [Tooltip("레벨 값")]
-    public float statValue;
+    public int statValue;
 }
 
 [Serializable]
