@@ -22,7 +22,7 @@ public class AutoClicker : MonoBehaviour
     {
         while (true)
         {
-            float attackRate = GameManager.Instance.PlayerData.AutoAttackLevel * 0.3f; // 1레벨당 0.3번 공격
+            float attackRate = GameManager.Instance.PlayerData.TotalAutoAttack * 0.3f; // 1레벨당 0.3번 공격
             if (attackRate > 0)
             {
                 float interval = 1f / attackRate; // 공격 간격 설정
@@ -43,10 +43,9 @@ public class AutoClicker : MonoBehaviour
         }
     }
 
-    public void UpAutoAttack()
+    public void CheckAutoAttack()
     {
-        GameManager.Instance.PlayerData.AutoAttackLevel++;
-        if (GameManager.Instance.PlayerData.AutoAttackLevel > 0)
+        if (GameManager.Instance.PlayerData.TotalAutoAttack > 0)
         {
             StartAutoClick();
         }
