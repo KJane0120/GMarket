@@ -38,7 +38,6 @@ public class PlayerUpgrade : MonoBehaviour
             }
             CurrencyManager.Instance.controller.StatGoldUse(gold);
             playerStat.UpgradeBonus();
-            UpdateUI();
         }
         else
         {
@@ -50,6 +49,7 @@ public class PlayerUpgrade : MonoBehaviour
         }
         upGoldText.color = (Gold >= gold) ? Color.black : Color.red;
         player.UpdateTotal();
+        UpdateUI();
     }
 
     /// <summary>
