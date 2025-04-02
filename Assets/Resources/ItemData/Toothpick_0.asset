@@ -21,7 +21,7 @@ MonoBehaviour:
   baseDamage: 5
   damegeMultiplier: 2
   criticalChance: 10
-  criticalMultiplier: 0.5
+  criticalMultiplier: 1
   upgradeCost: 2
   purchaseGold: 0
   isEquipped: 0

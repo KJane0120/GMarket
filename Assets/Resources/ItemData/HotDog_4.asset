@@ -18,9 +18,12 @@ MonoBehaviour:
   itemDesc: "\uB204\uAC00 \uD55C\uC785 \uBA39\uB2E4 \uBC84\uB9B0 \uD56B\uB3C4\uADF8
     \uB300\uAC80\uC774\uB2E4."
   itemIcon: {fileID: 21300000, guid: 1763ae82d6ffdd6478798c863c48b805, type: 3}
+  level: 0
   baseDamage: 20
-  damegeMultiplier: 1.6
+  damegeMultiplier: 1.35
   criticalChance: 13
-  criticalMultiplier: 0.9
+  criticalMultiplier: 2.5
   upgradeCost: 43
   purchaseGold: 650
+  isEquipped: 0
+  isOwned: 0

@@ -22,7 +22,7 @@ MonoBehaviour:
   baseDamage: 30
   damegeMultiplier: 1.8
   criticalChance: 20
-  criticalMultiplier: 0.9
+  criticalMultiplier: 4
   upgradeCost: 40
   purchaseGold: 800
   isEquipped: 0
