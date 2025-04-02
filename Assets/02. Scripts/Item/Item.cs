@@ -68,34 +68,34 @@ public class Item : MonoBehaviour
 
         data = slot.data;
 
-        if (IsEquip(slot))
+        if (GameManager.Instance.PlayerData.CurrentWeapon != null)
         {
-            UnEquip(slot);
+            UISlot prevSlot = GetItemSlot(GameManager.Instance.PlayerData.CurrentWeapon.ItemID);
+            UnEquip(prevSlot);
         }
-        else
+
+        switch (slot.data.itemType)
         {
-            switch (slot.data.itemType)
-            {
-                case ItemType.Melee:
-                    GameManager.Instance.PlayerData.TotalAttackPower = slot.data.baseDamage;
-                    GameManager.Instance.PlayerData.TotalCritChance = slot.data.criticalChance;
-                    break;
-            }
-
-            foreach (var item in inventory)
-            {
-                item.isEquipped = (item == slot.data); // 선택한 아이템만 true, 나머지는 false
-            }
-
-            slot.UIButtonOnOff(slot);
-
-            if (!EquipList.Contains(slot.data))
-            {
-                EquipList.Add(slot.data);
-            }
-
-            EquipShow(data);
+            case ItemType.Melee:
+                GameManager.Instance.PlayerData.TotalAttackPower = slot.data.baseDamage;
+                GameManager.Instance.PlayerData.TotalCritChance = slot.data.criticalChance;
+                break;
         }
+
+        foreach (var item in inventory)
+        {
+            item.isEquipped = (item == slot.data); // 선택한 아이템만 true, 나머지는 false
+        }
+
+        slot.UIButtonOnOff(slot);
+
+        if (!EquipList.Contains(slot.data))
+        {
+            EquipList.Add(slot.data);
+        }
+
+        EquipShow(data);
+
     }
 
     /// <summary>
@@ -125,5 +125,23 @@ public class Item : MonoBehaviour
                 break;
         }
         EquipList.Remove(slot.data);
+    }
+
+    /// <summary>
+    /// 아이템 ID를 받아서 해당 아이템의 슬롯을 반환
+    /// </summary>
+    /// <param name="itemID"></param>
+    /// <returns></returns>
+    public UISlot GetItemSlot(int itemID)
+    {
+        for (int i = 0; i < Slots.Count; i++)
+        {
+            if (Slots[i].data.ItemID == itemID)
+            {
+                return Slots[i];
+            }
+        }
+        Debug.Log("해당 슬롯이 존재하지 않습니다.");
+        return null;
     }
 }

@@ -15,12 +15,13 @@ public class UISlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeCostText;
     public Button EquipBtn;
     [SerializeField] private Image icon;
-    public Button BuyBtn;
+    public Button purchaseBtn;
+    [SerializeField] private TextMeshProUGUI buyCostText;
 
     public void Start()
     {
-
         upgradeBtn.onClick.AddListener(() => OnClickWeaponUpgradeBtn(this));
+        purchaseBtn.onClick.AddListener(() => OnClickWeaponPurchaseBtn(this));
     }
 
     /// <summary>
@@ -39,7 +40,9 @@ public class UISlot : MonoBehaviour
             damageText.text = $"공격력: {data.baseDamage:F2}";
             criticalText.text = $"치명타 확률: {data.criticalChance:F2}";
             upgradeCostText.text = string.Format("{0:D2}", data.upgradeCost);
+            buyCostText.text = string.Format("{0:D2}", data.purchaseGold);
             upgradeCostText.color = (GameManager.Instance.PlayerData.WeaponGold >= item.upgradeCost) ? Color.black : Color.red;
+            buyCostText.color = (GameManager.Instance.PlayerData.WeaponGold >= item.purchaseGold) ? Color.black : Color.red;
         }
     }
 
@@ -64,7 +67,7 @@ public class UISlot : MonoBehaviour
         }
 
         //무기 재화가 강화비용보다 적다면
-        if (GameManager.Instance.PlayerData.WeaponGold < data.upgradeCost)
+        if (GameManager.Instance.PlayerData.WeaponGold-data.upgradeCost < 0)
         {
             SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxError, 0.4f);
 
@@ -74,13 +77,40 @@ public class UISlot : MonoBehaviour
         }
 
         SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxWeaponUpgrade, 0.4f);
+        CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
 
         data.level++;
         data.baseDamage *= data.damegeMultiplier;
         data.criticalChance += data.criticalMultiplier;
         data.upgradeCost *= data.level;
 
-        CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
+        UpdateSlot(data);
+    }
+
+    public void OnClickWeaponPurchaseBtn(UISlot slot)
+    {
+        ItemData data = slot.data;
+
+        if (data == null)
+        {
+            Debug.LogWarning("구매할 무기 데이터가 존재하지 않습니다.");
+            return;
+        }
+
+        if(GameManager.Instance.PlayerData.WeaponGold < data.purchaseGold)
+        {
+            SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxError, 0.4f);
+            Debug.Log("골드가 부족합니다.");
+            UIManager.Instance.WeaponErrorMsg(); //에러코드
+            return;
+        }
+
+        SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxWeaponUpgrade, 0.4f);
+        CurrencyManager.Instance.controller.WeaponGoldUse(data.purchaseGold); //무기 구매 비용 차감
+
+        data.isOwned = true;
+        data.isEquipped = false;
+        slot.UIButtonOnOff(slot);
 
         UpdateSlot(data);
     }
@@ -102,14 +132,14 @@ public class UISlot : MonoBehaviour
         if (data.isOwned)
         {
             icon.color = Color.white; // 보유 시 아이콘 정상 표시
-            BuyBtn.gameObject.SetActive(false);
+            purchaseBtn.gameObject.SetActive(false);
             upgradeBtn.gameObject.SetActive(true);
             EquipBtn.gameObject.SetActive(!data.isEquipped);
         }
         else
         {
             icon.color = new Color(1, 1, 1, 0.5f);
-            BuyBtn.gameObject.SetActive(true);
+            purchaseBtn.gameObject.SetActive(true);
             upgradeBtn.gameObject.SetActive(false);
             EquipBtn.gameObject.SetActive(false);
             itemNameText.text = "???";

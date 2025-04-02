@@ -57,8 +57,8 @@ public class PlayerUpgrade : MonoBehaviour
     /// </summary>
     void UpdateUI()
     {
-        curStatText.text = $"{playerStat.stat.statValue}";      // 레벨
-        upGoldText.text = $"{playerStat.upgradeGold}";          // 업그레이드 골드
+        curStatText.text = $"<color=#EEA970>{playerStat.stat.statValue}</color>";      // 레벨
+        upGoldText.text = $"<color=#EEA970>{playerStat.upgradeGold}</color>";          // 업그레이드 골드
 
         // 타입에 따라 메세지 다르게 출력
         switch (playerStat.stat.StatType)
@@ -77,13 +77,13 @@ public class PlayerUpgrade : MonoBehaviour
         switch (playerStat.addStat.BonusType)
         {
             case BonusStatType.criticalBonus:
-                upStatText.text = $"치명타 데미지 + {playerStat.addStat.bonusValue} %";
+                upStatText.text = $"치명타 데미지 + <color=#EEA970>{playerStat.addStat.bonusValue} %</color>";
                 break;
             case BonusStatType.autoAttackBonus:
-                upStatText.text = $"{playerStat.addStat.bonusValue} 회/초";
+                upStatText.text = $"<color=#EEA970>{playerStat.addStat.bonusValue} 회/초</color>";
                 break;
             case BonusStatType.goldGainBonus:
-                upStatText.text = $"치즈 획득량 + {playerStat.addStat.bonusValue} %";
+                upStatText.text = $"치즈 획득량 + <color=#EEA970>{playerStat.addStat.bonusValue} %</color>";
                 break;
         }
 
