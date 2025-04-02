@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Drawing;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI; //이미지 활성화
 
@@ -22,16 +20,26 @@ public class Item : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentWeaponDamageText;
     [SerializeField] private TextMeshProUGUI currentWeaponCritText;
 
+    /// <summary>
+    /// 인벤토리 리스트에 아이템을 추가합니다. 
+    /// </summary>
+    /// <param name="item"></param>
     public void AddItem(ItemData item)
     {
         inventory.Add(item);
     }
 
+    /// <summary>
+    /// 인벤토리 리스트를 ID순으로 정렬합니다.
+    /// </summary>
     public void SortList()
     {
         inventory.Sort((a, b) => a.ItemID.CompareTo(b.ItemID));
     }
 
+    /// <summary>
+    /// 슬롯을 동적 생성합니다. 
+    /// </summary>
     public void InstantiateSlot()
     {
         if (Slot == null) return;
@@ -61,7 +69,10 @@ public class Item : MonoBehaviour
         currentWeaponCritText.text = string.Format($"치명타 확률: <color=#EEA970>{item.criticalChance:F2}%</color>");
     }
 
-    //슬롯의 아이템 데이터가 선택한 아이템의 데이터
+    /// <summary>
+    /// 아이템을 장착합니다.
+    /// </summary>
+    /// <param name="slot"></param>
     public void OnEquip(UISlot slot)
     {
         if (slot.data == null || !inventory.Contains(slot.data)) return;
@@ -115,6 +126,10 @@ public class Item : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 아이템을 해제합니다.
+    /// </summary>
+    /// <param name="slot"></param>
     public void UnEquip(UISlot slot)
     {
         switch (slot.data.itemType)

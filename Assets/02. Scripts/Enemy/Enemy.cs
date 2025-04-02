@@ -1,7 +1,3 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,16 +15,6 @@ public class Enemy : MonoBehaviour
     [Header ("스테이지 변수")]
     public int index; //스테이지 내에서 지정된 고유 값
     public StageManager stageManager; //갖고 있게 될 스테이지매니저
-
-    //이벤트 인스턴스 변수
-
-
-    public void Start()
-    {
-        //이벤트 인스턴스 할당하기
-        //이벤트.+=Damaged //클릭 이벤트에 공격 메서드 추가하기
-        //치명타 이벤트.+=CritDamaged //클릭 이벤트(치명타)에 치명타 메서드 추가하기
-    }
 
     /// <summary>
     /// 공격을 받았을 때 호출될 메서드
@@ -199,5 +185,4 @@ public class Enemy : MonoBehaviour
     {
         healthBar.fillAmount = (float)currentHealth / (float)maxHealth;
     }
-
 }

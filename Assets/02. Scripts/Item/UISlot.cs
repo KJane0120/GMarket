@@ -1,22 +1,21 @@
-using System.Resources;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UISlot : MonoBehaviour
 {
     public ItemData data;
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private TextMeshProUGUI criticalText;
-    public Button upgradeBtn;
     [SerializeField] private TextMeshProUGUI upgradeCostText;
-    public Button EquipBtn;
-    [SerializeField] private Image icon;
-    public Button purchaseBtn;
     [SerializeField] private TextMeshProUGUI buyCostText;
+    public Button upgradeBtn;
+    public Button EquipBtn;
+    public Button purchaseBtn;
+    [SerializeField] private Image icon;
 
     public void Start()
     {
@@ -56,7 +55,12 @@ public class UISlot : MonoBehaviour
             ResourceManager.Instance.item.Slots[i].UpdateSlot(ResourceManager.Instance.item.inventory[i]);
         }
     }
-    public void OnClickWeaponUpgradeBtn(UISlot slot) //강화버튼 클릭시 호출되는 함수
+
+    /// <summary>
+    /// 강화 버튼 클릭시 호출되는 함수
+    /// </summary>
+    /// <param name="slot"></param>
+    public void OnClickWeaponUpgradeBtn(UISlot slot)
     {
         ItemData data = slot.data;
 
@@ -87,6 +91,10 @@ public class UISlot : MonoBehaviour
         UpdateSlot(data);
     }
 
+    /// <summary>
+    /// 구매 버튼 클릭시 호출되는 함수
+    /// </summary>
+    /// <param name="slot"></param>
     public void OnClickWeaponPurchaseBtn(UISlot slot)
     {
         ItemData data = slot.data;

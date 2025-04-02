@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum ItemType { Melee, Tooth, finger, helmet, shoes, Necklace } //근접, 이빨, 손톱, 헬멧, 신발, 목걸이
-
 
 [CreateAssetMenu(fileName = "New ItemData", menuName = "Scripttable Object/ItemData")] //ItemData를 여러개 추가 가능
 public class ItemData : ScriptableObject
 {
-
     [Header("# Main Info")]
     public ItemType itemType;
     public int ItemID; //아이템 번호
@@ -27,10 +24,10 @@ public class ItemData : ScriptableObject
     public int purchaseGold; //구매 비용
 
     [Header("Equip")]
-    public bool isEquipped;
+    public bool isEquipped; //장착 여부
 
     [Header("Have")]
-    public bool isOwned;
+    public bool isOwned; //보유 여부
 
 }
 

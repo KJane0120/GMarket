@@ -1,28 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//°³º°ÀûÀÎ Àû Á¾·ù
-//½ÇÁúÀûÀÎ °è»êÀº StageManager¿¡¼­ Ã³¸®ÇÒ °Í
+//ê°œë³„ì ì¸ ì  ì¢…ë¥˜
+//ì‹¤ì§ˆì ì¸ ê³„ì‚°ì€ StageManagerì—ì„œ ì²˜ë¦¬í•  ê²ƒ
 public enum EnemyType
 {
-    Normal, //1+½ºÅ×ÀÌÁöÀÇ 0.25¹è¸¸Å­À» Ã¼·Â¿¡ °öÇÏ±â
-    Elite, //1+½ºÅ×ÀÌÁöÀÇ 0.5¹è¸¸Å­ Ã¼·Â¿¡ °öÇÏ±â
-    Boss, //1+½ºÅ×ÀÌÁöÀÇ 1¹è¸¸Å­ Ã¼·Â¿¡ °öÇÏ±â
+    Normal, //1+ìŠ¤í…Œì´ì§€ì˜ 0.25ë°°ë§Œí¼ì„ ì²´ë ¥ì— ê³±í•˜ê¸°
+    Elite, //1+ìŠ¤í…Œì´ì§€ì˜ 0.5ë°°ë§Œí¼ ì²´ë ¥ì— ê³±í•˜ê¸°
+    Boss, //1+ìŠ¤í…Œì´ì§€ì˜ 1ë°°ë§Œí¼ ì²´ë ¥ì— ê³±í•˜ê¸°
 }
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "New Enemy")]
 public class EnemyData : ScriptableObject
 {
     [Header("Info")]
-    public Sprite icon; // Àû ¾ÆÀÌÄÜ
-    public int health; // Àû Ã¼·Â
+    public Sprite icon; // ì  ì•„ì´ì½˜
+    public int health; // ì  ì²´ë ¥
     public EnemyType enemyType;
 
 
     [Header("Resources")]
-    public int StatsGoldOnHit; //ÇÇ°İ½Ã ¾ò´Â ½ºÅÈ ÀçÈ­
+    public int StatsGoldOnHit; //í”¼ê²©ì‹œ ì–»ëŠ” ìŠ¤íƒ¯ ì¬í™”
 
-    public int WeaponGoldOnKill; // »ç¸ÁÇßÀ» ¶§ ¾ò´Â ¹«±â ÀçÈ­
-    public int StatsGoldOnKill; // »ç¸ÁÇßÀ» ¶§ ¾ò´Â ½ºÅÈ ÀçÈ­
+    public int WeaponGoldOnKill; // ì‚¬ë§í–ˆì„ ë•Œ ì–»ëŠ” ë¬´ê¸° ì¬í™”
+    public int StatsGoldOnKill; // ì‚¬ë§í–ˆì„ ë•Œ ì–»ëŠ” ìŠ¤íƒ¯ ì¬í™”
 }

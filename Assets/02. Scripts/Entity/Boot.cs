@@ -1,9 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 게임 시작시 초기화를 담당하는 클래스
+/// 싱글톤 매니저를 한데 모아 초기화를 진행
+/// </summary>
 public class Boot : MonoBehaviour
 {
     void Start()
