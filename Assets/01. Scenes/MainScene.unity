@@ -769,6 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetEnemy: {fileID: 0}
   isGamePaused: 0
+  critical: 0
   UIPrefab: {fileID: 5122893757592211216, guid: c156764e85d032242bdcd201f3c6e475, type: 3}
 --- !u!4 &332786659
 Transform:
@@ -2875,9 +2876,10 @@ MonoBehaviour:
   enemy:
   - {fileID: 0}
   enemies: {fileID: 1564626356}
+  isCrit: 1
   enemydataTable:
   - {fileID: 11400000, guid: 0f3863c6599a8314a8fc1401abab5348, type: 2}
-  - {fileID: 11400000, guid: 61c1ec2e662c4074ba4ca72c74a50c4b, type: 2}
+  - {fileID: 11400000, guid: f83c6d450f52e464db4c6e3f300e3466, type: 2}
   - {fileID: 11400000, guid: 989a38c8ce86de0469091680eace26f9, type: 2}
   - {fileID: 11400000, guid: 7bb241654f1d11c45ade89ccf284e38c, type: 2}
   - {fileID: 11400000, guid: e14f161fac295884d8570776bd36ecc9, type: 2}
@@ -2887,8 +2889,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3d9ebea0937e18469636952d4d1256c, type: 2}
   - {fileID: 11400000, guid: 7b17affec426eb547b96cf286d201a81, type: 2}
   - {fileID: 11400000, guid: d60e73a2b3cb4cd46a9d7b8469011899, type: 2}
+  - {fileID: 11400000, guid: 61c1ec2e662c4074ba4ca72c74a50c4b, type: 2}
   - {fileID: 11400000, guid: 6393725a715d59b469858d3fa899c957, type: 2}
-  - {fileID: 11400000, guid: f83c6d450f52e464db4c6e3f300e3466, type: 2}
   currentEnemyIndex: 0
   stageUI: {fileID: 0}
   damagePrefab: {fileID: 2974772795372254013, guid: ffcae3b3207b0ba4d98b6a632f7f9882, type: 3}

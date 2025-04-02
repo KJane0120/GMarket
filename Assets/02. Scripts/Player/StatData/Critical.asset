@@ -17,7 +17,7 @@ MonoBehaviour:
     statValue: 0
   addStat:
     BonusType: 0
-    bonusValue: 75
+    bonusValue: 1
     plusValue: 5
   upgradeGold: 149
   upgradePercent: 1.2
