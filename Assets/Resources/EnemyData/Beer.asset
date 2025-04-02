@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 24b6033cd4ab1394da794293d8c126a8, type: 3}
-  health: 10
+  health: 2800
   enemyType: 0
-  StatsGoldOnHit: 5
-  WeaponGoldOnKill: 10
-  StatsGoldOnKill: 10
+  StatsGoldOnHit: 3
+  WeaponGoldOnKill: 80
+  StatsGoldOnKill: 60

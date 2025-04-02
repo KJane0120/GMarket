@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
-  m_Name: Sprite
+  m_Name: BananaMilk_1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 61d62d4927195b7449f5122db67afafe, type: 3}
-  health: 10
+  icon: {fileID: 21300000, guid: 312e0c55c71c9c643b7ebdfe6dd43b5e, type: 3}
+  health: 50
   enemyType: 0
-  StatsGoldOnHit: 5
-  WeaponGoldOnKill: 10
+  StatsGoldOnHit: 1
+  WeaponGoldOnKill: 3
   StatsGoldOnKill: 10

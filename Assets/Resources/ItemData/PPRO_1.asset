@@ -24,6 +24,6 @@ MonoBehaviour:
   criticalChance: 10
   criticalMultiplier: 0.8
   upgradeCost: 5
-  purchaseGold: 100
+  purchaseGold: 50
   isEquipped: 0
   isOwned: 0

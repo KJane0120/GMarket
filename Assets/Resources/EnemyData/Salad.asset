@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
   m_Name: Salad
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 61d62d4927195b7449f5122db67afafe, type: 3}
-  health: 10
+  icon: {fileID: 21300000, guid: 64a2b8b7b8e8145448f471752fba4b07, type: 3}
+  health: 1900
   enemyType: 0
-  StatsGoldOnHit: 2
-  WeaponGoldOnKill: 5
-  StatsGoldOnKill: 5
+  StatsGoldOnHit: 3
+  WeaponGoldOnKill: 40
+  StatsGoldOnKill: 30

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70e4e9f030a3146b0326f8fe149216, type: 3}
   m_Name: Soju
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 61d62d4927195b7449f5122db67afafe, type: 3}
-  health: 10
+  icon: {fileID: 21300000, guid: 9d8fc2b717375f84897ff1be142fc725, type: 3}
+  health: 3000
   enemyType: 0
   StatsGoldOnHit: 5
-  WeaponGoldOnKill: 10
-  StatsGoldOnKill: 10
+  WeaponGoldOnKill: 100
+  StatsGoldOnKill: 100

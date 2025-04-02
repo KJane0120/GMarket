@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: iceCream
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 61d62d4927195b7449f5122db67afafe, type: 3}
-  health: 10
+  health: 1158
   enemyType: 0
-  StatsGoldOnHit: 5
-  WeaponGoldOnKill: 10
-  StatsGoldOnKill: 10
+  StatsGoldOnHit: 2
+  WeaponGoldOnKill: 6
+  StatsGoldOnKill: 25
