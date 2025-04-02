@@ -43,6 +43,10 @@ public class AddStatValue
     public float plusValue;
 }
 
+/// <summary>
+/// 플레이어 스탯 클래스입니다.
+/// ScriptableObject로 구현되어 있습니다.
+/// </summary>
 [CreateAssetMenu(fileName = "PlayerStat", menuName = "Scriptable Object Asset/PlayerStat")]
 
 public class PlayerStat : ScriptableObject

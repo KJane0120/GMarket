@@ -1,10 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 게임의 전반적인 데이터를 관리하는 클래스입니다.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
+
     [field: SerializeField]
     public PlayerData PlayerData { get; private set; }
     
@@ -40,7 +43,10 @@ public class GameManager : MonoBehaviour
         SetData();
     }
 
-    private void SetData() // 데이터 초기화 
+    /// <summary>
+    /// 게임 시작 시 데이터를 초기화합니다.
+    /// </summary>
+    private void SetData()
     {
         PlayerData.NowStage = 1;
 

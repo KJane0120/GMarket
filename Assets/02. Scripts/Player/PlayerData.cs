@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 유저데이터 클래스입니다.
+/// 하나로 통합하여 관리합니다.
+/// </summary>
 [System.Serializable]
 public class PlayerData
 {
-    private int nowStage;
+    private int nowStage; //현재 진행중인 스테이지
     public int NowStage
     {
         get => nowStage;
@@ -17,7 +21,7 @@ public class PlayerData
                 OnStageChanged?.Invoke(nowStage);
             }
         }
-    }            //현재 진행중인 스테이지
+    }            
     public ItemData CurrentWeapon;   //현재 장착한 장비
 
     [Header("Gold")]

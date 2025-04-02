@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class ClickManager : MonoBehaviour
 {
@@ -23,7 +21,10 @@ public class ClickManager : MonoBehaviour
         autoClicker = FindObjectOfType<AutoClicker>(); // AutoClicker 찾기
     }
 
-
+    /// <summary>
+    /// 게임이 일시정지 상태인지 확인
+    /// UI가 활성화되어 있거나, 일시정지 팝업이 활성화되어 있으면 클릭을 하지 아니 함
+    /// </summary>
     private void Update()
     {
         if (UIManager.Instance.inventoryPanel.activeInHierarchy || UIManager.Instance.PausePopup.activeInHierarchy)
@@ -66,7 +67,10 @@ public class ClickManager : MonoBehaviour
         SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxHit, 0.1f);
     }
 
-
+    /// <summary>
+    /// 클릭 이펙트를 생성하는 메서드
+    /// </summary>
+    /// <param name="position"></param>
     public void CreateImpactParticlesAtPosition(Vector3 position)
     {
         impactParticleSystem.transform.position = position;

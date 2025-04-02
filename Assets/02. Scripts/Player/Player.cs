@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 플레이어 클래스입니다. 
+/// </summary>
 public class Player : MonoBehaviour
 {
     public PlayerStat playerStat;
@@ -7,8 +10,11 @@ public class Player : MonoBehaviour
     public StatType statType { get; set; }
     public BonusStatType bonusType { get; set; }
 
-    public int gold; // 골드, PlayerData
+    public int gold;
 
+    /// <summary>
+    /// Value 초기화
+    /// </summary>
     public void Start()
     {
         gold = GameManager.Instance.PlayerData.StatGold;

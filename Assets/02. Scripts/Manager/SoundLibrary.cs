@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 게임의 전반적인 사운드 자원을 관리하는 클래스입니다.
+/// </summary>
 public class SoundLibrary : MonoBehaviour
 {
     public static SoundLibrary Instance { get; private set; }
@@ -7,9 +10,6 @@ public class SoundLibrary : MonoBehaviour
     [Header("BGM Clips")]
     public AudioClip bgmStart; //타이틀 화면에서
     public AudioClip bgmMain1; //게임화면에서
-    public AudioClip bgmMain2; //스테이지에 따라 다른 bgm 재생
-    public AudioClip bgmMain3; //여러개 추가 가능, 랜덤 재생
-
 
     [Header("SFX Clips")]
     public AudioClip sfxHit;            //타격시 

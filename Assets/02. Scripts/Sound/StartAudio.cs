@@ -1,9 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 게임 시작 시 배경음악을 재생하는 클래스입니다.
+/// </summary>
 public class StartAudio : MonoBehaviour
 {
+    /// <summary>
+    /// 시작화면에서 배경음악을 재생합니다.
+    /// </summary>
     void Start()
     {
         if (SoundManager.Instance != null)
@@ -12,6 +16,9 @@ public class StartAudio : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 시작화면에서 나가면 배경음악을 중지합니다.
+    /// </summary>
     private void OnDisable()
     {
         if (SoundManager.Instance != null)

@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 버튼을 관리하는 클래스입니다.
+/// </summary>
 public class ButtonUI : MonoBehaviour
 {
+    [Header("Button")]
     [SerializeField] private Button StartBtn;
     [SerializeField] private Button QuitBtn; //게임종료 버튼
     [SerializeField] private Button pauseButton; //일시정지 버튼

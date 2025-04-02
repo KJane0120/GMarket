@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI를 관리하는 클래스입니다.
+/// </summary>
 public class UIManager : MonoBehaviour
 {
     private static UIManager instance;
@@ -14,20 +17,23 @@ public class UIManager : MonoBehaviour
     public ButtonUI buttonUI;
     public UISlot slot;
 
-    [Header("Components")]
-    public GameObject ErrorMsg;
+    [Header("Text")]
     public TextMeshProUGUI ErrorMsgText;
+    [SerializeField] private TextMeshProUGUI statGoldTxt;
+    [SerializeField] private TextMeshProUGUI weaponGoldTxt;
+
+    [Header("GameObject")]
     public GameObject PausePopup;
+    public GameObject inventoryPanel;
+    public GameObject ItemUI;
+    public GameObject currentWeaponWindow;
+    public GameObject ErrorMsg;
     [SerializeField] private GameObject statGold;
     [SerializeField] private GameObject weaponGold;
     [SerializeField] private GameObject pauseBtn;
     [SerializeField] private GameObject startUI;
     [SerializeField] private Image fadePanel;
-    public GameObject inventoryPanel;
-    public GameObject ItemUI;
-    public GameObject currentWeaponWindow;
-    [SerializeField] private TextMeshProUGUI statGoldTxt;
-    [SerializeField] private TextMeshProUGUI weaponGoldTxt;
+
     private float fadeDuration = 1.0f;
 
 
@@ -47,6 +53,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// UI를 초기화합니다.
+    /// </summary>
     private void Start()
     {
         interactUI = GetComponentInChildren<InteractUI>(true);
@@ -61,11 +70,15 @@ public class UIManager : MonoBehaviour
         RefreshUI();
     }
 
+    /// <summary>
+    /// UI를 업데이트합니다.
+    /// </summary>
     private void RefreshUI()
     {
         statGoldTxt.text = string.Format("{0}", GameManager.Instance.PlayerData.StatGold);
         weaponGoldTxt.text = string.Format("{0}", GameManager.Instance.PlayerData.WeaponGold);
     }
+
     /// <summary>
     /// 스탯강화 실패 시 에러메세지를 표시합니다. 
     /// </summary>
@@ -112,6 +125,10 @@ public class UIManager : MonoBehaviour
         ItemUI.SetActive(true);
     }
 
+    /// <summary>
+    /// 페이드인 효과를 줍니다.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FadeIn()
     {
         float t = fadeDuration;
@@ -124,6 +141,12 @@ public class UIManager : MonoBehaviour
         fadePanel.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 페이드인 효과를 줍니다.
+    /// 오버로드 함수
+    /// </summary>
+    /// <param name="init"></param>
+    /// <returns></returns>
     private IEnumerator FadeIn(Action init)
     {
         init?.Invoke();
@@ -137,6 +160,11 @@ public class UIManager : MonoBehaviour
         fadePanel.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 페이드아웃 효과를 줍니다.
+    /// </summary>
+    /// <param name="ScneneName"></param>
+    /// <returns></returns>
     public IEnumerator FadeOut(string ScneneName)
     {
         fadePanel.gameObject.SetActive(true);
@@ -152,6 +180,13 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    /// <summary>
+    /// 페이드아웃 효과를 줍니다.
+    /// 오버로드 함수
+    /// </summary>
+    /// <param name="ScneneName"></param>
+    /// <param name="init"></param>
+    /// <returns></returns>
     public IEnumerator FadeOut(string ScneneName, Action init)
     {
         fadePanel.gameObject.SetActive(true);

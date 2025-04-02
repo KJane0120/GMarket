@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 게임의 전반적인 자원을 관리하는 클래스입니다.
+/// </summary>
 public class ResourceManager : MonoBehaviour
 {
     private static ResourceManager instance;
@@ -31,6 +34,9 @@ public class ResourceManager : MonoBehaviour
         SetData();
     }
 
+    /// <summary>
+    /// 아이템 데이터를 로드합니다.
+    /// </summary>
     private void LoadItemData()
     {
         item = FindFirstObjectByType<Item>();
@@ -43,6 +49,9 @@ public class ResourceManager : MonoBehaviour
         item.SortList();
     }
 
+    /// <summary>
+    /// 배경 이미지를 로드합니다.
+    /// </summary>
     private void LoadBackGroundImage()
     {
         stageBackgrounds = Resources.LoadAll<Sprite>("BackGround")
@@ -54,6 +63,9 @@ public class ResourceManager : MonoBehaviour
         Debug.Log(stageBackgrounds[2]);
     }
 
+    /// <summary>
+    /// 게임 시작 시 데이터를 초기화합니다.
+    /// </summary>
     private void SetData()
     {
         if (item != null)

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 게임의 전반적인 사운드를 관리하는 클래스입니다.
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }

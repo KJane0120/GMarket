@@ -7,6 +7,7 @@ public class PlayerUpgrade : MonoBehaviour
     public Player player;
     public PlayerStat playerStat;
 
+    [Header("Text")]
     public TMP_Text curStatText;
     public TMP_Text upStatText;
     public TMP_Text upGoldText;
@@ -15,6 +16,7 @@ public class PlayerUpgrade : MonoBehaviour
     private bool isHolding = false;
     public float repeatRate = 0.2f;
     public float delayTime = 1f;
+
     private Coroutine upgradeCoroutine;
 
     void Start()
@@ -88,7 +90,9 @@ public class PlayerUpgrade : MonoBehaviour
         }
     }
 
-    // 버튼 이벤트트리거 - 누르는 순간 실행
+    /// <summary>
+    /// 버튼 이벤트트리거 - 누르는 순간 실행
+    /// </summary>
     public void OnButtonDown()
     {
         if (upgradeCoroutine == null) // 실행중일경우 중복실행 방지
@@ -98,7 +102,10 @@ public class PlayerUpgrade : MonoBehaviour
         }
     }
 
-    // 버튼 이벤트트리거 - 떼는 순간 실행
+
+    /// <summary>
+    /// 버튼 이벤트트리거 - 떼는 순간 실행
+    /// </summary>
     public void OnButtonUp()
     {
         isHolding = false;                      // false로 변경
@@ -109,7 +116,10 @@ public class PlayerUpgrade : MonoBehaviour
         }
     }
 
-    // 이벤트트리거 - 반복실행
+    /// <summary>
+    /// 이벤트트리거 - 반복실행
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator UpgradeLoop()
     {
         // 일반 클릭과 동시에 진행되지 않게 기다리게 함

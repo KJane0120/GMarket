@@ -1518,8 +1518,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmStart: {fileID: 8300000, guid: 18cccfa8ddadc334189ad4cd78a15b4e, type: 3}
   bgmMain1: {fileID: 8300000, guid: 426f723d327fa014981ca89007d9a32a, type: 3}
-  bgmMain2: {fileID: 0}
-  bgmMain3: {fileID: 0}
   sfxHit: {fileID: 8300000, guid: 40a59768cc4d9c948848a0c06880392d, type: 3}
   sfxCritHit: {fileID: 8300000, guid: 76e8ebf674b9d6240920954158f46802, type: 3}
   sfxWeaponUpgrade: {fileID: 8300000, guid: 3ad7094d92c14cb42845029c762fabfd, type: 3}

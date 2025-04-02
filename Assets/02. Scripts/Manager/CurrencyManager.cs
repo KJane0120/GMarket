@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// 플레이어의 재화를 관리하는 클래스입니다.
+/// </summary>
 public class CurrencyManager : MonoBehaviour
 {
     private static CurrencyManager instance;
@@ -8,6 +11,7 @@ public class CurrencyManager : MonoBehaviour
 
     public CurrencyController controller;
 
+    [Header("UI")]
     public TextMeshProUGUI statGoldText;
     public TextMeshProUGUI weaponGoldText;
 
@@ -33,6 +37,9 @@ public class CurrencyManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// UI를 업데이트합니다.
+    /// </summary>
     public void UpdateUI()
     {
         if (statGoldText != null)
