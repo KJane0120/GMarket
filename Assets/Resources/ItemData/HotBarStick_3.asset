@@ -19,9 +19,9 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 0f2c5e9d4aa62f548b78b6e7cfd70234, type: 3}
   level: 0
   baseDamage: 16
-  damegeMultiplier: 1.5
+  damegeMultiplier: 1.45
   criticalChance: 30
-  criticalMultiplier: 0.9
+  criticalMultiplier: 3
   upgradeCost: 20
   purchaseGold: 410
   isEquipped: 0
