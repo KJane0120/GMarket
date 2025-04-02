@@ -32,6 +32,7 @@ public class ClickManager : MonoBehaviour
         // 마우스 클릭 감지
         if (Input.GetMouseButtonDown(0))
         {
+            SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxHit, 0.1f);
             onClick.Invoke(); // 공격 실행
         }
     }

@@ -1,3 +1,4 @@
+using System.Resources;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class UISlot : MonoBehaviour
     }
 
     /// <summary>
-    /// 슬롯에 아이템 데이터를 추가합니다. 
+    /// 슬롯에 있는 아이템 데이터를 업데이트 합니다. 
     /// </summary>
     /// <param name="item"></param>
     public void UpdateSlot(ItemData item)
@@ -38,6 +39,7 @@ public class UISlot : MonoBehaviour
             damageText.text = $"공격력: {data.baseDamage:F2}";
             criticalText.text = $"치명타 확률: {data.criticalChance:F2}";
             upgradeCostText.text = string.Format("{0:D2}", data.upgradeCost);
+            upgradeCostText.color = (GameManager.Instance.PlayerData.WeaponGold >= item.upgradeCost) ? Color.black : Color.red;
         }
     }
 
@@ -53,37 +55,36 @@ public class UISlot : MonoBehaviour
     }
     public void OnClickWeaponUpgradeBtn(UISlot slot) //강화버튼 클릭시 호출되는 함수
     {
-        if (SoundManager.Instance != null)
-        {
-            SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxWeaponUpgrade, 1.0f);
-        }
-
         ItemData data = slot.data;
+
         if (data == null)
         {
             Debug.LogWarning("강화할 무기 데이터가 존재하지 않습니다.");
             return;
         }
 
-        //무기 재화가 강화비용보다 많다면
-        if (GameManager.Instance.PlayerData.WeaponGold >= data.upgradeCost)
+        //무기 재화가 강화비용보다 적다면
+        if (GameManager.Instance.PlayerData.WeaponGold < data.upgradeCost)
         {
-            int currentUpgradeCost = data.upgradeCost;
-            data.level++;
-            data.upgradeCost = data.level * data.upgradeCost;
-            data.baseDamage = data.damegeMultiplier * data.baseDamage;
-            data.criticalChance = data.criticalMultiplier + data.criticalChance;
-            CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
+            SoundManager.Instance.sfxManager.PlaySFX(SoundLibrary.Instance.sfxError, 0.4f);
 
-            UpdateSlot(data);
-        }
-        else
-        {
             Debug.Log("골드가 부족합니다.");
             UIManager.Instance.WeaponErrorMsg(); //에러코드
             return;
         }
+
+        SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxWeaponUpgrade, 0.4f);
+
+        data.level++;
+        data.baseDamage *= data.damegeMultiplier;
+        data.criticalChance += data.criticalMultiplier;
+        data.upgradeCost *= data.level;
+
+        CurrencyManager.Instance.controller.WeaponGoldUse(data.upgradeCost); //무기 업그레이드 비용 차감
+
+        UpdateSlot(data);
     }
+
     /// <summary>
     /// 보유중이라면 아이콘 정상표시, 구매버튼 비활성화, 강화/장착 버튼 활성화(장착중이 아니라면)
     /// 보유중이지 않다면 아이콘 실루엣 표시, 구매버튼 활성화, 아이템이름/스탯 ??? 표시

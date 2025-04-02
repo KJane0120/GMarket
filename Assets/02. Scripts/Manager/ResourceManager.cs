@@ -37,6 +37,7 @@ public class ResourceManager : MonoBehaviour
             item.InstantiateSlot();
             item.EquipList.Add(item.inventory[0]);
             item.inventory[0].isEquipped = true;
+            item.inventory[0].isOwned = true;
 
             GameManager.Instance.PlayerData.CurrentWeapon = item.inventory[0];
             GameManager.Instance.PlayerData.CurrentWeapon.level = 0;
@@ -50,6 +51,7 @@ public class ResourceManager : MonoBehaviour
                     items[i].isEquipped = false;
                     items[i].isOwned = false;
                 }
+                item.Slots[i].UIButtonOnOff(item.Slots[i]);
             }
         }
     }
