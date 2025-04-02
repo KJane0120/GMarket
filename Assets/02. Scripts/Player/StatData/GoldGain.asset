@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoldGain
   m_EditorClassIdentifier: 
   stat:
-    statType: 1
+    StatType: 1
     statValue: 0
   addStat:
     BonusType: 1
