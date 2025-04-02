@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
     public Transform enemies; //enemy가 담긴 부모 객체
 
     private ClickManager clickManager;
+    public bool isCrit;
 
     [Header("적 데이터")]
     public EnemyData[] enemydataTable; //적 데이터가 담겨있을 배열
@@ -40,8 +41,8 @@ public class StageManager : MonoBehaviour
             //Resources 폴더 안 EnemyData 안의 모든 EnemyData 클래스를 불러온 뒤 할당하기
             enemydataTable = Resources.LoadAll<EnemyData>("EnemyData");
         }
-        clickManager.onClick += AddDamage;
 
+        clickManager.onClick += AddDamage;
 
         //스테이지UI가 비어있다면
         if (stageUI == null)
@@ -182,15 +183,31 @@ public class StageManager : MonoBehaviour
     {
         if (enemy[currentEnemyIndex] != null)
         {
-            DamageOutput(enemy[currentEnemyIndex].Damaged());
+            if (clickManager.critical < 50)
+            {
+                isCrit = true;
+                DamageOutput(enemy[currentEnemyIndex].Damaged());
+            }
+            else
+            {
+                isCrit = false;
+                DamageOutput(enemy[currentEnemyIndex].Damaged());
+            }
         }
     }
-
     public void DamageOutput(int damage)
     {
         //데미지오브젝트를 StageManager 안에 복제한 뒤 해당 객체의 텍스트 내용을 damage 매개변수로 변경
         GameObject damageObject = Instantiate(damagePrefab, enemy[currentEnemyIndex].transform.position, Quaternion.identity, this.transform);
-        damageObject.GetComponent<TextMeshProUGUI>().text = $"{damage}";
+        //크리티컬인지 확인한 뒤 텍스트 수정
+        if(isCrit)
+        {
+            damageObject.GetComponent<TextMeshProUGUI>().text = $"<color=#FF4421>{damage}</color>";
+        }
+        else
+        {
+            damageObject.GetComponent<TextMeshProUGUI>().text = $"{damage}";
+        }
 
         //그리고 텍스트가 날아갈 무작위 방향 설정
         float randomX = Random.Range(-1f, 1f); // X축 방향 랜덤

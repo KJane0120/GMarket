@@ -35,7 +35,17 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public int Damaged()
     {
-        float value= GameManager.Instance.PlayerData.CurrentWeapon.baseDamage;
+        float value = 0f;
+        if (stageManager.isCrit)
+        {
+            Debug.Log("치명타!");
+            value = GameManager.Instance.PlayerData.CurrentWeapon.baseDamage * (1f+GameManager.Instance.PlayerData.TotalCritDamage);
+        }
+        else
+        {
+            Debug.Log("일반 공격");
+            value = GameManager.Instance.PlayerData.CurrentWeapon.baseDamage;
+        }
         
         
         if (currentHealth <= value) //만약 체력이 공격력보다 적다면
@@ -71,7 +81,8 @@ public class Enemy : MonoBehaviour
         }
         //계수 최종 계산 및 그만큼 값 추가
         //계수: (1+현재 스테이지의 1/4) * 적 종류
-        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage) * enemytype;
+        float goldBonus = GameManager.Instance.PlayerData.TotalGoldGain;
+        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage) * enemytype * (1f + goldBonus);
         CurrencyManager.Instance.controller.StatGoldGain((int)(enemyData.StatsGoldOnHit * modifier));
 
         UpdateHealth(); //이후 체력 비율 조정
@@ -174,10 +185,10 @@ public class Enemy : MonoBehaviour
                 Debug.Log("할당된 enemyType가 없습니다.");
                 break;
         }
-
         //계수 최종 계산 및 그만큼 값 추가
         //계수: (1+현재 스테이지의 1/4) * 적 종류
-        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage)*enemytype;
+        float goldBonus = GameManager.Instance.PlayerData.TotalGoldGain;
+        float modifier = (1f + 0.25f * GameManager.Instance.PlayerData.NowStage)*enemytype * (1f + goldBonus);
         CurrencyManager.Instance.controller.CurrencyGainKill((int)(enemyData.StatsGoldOnKill * modifier), (int)(enemyData.WeaponGoldOnKill * modifier));
     }
 

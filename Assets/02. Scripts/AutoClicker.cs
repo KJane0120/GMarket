@@ -22,16 +22,14 @@ public class AutoClicker : MonoBehaviour
     {
         while (true)
         {
-            float attackRate = GameManager.Instance.PlayerData.TotalAutoAttack * 0.3f; // 1레벨당 0.3번 공격
+            float attackRate = GameManager.Instance.PlayerData.TotalAutoAttack; // 1레벨당 0.3번 공격
             if (attackRate > 0)
             {
                 float interval = 1f / attackRate; // 공격 간격 설정
                 if (!(clickManager.isGamePaused))
                 {
-
                     Debug.Log("자동 공격");
-                    SoundManager.Instance?.sfxManager.PlaySFX(SoundLibrary.Instance.sfxHit, 0.1f);
-                    clickManager.onClick.Invoke();
+                    clickManager.CritCheck();
                 }
 
                 yield return new WaitForSeconds(interval);
