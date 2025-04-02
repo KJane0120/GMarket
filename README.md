@@ -52,6 +52,7 @@
 - 시작화면
     - 시작하기 : 새로시작
     - 이어하기 : 기존 데이터에서 이어하기
+
 ![페이드인아웃](https://github.com/user-attachments/assets/f689bd6b-cee6-45b2-a8b3-0ed1857e0ead)
 
 
@@ -63,16 +64,19 @@
         - 자동 공격 : 자동으로 초당 몇회 공격할지 강화할 수 있다.
         - 골드 획득량 : 골드 획득량이 늘어납니다.
         - 강화는 꾹 누르고 있으면 자동으로 강화됩니다.
+
 ![장비](https://github.com/user-attachments/assets/6df3c30b-198b-4557-9fe6-aae95b116fb5)
 ![꾹누르기](https://github.com/user-attachments/assets/86b27a34-aeba-4293-880e-f0290024cfdb)
 
 - 설정화면
     - 음량 조절 및 시작 화면으로 돌아가기
+
 ![설정](https://github.com/user-attachments/assets/5e35a14e-0388-4b8f-be01-651075c9e212)
 
 
 - 전투
     - 클릭 시 공격 및 타격 효과
+
 ![파티클시스템](https://github.com/user-attachments/assets/e01c6af5-9996-4b9d-8666-26a36de91718)
 
 
